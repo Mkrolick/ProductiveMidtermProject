@@ -53,5 +53,4 @@ Image* ReadPPM(FILE *fp);
  * and return the number of pixels successfully written.
  */
 int WritePPM(FILE *fp, const Image *img);
-
 #endif // MIDTERM_PPM_IO_H_

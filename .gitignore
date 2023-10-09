@@ -1,3 +1,6 @@
 /*.o
 /puzzle
 /puzzle_tests
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/settings.json
