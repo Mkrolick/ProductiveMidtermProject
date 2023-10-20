@@ -1,5 +1,5 @@
-// <your name> and <your JHED>
-// __Add your name and JHED above__
+// Zachary Sayyah zsayyah1
+// Malcolm Krolick mkrolick1
 /*****************************************************************************
  * Midterm Project - PPM file input/output header file
  * Note: for naming convention, we try to follow Google C++ style guide:
