@@ -12,7 +12,9 @@ typedef struct _tile {
 typedef struct _puzzle {
   Tile** tiles; // 2D array of tiles - replacing tiles[][] with Tile ** tiles as left most dimension needed to be specified 
   // can debug this later if want to revert to previous format 
-  int positions[][];
+
+  // needs to be pointer - cant use initializer list
+  int** positions;
 } Puzzle;
 
 void exportTile(Tile *t, Image* image);
