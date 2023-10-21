@@ -1,17 +1,17 @@
-# Based off of CMake template sourced from https://github.com/albertchan/cmake-c-template
+# Based off of CMake template sourced from https://github.com/albertchan/cmake-c-template, subfile in tests written from scratch
 cmake_minimum_required(VERSION 3.5)
 
 # Definitions
 set(PROJECT_NAME midterm-project)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
-#project(cmake_c_template)
 project(${PROJECT_NAME})
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
 
 # Include paths
 set(INCLUDE_DIRS ${INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/include/ppmio)
 set(INCLUDE_DIRS ${INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/include/)
+# add_subdirectory(tests)
 
 # Assign the include directories
 include_directories(${INCLUDE_DIRS})
@@ -32,3 +32,8 @@ install(FILES ${LIB_INC_FILES} DESTINATION include)
 set(SOURCE_FILES src/puzzle.c)
 add_executable(midterm-project ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_LIB)
+
+add_executable(test tests/puzzle_tests.c)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_LIB )
+add_test(NAME test_puzzles
+         COMMAND TestInstantiator)
