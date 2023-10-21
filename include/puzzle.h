@@ -2,19 +2,21 @@
 #define PUZZLE_H
 
 #include "ppm_io.h" // for Image data type
+#include "stdio.h"
 
 typedef struct _tile {
-  *Pixel imageBlock;
+  Pixel* imageBlock;
   int blockSize;
 } Tile;
 
-void exportTile(Tile *t, *Image image);
-*Image exportImage(Puzzle puzzle);
-
 typedef struct _puzzle {
-  Tile tiles[][]; // 2D array of tiles
+  Tile** tiles; // 2D array of tiles - replacing tiles[][] with Tile ** tiles as left most dimension needed to be specified 
+  // can debug this later if want to revert to previous format 
   int positions[][];
 } Puzzle;
+
+void exportTile(Tile *t, Image* image);
+Image* exportImage(Puzzle puzzle);
 
 Puzzle *puzzle_create(int size);
 
