@@ -26,3 +26,10 @@ Puzzle* puzzle_create(int size) {
   return new_puzzle;
 
 }
+
+void puzzle_destroy(Puzzle *p) {
+
+    p->positions
+
+
+}
