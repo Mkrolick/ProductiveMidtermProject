@@ -49,7 +49,11 @@ int main(int argc, char **argv) {
         return 1;
       }
 
+
+      // Assume pointer is valid - as no error code
       p = puzzle_create(size);
+
+
 
       puzzle_created = 1;
       break;
@@ -133,9 +137,22 @@ int main(int argc, char **argv) {
         return 1;
       }
 
+      for (int row = 0; row < p->size; row++) {
+        for (int col = 0; col < p->size; col++) {
+          int tile_val = puzzle_get_tile(p, row, col);
 
+          fprintf(stdout, "%c", tile_val);
+
+          if ((row != (p->size) - 1) && (col != (p->size) -1)){
+            fprintf(stdout, " ");
+          } else {
+            fprintf(stdout, "\n");
+          }
+        }
+      }
 
       break;
+    
     case 'W':
       if (!puzzle_created) {
         fprintf(stderr, "No puzzle");
@@ -162,6 +179,10 @@ int main(int argc, char **argv) {
     case 'Q':
       break;
     default:
+
+      fprintf(stderr, "Invalid command '%c", command);
+      return 1;
+      
       break;
     }
 
