@@ -113,15 +113,18 @@ int main(int argc, char **argv) {
       }
 
       // change read to write in the future?
-      // change name
       FILE* img_file_ptr = fopen(arr, "r");
-
-      if (!img_ptr) {
+      
+      // check if valid file pointer and if valid file header
+      if ((!img_file_ptr) && (ReadNum(img_file_ptr) != -1)){
         fprintf(stderr, "Could not open image file '%s'", arr);
         return 1;
       }
 
       img_ptr = ReadPPM(img_file_ptr);
+
+      //freeing file pointer after function
+      free(img_file_ptr);
 
       break;
     case 'P':
@@ -129,6 +132,8 @@ int main(int argc, char **argv) {
         fprintf(stderr, "No puzzle");
         return 1;
       }
+
+
 
       break;
     case 'W':
