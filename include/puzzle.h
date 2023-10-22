@@ -20,7 +20,9 @@ typedef struct _puzzle {
 } Puzzle;
 
 void exportTile(Tile *t, Image* image);
-Image* exportImage(Puzzle puzzle);
+
+// changed type to pointer as allows for consistency
+Image* exportImage(Puzzle *p);
 
 Puzzle *puzzle_create(int size);
 
