@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
   int puzzle_created = 0;
   int command;
   int size;
-  int res = fscanf(" %c", command);
+  int res = fscanf(fp, " %c", command);
 
   Puzzle* p = NULL;
   
@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
     case 'C':
 
       // Checking if size is read in properly
-      if ((fscanf(" %d", &size) != 1)) {
+      if ((fscanf(fp, " %d", &size) != 1)) {
         fprintf(stderr, "Invalid input");
         return 1;
       }
@@ -57,6 +57,48 @@ int main(int argc, char **argv) {
         fprintf(stderr, "No puzzle");
         return 1;
       }
+
+      int *temp_arr = malloc(sizeof(int) * size * size);
+
+
+      // seting up empty array to compare values from 
+      for (int i = 0; i < size * size; i++) {
+        *(temp_arr + i) = 0;
+      }
+
+      int temp;
+
+      for (int row = 0; row < size; row++) {
+        for (int col = 0; col < size; col++) {
+
+            if (fp, fscanf(" %d", &temp) == 1) {
+
+              // calculates the address in memory for the temp_arr where val is present
+              // pointer is not acessed unless temp is valid
+              int* current_pointer = temp_arr + (size*(temp/size)) + temp/size;
+
+              if (temp > 16 || temp < 0) {
+                // is that invalid input or invalid tile value
+                fprintf(stderr, "Invalid tile value");
+                return 1;
+              }
+              else if (*current_pointer == 0) {
+                puzzle_set_tile(p, col, row, temp);
+                *current_pointer += 1;
+              } else {
+                fprintf(stderr, "Invalid tile value");
+                return 1;
+              }
+
+            } else {
+              fprintf(stderr, "Invalid input");
+              return 1;
+              
+            }
+        }
+      }
+
+      free(temp_arr);
 
 
       break;
