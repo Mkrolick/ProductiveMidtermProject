@@ -12,7 +12,7 @@ Puzzle* puzzle_create(int size) {
   // need to check if pointers worked or failed
   Puzzle* new_puzzle = malloc(sizeof(Puzzle));
 
-  //creating 2D array of tile poninters
+  //creating 2D array of tile pointers
   Tile** tiles = malloc(sizeof(Tile*) * size);
   for (int i = 0; i < size; i++) {
     tiles[i] = malloc(sizeof(Tile) * size);
@@ -25,6 +25,14 @@ Puzzle* puzzle_create(int size) {
   for (int i = 0; i < size; i++) {
     positions[i] = malloc(sizeof(int) * size);
   }
+
+  // Assigning each value in positions to 0
+  for (int i = 0; i < size; i++){
+    for (int j = 0; j < size; i++) {
+        positions[i][j] = 0;
+    }
+  }
+
 
   new_puzzle->positions = positions;
 
@@ -56,5 +64,22 @@ void puzzle_destroy(Puzzle *p) {
     // set the freed pointers to NULL
     p->positions = NULL;
     p->tiles = NULL;
+
+}
+
+void puzzle_set_tile(Puzzle *p, int col, int row, int value) {
+    p->positions[row][col] = value;
     
+    // add code to move tile into a Tile opbject assigned in tiles
+}
+
+int puzzle_get_tile(const Puzzle *p, int col, int row) {
+
+    // check if p or positions is NULL
+    return p->positions[row][col];
+}
+
+// allows for -> syntax looks nicer
+Image* exportImage(Puzzle *p) {
+    p-> 
 }
