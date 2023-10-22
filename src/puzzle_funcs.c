@@ -74,12 +74,11 @@ void puzzle_set_tile(Puzzle *p, int col, int row, int value) {
 }
 
 int puzzle_get_tile(const Puzzle *p, int col, int row) {
-
     // check if p or positions is NULL
     return p->positions[row][col];
 }
 
 // allows for -> syntax looks nicer
-Image* exportImage(Puzzle *p) {
-    p-> 
-}
+//Image* exportImage(Puzzle *p) {
+//    p-> 
+//}
