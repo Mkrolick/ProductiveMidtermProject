@@ -28,6 +28,7 @@ int main(int argc, char **argv) {
   int res = fscanf(fp, " %c", command);
 
   Puzzle* p = NULL;
+  Image* img_ptr = NULL;
   
 
   //exits if res = EOF as EOF != 1
@@ -103,6 +104,25 @@ int main(int argc, char **argv) {
 
       break;
     case 'I':
+      // check if this is correct array size
+      char arr[256] = {'\0'};
+
+      if (fscanf(fp," %s", &arr) != 1) {
+        fprintf(stderr, "Invalid input");
+        return 1;
+      }
+
+      // change read to write in the future?
+      // change name
+      FILE* img_file_ptr = fopen(arr, "r");
+
+      if (!img_ptr) {
+        fprintf(stderr, "Could not open image file '%s'", arr);
+        return 1;
+      }
+
+      img_ptr = ReadPPM(img_file_ptr);
+
       break;
     case 'P':
       if (!puzzle_created) {
