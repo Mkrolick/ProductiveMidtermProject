@@ -49,16 +49,16 @@ int main(int argc, char **argv) {
       val = handle_P_command(*p);
       break;
     case 'W':
-      val = handle_W_command(fp, *img, *p);
+      //val = handle_W_command(fp, *img, *p);
       break;
     case 'S':
       val = handle_W_command(fp, *img, *p);
       break;
     case 'K':
-      val = handle_K_command(*p);
+      //val = handle_K_command(*p);
       break;
     case 'V':
-      val = handle_V_command(*p);
+      //val = handle_V_command(*p);
       break;
     case 'Q':
       return 0;
@@ -77,8 +77,6 @@ int main(int argc, char **argv) {
     int res = fscanf(" %c", command);
   }
 
-
-  
   return 0;
 }
 
@@ -325,7 +323,7 @@ int handle_S_command(FILE* fp, Puzzle *p) {
       }
 
       break;
-    
+
     case 'l':
 
       // NEed to UPDATE YAY
@@ -389,8 +387,6 @@ int handle_S_command(FILE* fp, Puzzle *p) {
         puzzle_set_tile(p, col, found_row, temp[col]);
       }
 
-    
-      
       break;
     default:
 
@@ -402,3 +398,6 @@ int handle_S_command(FILE* fp, Puzzle *p) {
 
     return 0;
 }
+
+
+
