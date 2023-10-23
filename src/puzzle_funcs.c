@@ -33,8 +33,9 @@ Puzzle* puzzle_create(int size) {
     }
   }
 
-
   new_puzzle->positions = positions;
+
+  new_puzzle->created = 0;
 
   return new_puzzle;
 
@@ -82,3 +83,4 @@ int puzzle_get_tile(const Puzzle *p, int col, int row) {
 //Image* exportImage(Puzzle *p) {
 //    p-> 
 //}
+
