@@ -1,3 +1,5 @@
+// Zachary Sayyah zsayyah1
+// Malcolm Krolick mkrolick1
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -192,11 +194,11 @@ int handle_I_command(FILE *in, Image** im) {
     return 1;
   }
 
-  //freeing file pointer after function
+  // freeing file pointer after function
   free(img_file_ptr);
 
   *im = ReadPPM(img_file_ptr);
-  return 0;
+  return 0; // indicates success
 }
 
 

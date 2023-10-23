@@ -1,3 +1,5 @@
+// Zachary Sayyah zsayyah1
+// Malcolm Krolick mkrolick1
 #include "text_io.h"
 
 void write_game(int* array, int size, FILE* file) {
