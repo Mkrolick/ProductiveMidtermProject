@@ -30,4 +30,10 @@ void puzzle_destroy(Puzzle *p);
 void puzzle_set_tile(Puzzle *p, int col, int row, int value);
 int puzzle_get_tile(const Puzzle *p, int col, int row);
 
+//functions for handling input
+int handle_C_command(FILE *in, Puzzle **p);
+int handle_T_command(FILE *in, Puzzle *p);
+Image* handle_I_command(FILE *in, Puzzle *p);
+
+
 #endif // PUZZLE_H
