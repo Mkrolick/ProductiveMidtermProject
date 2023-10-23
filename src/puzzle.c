@@ -246,7 +246,6 @@ int handle_W_command(FILE* in, Image *im, Puzzle *p) {
 
   for (int row = 0; row < p->size; row++) {
     for (int col = 0; col < (p->size); col++) {
-      //aaaaaaaaAAAAaaaaaaAAA - incoherent screaming
     }
   }
 
@@ -328,12 +327,13 @@ int handle_S_command(FILE* fp, Puzzle *p) {
       }
 
       break;
+    
     case 'l':
 
       // NEed to UPDATE YAY
 
       for (int row = 0; row < (p->size); row++) {
-        for (int col = 1; col < (p->size); col++) {
+        for (int col = 0; col < ((p->size) -1); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
             found_col = col;
             found_row = col;
@@ -349,22 +349,23 @@ int handle_S_command(FILE* fp, Puzzle *p) {
 
       temp[0] = 0;
 
-      for (int row = 1; row < (p->size); row++) {
-        if (puzzle_get_tile(p, found_col, row) != 0) {
-          temp[row] = puzzle_get_tile(p, found_col, row);
+      for (int col = 1; col < (p->size); col++) {
+        if (puzzle_get_tile(p, col, found_row) != 0) {
+          temp[col] = puzzle_get_tile(p, col, found_row);
         }
       }
       
       for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, row, temp[row]);
+        puzzle_set_tile(p, found_col, ((p->size)-1)-row, temp[row]);
       }
       
       break;
+
     case 'r':
 
       // UPdate YAY
       for (int row = 1; row < (p->size); row++) {
-        for (int col = 0; col < ((p->size) - 1); col++) {
+        for (int col = 0; col < (p->size); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
             found_col = col;
             found_row = col;
@@ -386,10 +387,11 @@ int handle_S_command(FILE* fp, Puzzle *p) {
         }
       }
       
-      for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, row, temp[row]);
+      for (int col = 0; col < (p->size); col++) {
+        puzzle_set_tile(p, col, found_row, temp[col]);
       }
 
+    
       
       break;
     default:
