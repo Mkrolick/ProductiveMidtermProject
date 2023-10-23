@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
   int res = fscanf(fp, " %c", command);
 
   Puzzle** p = NULL;
-  Image* img_ptr = NULL;
+  Image** img = NULL;
   
 
   //exits if res = EOF as EOF != 1
@@ -58,9 +58,9 @@ int main(int argc, char **argv) {
 
     case 'I':
       // check if this is correct array size
-      img_ptr = handle_I_command(fp, *p);
+      //img_ptr = handle_I_command(fp, *p);
 
-      if (img_ptr == NULL) {
+      if (img == NULL) {
         return 1;
       }
 
@@ -71,19 +71,7 @@ int main(int argc, char **argv) {
         return 1;
       }
 
-      for (int row = 0; row < p->size; row++) {
-        for (int col = 0; col < p->size; col++) {
-          int tile_val = puzzle_get_tile(p, row, col);
-
-          fprintf(stdout, "%c", tile_val);
-
-          if ((row != (p->size) - 1) && (col != (p->size) -1)){
-            fprintf(stdout, " ");
-          } else {
-            fprintf(stdout, "\n");
-          }
-        }
-      }
+      int val = handle_P_command(*p);
 
       break;
     
@@ -121,7 +109,7 @@ int main(int argc, char **argv) {
     }
 
     //load up res again
-    int res = fscanf(" %c", command);
+    int read = fscanf(" %c", command);
   }
 
 
@@ -218,7 +206,7 @@ int handle_T_command(FILE *in, Puzzle *p) {
 
 
 // Do I make this return back the image_ptr
-Image* handle_I_command(FILE *in, Puzzle *p) {
+int handle_I_command(FILE *in, Image** im) {
   // check if this is correct array size
   char arr[256] = {'\0'};
 
@@ -235,11 +223,31 @@ Image* handle_I_command(FILE *in, Puzzle *p) {
     fprintf(stderr, "Could not open image file '%s'", arr);
     // can't get to free
     free(img_file_ptr);
-    return NULL;
+    return 1;
   }
 
   //freeing file pointer after function
   free(img_file_ptr);
 
-  return ReadPPM(img_file_ptr);
+  im = ReadPPM(img_file_ptr);
+  return 0;
+}
+
+
+int handle_P_command(Puzzle *p) {
+  for (int row = 0; row < p->size; row++) {
+    for (int col = 0; col < p->size; col++) {
+      int tile_val = puzzle_get_tile(p, row, col);
+
+      fprintf(stdout, "%c", tile_val);
+
+      if ((row != (p->size) - 1) && (col != (p->size) -1)){
+        fprintf(stdout, " ");
+      } else {
+        fprintf(stdout, "\n");
+      }
+    }
+  }
+
+  return 1;
 }
