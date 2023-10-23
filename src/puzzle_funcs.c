@@ -1,3 +1,5 @@
+// Zachary Sayyah zsayyah1
+// Malcolm Krolick mkrolick1
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
