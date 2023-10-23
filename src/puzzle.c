@@ -6,7 +6,7 @@
 
 #include "ppm_io.h"
 #include "puzzle.h"
-#include "puzzle_funcs.h"
+
 
 //Note: look over all error codes in context to requirements
 
