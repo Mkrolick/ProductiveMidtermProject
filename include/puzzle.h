@@ -10,6 +10,7 @@ typedef struct _tile {
 } Tile;
 
 typedef struct _puzzle {
+  int created;
   int size;
   
   Tile** tiles; // 2D array of tiles - replacing tiles[][] with Tile ** tiles as left most dimension needed to be specified 
