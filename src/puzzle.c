@@ -6,6 +6,7 @@
 
 #include "ppm_io.h"
 #include "puzzle.h"
+#include "puzzle_funcs.h"
 
 //Note: look over all error codes in context to requirements
 
@@ -25,10 +26,10 @@ int main(int argc, char **argv) {
 
   
   //int puzzle_created = 0;
-  int command;
+  char command;
   int val = 1;
   //int size;
-  int res = fscanf(fp, " %c", command);
+  int res = fscanf(fp, " %c", &command);
 
   Puzzle** p = NULL;
   Image** img = NULL;
@@ -76,7 +77,7 @@ int main(int argc, char **argv) {
     }
 
     //load up res again
-    int res = fscanf(" %c", command);
+    int res = fscanf(fp, " %c", &command);
   }
 
   return 0;
@@ -133,7 +134,7 @@ int handle_T_command(FILE *in, Puzzle *p) {
     for (int row = 0; row < size; row++) {
       for (int col = 0; col < size; col++) {
 
-          if (in, fscanf(" %d", &temp) == 1) {
+          if (fscanf(in, " %d", &temp) == 1) {
 
             // calculates the address in memory for the temp_arr where val is present
             // pointer is not acessed unless temp is valid
@@ -174,28 +175,25 @@ int handle_T_command(FILE *in, Puzzle *p) {
 // Do I make this return back the image_ptr
 int handle_I_command(FILE *in, Image** im) {
   // check if this is correct array size
-  char arr[256] = {'\0'};
+  char arr[256];
 
-  if (fscanf(in, " %s", &arr) != 1) {
+  if (fscanf(in, " %s", arr) != 1) {
     fprintf(stderr, "Invalid input");
     return 1;
   }
 
   // change read to write in the future?
-  FILE* img_file_ptr = fopen(arr, "r");
-
-  // check if valid file pointer and if valid file header
-  if ((!img_file_ptr) && (ReadNum(img_file_ptr) != -1)){
-    fprintf(stderr, "Could not open image file '%s'", arr);
-    // can't get to free
-    free(img_file_ptr);
-    return 1;
-  }
-
-  // freeing file pointer after function
-  free(img_file_ptr);
+  FILE* img_file_ptr = fopen(arr, "r");  
 
   *im = ReadPPM(img_file_ptr);
+
+  if (*im == NULL) {
+    fprintf(stderr, "Could not open image file '%s'", arr);
+    return 1;
+    
+  }
+
+  free(img_file_ptr);
   return 0; // indicates success
 }
 
@@ -229,30 +227,15 @@ int handle_W_command(FILE* in, Image *im, Puzzle *p) {
     return 1;
   }
 
-  char *file1[255] = {'\0'};
-  char *file2[255] = {'\0'};
 
-  if (fscanf(in, " %s", &file1) != 1) {
-    fprintf(stderr, "Invalid input");
-    return 2;
-  }
-
-  if (fscanf(in, " %s", &file2) != 1) {
-    fprintf(stderr, "Invalid input");
-    return 3;
-  }
-
-  for (int row = 0; row < p->size; row++) {
-    for (int col = 0; col < (p->size); col++) {
-    }
-  }
+  return 0;
 
 }
 
-int handle_S_command(FILE* fp, Puzzle *p) {
+int handle_S_command(FILE* in, Puzzle *p) {
   // double check with hand book for errors
   char command;
-  if (fscanf("%c", &command) != 1) {
+  if (fscanf(in, " %c", &command) != 1) {
     fprintf(stderr, "Invalid input");
     return 1;
   }
