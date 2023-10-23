@@ -37,29 +37,28 @@ int main(int argc, char **argv) {
     switch (command)
     {
     case 'C':
-      val = handle_C_command();
+      val = handle_C_command(fp, p);
       break;
     case 'T':
-      val = handle_T_command();
+      val = handle_T_command(fp, *p);
       break;
     case 'I':
-      val = handle_I_command();
+      val = handle_I_command(fp, img);
       break;
     case 'P':
-      val = handle_P_command();
+      val = handle_P_command(*p);
       break;
-    
     case 'W':
-      val = handle_W_command();
+      val = handle_W_command(fp, *img, *p);
       break;
     case 'S':
-      val = handle_W_command();
+      val = handle_W_command(fp, *img, *p);
       break;
     case 'K':
-      val = handle_K_command();
+      val = handle_K_command(*p);
       break;
     case 'V':
-      val = handle_V_command();
+      val = handle_V_command(*p);
       break;
     case 'Q':
       return 0;
@@ -110,12 +109,6 @@ int handle_C_command(FILE *in, Puzzle **p) {
 
   return 0;
 }
-
-
-
-
-
-
 
 int handle_T_command(FILE *in, Puzzle *p) {
   int size = p->size;
@@ -195,7 +188,7 @@ int handle_I_command(FILE *in, Image** im) {
   //freeing file pointer after function
   free(img_file_ptr);
 
-  im = ReadPPM(img_file_ptr);
+  *im = ReadPPM(img_file_ptr);
   return 0;
 }
 
