@@ -22,9 +22,10 @@ int main(int argc, char **argv) {
   }
 
   
-  int puzzle_created = 0;
+  //int puzzle_created = 0;
   int command;
-  int size;
+  int val = 1;
+  //int size;
   int res = fscanf(fp, " %c", command);
 
   Puzzle** p = NULL;
@@ -36,80 +37,45 @@ int main(int argc, char **argv) {
     switch (command)
     {
     case 'C':
-
-      if (handle_C_command(fp, p) != 0) {
-        return 1;
-      }
-
-      puzzle_created = 1;
+      val = handle_C_command();
       break;
-
     case 'T':
-      if (!puzzle_created) {
-        fprintf(stderr, "No puzzle");
-        return 1;
-      }
-
-      if (andle_T_command(fp, *p) != 0) {
-        return 1;
-      }
-
+      val = handle_T_command();
       break;
-
     case 'I':
-      // check if this is correct array size
-      //img_ptr = handle_I_command(fp, *p);
-
-      if (img == NULL) {
-        return 1;
-      }
-
+      val = handle_I_command();
       break;
     case 'P':
-      if (!puzzle_created) {
-        fprintf(stderr, "No puzzle");
-        return 1;
-      }
-
-      int val = handle_P_command(*p);
-
+      val = handle_P_command();
       break;
     
     case 'W':
-      if (!puzzle_created) {
-        fprintf(stderr, "No puzzle");
-        return 1;
-      }
-
+      val = handle_W_command();
       break;
     case 'S':
+      val = handle_W_command();
       break;
     case 'K':
-      if (!puzzle_created) {
-        fprintf(stderr, "No puzzle");
-        return 1;
-      }
-
+      val = handle_K_command();
       break;
     case 'V':
-      if (!puzzle_created) {
-        fprintf(stderr, "No puzzle");
-        return 1;
-      }
-
+      val = handle_V_command();
       break;
     case 'Q':
+      return 0;
       break;
     default:
-
       fprintf(stderr, "Invalid command '%c", command);
       return 1;
-      
       break;
     }
 
+    if (val != 0) {
+      return 1;
+    }
+
     //load up res again
-    int read = fscanf(" %c", command);
+    int res = fscanf(" %c", command);
   }
 
 
