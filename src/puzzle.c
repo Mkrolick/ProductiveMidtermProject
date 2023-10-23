@@ -257,65 +257,146 @@ int handle_S_command(FILE* fp, Puzzle *p) {
     fprintf(stderr, "Invalid input");
     return 1;
   }
+  
+  // might need to use a pointer array for this
+  char temp[p->size];
 
-  switch (command)
-  {
-  case 'u':
-    val = handle_C_command(fp, p);
-    break;
-  case 'd':
-    int tile_found = 0;
-    int found_col;
-    int found_row;
+  int tile_found = 0;
+  int found_col;
+  int found_row;
 
-    for (int col = 0; col < (p->size); col++) {
-      if (puzzle_get_tile(p, col, 0) == 0) {
+
+  switch (command) {
+    case 'u':
+
+      for (int row = 0; row < ((p->size) - 1); row++) {
+        for (int col = 0; col < (p->size); col++) {
+          if (puzzle_get_tile(p, col, row) == 0) {
+            found_col = col;
+            found_row = col;
+            tile_found = 1;
+          } 
+        } 
+      }
+
+      if (!tile_found) {
         fprintf(stderr, "Puzzle cannot be moved in specified direction");
         return 1;
       }
-    }
 
-    for (int row = 1; row < (p->size); row++) {
-      for (int col = 0; col < (p->size); col++) {
-        if (puzzle_get_tile(p, col, row) == 0) {
-          found_col = col;
-          found_row = col;
-          tile_found = 1;
-        } 
-      } 
-    }
+      temp[0] = 0;
 
-    if (!tile_found) {
-      fprintf(stderr, "Puzzle cannot be moved in specified direction");
-    }
-
-    char temp[p->size];
-
-    temp[0] = 0;
-
-    for (int row = 1; row < (p->size); row++) {
-      if (puzzle_get_tile(p, found_col, row) != 0) {
-        temp[row] = puzzle_get_tile(p, found_col, row);
+      for (int row = 1; row < (p->size); row++) {
+        if (puzzle_get_tile(p, found_col, row) != 0) {
+          temp[row] = puzzle_get_tile(p, found_col, row);
+        }
       }
+      
+      for (int row = 0; row < (p->size); row++) {
+        puzzle_set_tile(p, found_col, ((p->size)-1)-row, temp[row]);
+      }
+      
+    case 'd':
+
+      for (int row = 1; row < (p->size); row++) {
+        for (int col = 0; col < (p->size); col++) {
+          if (puzzle_get_tile(p, col, row) == 0) {
+            found_col = col;
+            found_row = col;
+            tile_found = 1;
+          } 
+        } 
+      }
+
+      if (!tile_found) {
+        fprintf(stderr, "Puzzle cannot be moved in specified direction");
+        return 1;
+      }
+
+      temp[0] = 0;
+
+      for (int row = 1; row < (p->size); row++) {
+        if (puzzle_get_tile(p, found_col, row) != 0) {
+          temp[row] = puzzle_get_tile(p, found_col, row);
+        }
+      }
+      
+      for (int row = 0; row < (p->size); row++) {
+        puzzle_set_tile(p, found_col, row, temp[row]);
+      }
+
+      break;
+    case 'l':
+
+      // NEed to UPDATE YAY
+
+      for (int row = 0; row < (p->size); row++) {
+        for (int col = 1; col < (p->size); col++) {
+          if (puzzle_get_tile(p, col, row) == 0) {
+            found_col = col;
+            found_row = col;
+            tile_found = 1;
+          } 
+        } 
+      }
+
+      if (!tile_found) {
+        fprintf(stderr, "Puzzle cannot be moved in specified direction");
+        return 1;
+      }
+
+      temp[0] = 0;
+
+      for (int row = 1; row < (p->size); row++) {
+        if (puzzle_get_tile(p, found_col, row) != 0) {
+          temp[row] = puzzle_get_tile(p, found_col, row);
+        }
+      }
+      
+      for (int row = 0; row < (p->size); row++) {
+        puzzle_set_tile(p, found_col, row, temp[row]);
+      }
+      
+      break;
+    case 'r':
+
+      // UPdate YAY
+      for (int row = 1; row < (p->size); row++) {
+        for (int col = 0; col < ((p->size) - 1); col++) {
+          if (puzzle_get_tile(p, col, row) == 0) {
+            found_col = col;
+            found_row = col;
+            tile_found = 1;
+          } 
+        } 
+      }
+
+      if (!tile_found) {
+        fprintf(stderr, "Puzzle cannot be moved in specified direction");
+        return 1;
+      }
+
+      temp[0] = 0;
+
+      for (int row = 1; row < (p->size); row++) {
+        if (puzzle_get_tile(p, found_col, row) != 0) {
+          temp[row] = puzzle_get_tile(p, found_col, row);
+        }
+      }
+      
+      for (int row = 0; row < (p->size); row++) {
+        puzzle_set_tile(p, found_col, row, temp[row]);
+      }
+
+      
+      break;
+    default:
+
+      fprintf(stderr, "Invalid command '%c", command);
+      return 2;
+      break;
+
     }
-    
-    for (int row = 0; row < (p->size); row++) {
-      puzzle_set_tile(p, found_col, row, temp[row]);
-    }
 
-    break;
-  case 'l':
-    val = handle_C_command(fp, p);
-    break;
-  case 'r':
-    val = handle_C_command(fp, p);
-    break;
-  default:
-    fprintf(stderr, "Invalid command '%c", command);
-    return 2;
-    break;
-
-  }
-
-  return 0;
+    return 0;
 }
