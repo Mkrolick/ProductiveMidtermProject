@@ -10,9 +10,8 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
 project(${PROJECT_NAME})
 
 # Include paths
-set(INCLUDE_DIRS ${INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/include/ppmio)
+set(INCLUDE_DIRS ${INCLUDE_DsIRS} ${PROJECT_SOURCE_DIR}/include/ppmio)
 set(INCLUDE_DIRS ${INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/include/)
-# add_subdirectory(tests)
 
 # Assign the include directories
 include_directories(${INCLUDE_DIRS})
@@ -21,14 +20,16 @@ include_directories(${INCLUDE_DIRS})
 file(GLOB_RECURSE LIB_SRC_FILES include/*/*.c)
 
 # Build static/shared library
-add_library(${PROJECT_NAME}_LIB STATIC ${LIB_SRC_FILES})
+add_library(${PROJECT_NAME}_LIB STATIC ${LIB_SRC_FILES} ${OTHER_LIB_SRC_FILES})
 
 # Install library
 install(TARGETS ${PROJECT_NAME}_LIB DESTINATION lib)
 
 # Install library headers
 file(GLOB_RECURSE LIB_INC_FILES include/*/*.h)
-install(FILES ${LIB_INC_FILES} DESTINATION include)
+file(GLOB_RECURSE OTHER_LIB_INC_FILES include/*.h)
+
+install(FILES ${LIB_INC_FILES} $(OTHER_LIB_INC_FILES) DESTINATION include)
 
 set(SOURCE_FILES src/puzzle.c)
 add_executable(midterm-project ${SOURCE_FILES})
