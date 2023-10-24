@@ -48,23 +48,27 @@ Puzzle* puzzle_create(int size) {
 void puzzle_destroy(Puzzle *p) {
 
     //freeing positions
-    for (int i = 0; i < (p->size); i++) {
-        free(p->positions[i]);
+    for (int i = 0; i < p->size; i++){
+        for (int j = 0; j < p->size; j++) {
+            free(p->positions[i]);
+        }
     }
+
+
     free(p->positions);
 
     // freeing tiles
-    for (int i = 0; i < (p->size); i++) {
+    //for (int i = 0; i < (p->size); i++) {
         // Note: how to check if valid tile?
 
-        Tile* temp_tile = p->tiles[i];
+    //    Tile* temp_tile = p->tiles[i];
         // Free temp_tile image ptr
-        free(temp_tile->imageBlock);
+    //    free(temp_tile->imageBlock);
 
         
-        free(p->tiles[i]);
-    }
-    free(p->tiles);
+    //    free(p->tiles[i]);
+    //}
+    //free(p->tiles);
 
     // Aet the freed pointers to NULL
     p->positions = NULL;
