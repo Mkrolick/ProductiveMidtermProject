@@ -302,14 +302,3 @@ int handle_S_command(FILE* in, Puzzle *p) {
 
     return 0;
 }
-
-
-
-// int pain(void) {
-//   return 4;
-// }
-
-
-int pain(void) {
-  return 4;
-}
