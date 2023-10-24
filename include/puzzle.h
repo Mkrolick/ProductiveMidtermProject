@@ -1,5 +1,3 @@
-// Zachary Sayyah zsayyah1
-// Malcolm Krolick mkrolick1
 #ifndef PUZZLE_H
 #define PUZZLE_H
 
@@ -15,7 +13,7 @@ typedef struct _puzzle {
   int created;
   int size;
   
-  Tile** tiles; // 2D array of tiles - replacing tiles[][] with Tile ** tiles as left most dimension needed to be specified 
+  Tile* tiles; // 2D array of tiles - replacing tiles[][] with Tile ** tiles as left most dimension needed to be specified 
   // can debug this later if want to revert to previous format 
 
   // needs to be pointer - cant use initializer list
@@ -42,5 +40,8 @@ int handle_W_command(FILE* in, Image *im,Puzzle *p);
 int handle_S_command(FILE *in, Puzzle *p);
 int handle_K_command(Puzzle *p);
 int handle_V_command(Puzzle *p);
+
+
+
 
 #endif // PUZZLE_H

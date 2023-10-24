@@ -74,12 +74,12 @@ Image* ReadPPM(FILE *fp) {
   }
 
   /* read image dimensions */
-  //read in columns
+  // read in columns
   im->cols = ReadNum(fp); // NOTE: cols, then rows (i.e. X size followed by Y size)
-  //read in rows
+  // read in rows
   im->rows = ReadNum(fp);
 
-  //read in colors; fail if not 255
+  // read in colors; fail if not 255
   int colors = ReadNum(fp);
   if (colors != 255) {
     fprintf(stderr, "Error:ppm_io - PPM file with colors different from 255\n");
@@ -87,7 +87,7 @@ Image* ReadPPM(FILE *fp) {
     return NULL;
   }
 
-  //confirm that dimensions are positive
+  // confirm that dimensions are positive
   if (im->cols <= 0 || im->rows <= 0) {
     fprintf(stderr, "Error:ppm_io - PPM file with non-positive dimensions\n");
     free(im);
@@ -111,7 +111,7 @@ Image* ReadPPM(FILE *fp) {
     return NULL;
   }
 
-  //return the image struct pointer
+  // returns the image struct pointer
   return im;
 }
 
