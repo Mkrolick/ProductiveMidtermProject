@@ -15,12 +15,12 @@ Puzzle* puzzle_create(int size) {
   Puzzle* new_puzzle = malloc(sizeof(Puzzle));
 
   //creating 2D array of tile pointers
-  Tile** tiles = malloc(sizeof(Tile*) * size);
-  for (int i = 0; i < size; i++) {
-    tiles[i] = malloc(sizeof(Tile) * size);
-  }
-
-  new_puzzle->tiles = tiles;
+  //Tile** tiles = malloc(sizeof(Tile*) * size);
+  //for (int i = 0; i < size; i++) {
+  //  tiles[i] = malloc(sizeof(Tile) * size);
+  //}
+  //
+  //new_puzzle->tiles = tiles;
 
   // creating 2D array of tile positions
   int** positions = malloc(sizeof(int*) * size);
@@ -81,8 +81,12 @@ int puzzle_get_tile(const Puzzle *p, int col, int row) {
     return p->positions[row][col];
 }
 
+
 // allows for -> syntax looks nicer
 //Image* exportImage(Puzzle *p) {
 //    p-> 
 //}
 
+int cry(void) {
+  return 1;
+}
