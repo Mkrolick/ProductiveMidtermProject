@@ -109,7 +109,7 @@ int handle_P_command(Puzzle *p) {
 
   for (int row = 0; row < p->size; row++) {
     for (int col = 0; col < p->size; col++) {
-      int tile_val = puzzle_get_tile(p, row, col);
+      int tile_val = puzzle_get_tile(p, col, row);
 
       fprintf(stdout, "%c", tile_val);
 
@@ -291,3 +291,32 @@ int handle_S_command(FILE *in, Puzzle *p) {
 
   return 0;
 }
+
+int handle_K_command(Puzzle* p) {
+  if (!(p->created)) {
+    fprintf(stderr, "No puzzle");
+    return 1;
+  }
+
+  int correct = 1;
+
+  for (int row = 0; row < (p->size); row++) {
+    for (int col = 0; col < (p->size); col++) {
+      int tile_val = puzzle_get_tile(p, col, row);
+      int correct_val = 1 + col + row * (p->size);
+
+      if (tile_val != 0) {
+        if (correct_val == tile_val) {
+          correct = 1;
+        } else {
+          printf("Not solved\n");
+          return 2;
+        }
+      }      
+    }
+  }
+  
+  printf("Solved\n");
+  return 0;  
+}
+
