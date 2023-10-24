@@ -45,11 +45,6 @@ Puzzle *puzzle_create(int size) {
 }
 
 void puzzle_destroy(Puzzle *p) {
-  // freeing positions
-  for (int i = 0; i < (p->size); i++) {
-    free(p->positions[i]);
-  }
-  free(p->positions);
 
   // freeing positions
   for (int i = 0; i < p->size; i++) {
