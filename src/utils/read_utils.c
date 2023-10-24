@@ -87,8 +87,7 @@ int handle_I_command(FILE *in, Image **im) {
     return 1;
   }
 
-  // change read to write in the future?
-  FILE *img_file_ptr = fopen(arr, "r");  // TODO what is happening here?
+  FILE *img_file_ptr = fopen(arr, "r");
 
   *im = ReadPPM(img_file_ptr);
 
