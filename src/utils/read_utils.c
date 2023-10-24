@@ -102,7 +102,7 @@ int handle_I_command(FILE *in, Image** im) {
   }
 
   // change read to write in the future?
-  FILE* img_file_ptr = fopen(arr, "r");  
+  FILE* img_file_ptr = fopen(arr, "r"); // TODO what is happening here?
 
   *im = ReadPPM(img_file_ptr);
 
@@ -145,7 +145,15 @@ int handle_W_command(FILE* in, Image *im, Puzzle *p) {
     fprintf(stderr, "No puzzle");
     return 1;
   }
+  
+  if (!in) {
+    fprintf(stderr, "No file pointer ");
+    return 2;
+  }
 
+  Image * newImage = exportImage(p);
+
+  int result = WritePPM(in, newImage);
 
   return 0;
 

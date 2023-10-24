@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
   int res = fscanf(fp, " %c", &command);
 
   Puzzle** p = NULL;
-  Image** img = NULL;
+  Image** img = NULL; // TODO seems like a problem
   
 
   //exits if res = EOF as EOF != 1
