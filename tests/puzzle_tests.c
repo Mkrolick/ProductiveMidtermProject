@@ -56,12 +56,89 @@ void test_puzzle_set_tile(void) {
 
 // ...other test functions...
 
+void test_T_command(void) {
+  FILE* fp = fopen("../tests/function_tests/t_cmd_1", "r");
+  Puzzle* p = puzzle_create(4);
+  p->created = 0;
+
+  int res = handle_T_command(fp, p);
+  assert(res == 1);
+
+  FILE* fp = fopen("../tests/function_tests/t_cmd_2", "r");
+  Puzzle* p = puzzle_create(4);
+
+  int res = handle_T_command(fp, p);
+  assert(res == 2);
+
+  FILE* fp = fopen("../tests/function_tests/t_cmd_3", "r");
+  Puzzle* p = puzzle_create(4);
+
+  int res = handle_T_command(fp, p);
+  assert(res == 3);
+
+  FILE* fp = fopen("../tests/function_tests/t_cmd_4", "r");
+  Puzzle* p = puzzle_create(4);
+
+  int res = handle_T_command(fp, p);
+  assert(res == 4);
+
+  FILE* fp = fopen("../tests/function_tests/t_cmd_5", "r");
+  Puzzle* p = puzzle_create(4);
+
+  int res = handle_T_command(fp, p);
+  assert(res == 0);
+}
+
+void test_I_command(void) {
+
+  Image** im = NULL;
+  FILE* fp = fopen("../tests/function_tests/i_cmd_1","r");
+
+  int res = handle_I_command(fp, im);
+
+  assert(res == 1);
+
+  Image** im = NULL;
+  FILE* fp = fopen("../tests/function_tests/i_cmd_2","r");
+
+  int res = handle_I_command(fp, im);
+
+  assert(res == 2);
+
+  Image** im = NULL;
+  FILE* fp = fopen("../tests/function_tests/i_cmd_3","r");
+
+  int res = handle_I_command(fp, im);
+
+  assert(res == 2);
+  
+  Image** im = NULL;
+  FILE* fp = fopen("../tests/function_tests/i_cmd_4","r");
+
+  int res = handle_I_command(fp, im);
+
+  assert(res == 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 int main(void) {
   
   test_puzzle_create();
   printf("Segfault Passed");
   test_puzzle_set_tile();
-  // ...call other test functions...
+
+  test_T_command();
+  test_I_command();
   
   
   

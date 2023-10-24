@@ -93,7 +93,7 @@ int handle_I_command(FILE *in, Image **im) {
 
   if (*im == NULL) {
     fprintf(stderr, "Could not open image file '%s'", arr);
-    return 1;
+    return 2;
   }
 
   free(img_file_ptr);
@@ -108,7 +108,7 @@ int handle_P_command(Puzzle *p) {
 
   for (int row = 0; row < p->size; row++) {
     for (int col = 0; col < p->size; col++) {
-      int tile_val = puzzle_get_tile(p, row, col);
+      int tile_val = puzzle_get_tile(p, col, row);
 
       fprintf(stdout, "%c", tile_val);
 
@@ -290,3 +290,23 @@ int handle_S_command(FILE *in, Puzzle *p) {
 
   return 0;
 }
+
+int handle_K_command(Puzzle* p) {
+  if (!(p->created)) {
+    fprintf(stderr, "No puzzle");
+    return 1;
+  }
+
+  if (puzzle_solved(p)) {
+    printf("Solved\n");
+    return 0;  
+  } else {
+    printf("Not solved\n");
+    return 2; 
+  }
+}
+
+//Solver command
+//int handle_V_command(*p) {
+//
+//}

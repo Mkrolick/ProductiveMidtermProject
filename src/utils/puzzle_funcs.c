@@ -45,11 +45,6 @@ Puzzle *puzzle_create(int size) {
 }
 
 void puzzle_destroy(Puzzle *p) {
-  // freeing positions
-  for (int i = 0; i < (p->size); i++) {
-    free(p->positions[i]);
-  }
-  free(p->positions);
 
   // freeing positions
   for (int i = 0; i < p->size; i++) {
@@ -129,4 +124,26 @@ Image *exportImage(Puzzle *p) {
     }
   }
   return newImage;
+}
+
+int puzzle_solved(Puzzle* p) {
+
+  int correct;
+
+  for (int row = 0; row < (p->size); row++) {
+    for (int col = 0; col < (p->size); col++) {
+      int tile_val = puzzle_get_tile(p, col, row);
+      int correct_val = 1 + col + row * (p->size);
+
+      if (tile_val != 0) {
+        if (correct_val == tile_val) {
+          correct = 1;
+        } else {
+          correct = 0;
+        }
+      }      
+    }
+  }
+
+  return correct;
 }
