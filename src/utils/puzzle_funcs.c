@@ -15,13 +15,12 @@ Puzzle* puzzle_create(int size) {
   Puzzle* new_puzzle = malloc(sizeof(Puzzle));
 
   //creating 2D array of tile pointers
-  Tile** tiles = malloc(sizeof(Tile*) * size);
-
-  for (int i = 0; i < size; i++) {
-    tiles[i] = malloc(sizeof(Tile) * size);
-  }
-
-  new_puzzle->tiles = tiles;
+  //Tile** tiles = malloc(sizeof(Tile*) * size);
+  //for (int i = 0; i < size; i++) {
+  //  tiles[i] = malloc(sizeof(Tile) * size);
+  //}
+  //
+  //new_puzzle->tiles = tiles;
 
   // creating 2D array of tile positions
   int** positions = malloc(sizeof(int*) * size);

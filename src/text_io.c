@@ -5,7 +5,7 @@
 void write_game(int* array, int size, FILE* file) {
     
     // confirms that we received a valid file handle
-    assert(file);
+    // assert(file);
     for (int i = 0; i < size; i++) {
         fprintf(file, "%d ", array[i]);
     }
@@ -13,5 +13,5 @@ void write_game(int* array, int size, FILE* file) {
 }
 
 int* read_moves(FILE* file) {
-    
+    return NULL;
 }
