@@ -11,7 +11,7 @@
 #ifndef MIDTERM_PPM_IO_H_
 #define MIDTERM_PPM_IO_H_
 
-#include <stdio.h> // c file type: FILE
+#include <stdio.h>  // c file type: FILE
 
 /* A struct to store a point (2D coordiante).
  */
@@ -19,7 +19,6 @@ typedef struct _point {
   int x;
   int y;
 } Point;
-
 
 /* A struct to store a single RGB pixel, one byte per color channel.
  */
@@ -46,11 +45,11 @@ typedef struct _image {
  * Returns the address of the heap-allocated Image struct it
  * creates and populates with the Image data.
  */
-Image* ReadPPM(FILE *fp);
+Image *ReadPPM(FILE *fp);
 
 /* WritePPM
  * Write a PPM-formatted image to a file (assumes fp != NULL),
  * and return the number of pixels successfully written.
  */
 int WritePPM(FILE *fp, const Image *img);
-#endif // MIDTERM_PPM_IO_H_
+#endif  // MIDTERM_PPM_IO_H_

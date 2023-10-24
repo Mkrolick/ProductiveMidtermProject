@@ -1,14 +1,11 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 
 #include "ppm_io.h"
 #include "puzzle.h"
 
-
-
 int handle_C_command(FILE *in, Puzzle **p) {
-
   // differences in return are to help in debugging
   int size = 0;
 
@@ -25,7 +22,8 @@ int handle_C_command(FILE *in, Puzzle **p) {
   }
 
   // Assume pointer is valid - as no error code
-  // check if another error with invalid dimension sizes exist - IE 4 by 4 image 3 section splices.
+  // check if another error with invalid dimension sizes exist - IE 4 by 4 image
+  // 3 section splices.
   *p = puzzle_create(size);
 
   return 0;
@@ -37,62 +35,50 @@ int handle_T_command(FILE *in, Puzzle *p) {
     return 1;
   }
 
-
   int size = p->size;
 
   int *temp_arr = malloc(sizeof(int) * size * size);
 
+  // seting up empty array to compare values from
+  for (int i = 0; i < size * size; i++) {
+    *(temp_arr + i) = 0;
+  }
 
-    // seting up empty array to compare values from 
-    for (int i = 0; i < size * size; i++) {
-      *(temp_arr + i) = 0;
-    }
+  int temp;
 
-    int temp;
+  for (int row = 0; row < size; row++) {
+    for (int col = 0; col < size; col++) {
+      if (fscanf(in, " %d", &temp) == 1) {
+        // calculates the address in memory for the temp_arr where val is
+        // present pointer is not acessed unless temp is valid
+        int *current_pointer = temp_arr + (size * (temp / size)) + temp / size;
 
-    for (int row = 0; row < size; row++) {
-      for (int col = 0; col < size; col++) {
+        if (temp > 15 || temp < 0) {
+          // is that invalid input or invalid tile value
+          fprintf(stderr, "Invalid tile value");
+          return 2;
+        } else if (*current_pointer == 0) {
+          puzzle_set_tile(p, col, row, temp);
+          *current_pointer += 1;
+        } else {
+          fprintf(stderr, "Invalid tile value");
+          return 3;
+        }
 
-          if (fscanf(in, " %d", &temp) == 1) {
-
-            // calculates the address in memory for the temp_arr where val is present
-            // pointer is not acessed unless temp is valid
-            int* current_pointer = temp_arr + (size*(temp/size)) + temp/size;
-
-            if (temp > 15 || temp < 0) {
-              // is that invalid input or invalid tile value
-              fprintf(stderr, "Invalid tile value");
-              return 2;
-            }
-            else if (*current_pointer == 0) {
-              puzzle_set_tile(p, col, row, temp);
-              *current_pointer += 1;
-            } else {
-              fprintf(stderr, "Invalid tile value");
-              return 3;
-            }
-
-          } else {
-            fprintf(stderr, "Invalid input");
-            return 4;
-            
-          }
+      } else {
+        fprintf(stderr, "Invalid input");
+        return 4;
       }
     }
+  }
 
-    free(temp_arr);
+  free(temp_arr);
 
-    return 0;
+  return 0;
 }
 
-
-
-
-
-
-
 // Do I make this return back the image_ptr
-int handle_I_command(FILE *in, Image** im) {
+int handle_I_command(FILE *in, Image **im) {
   // check if this is correct array size
   char arr[256];
 
@@ -102,20 +88,18 @@ int handle_I_command(FILE *in, Image** im) {
   }
 
   // change read to write in the future?
-  FILE* img_file_ptr = fopen(arr, "r"); // TODO what is happening here?
+  FILE *img_file_ptr = fopen(arr, "r");  // TODO what is happening here?
 
   *im = ReadPPM(img_file_ptr);
 
   if (*im == NULL) {
     fprintf(stderr, "Could not open image file '%s'", arr);
     return 1;
-    
   }
 
   free(img_file_ptr);
-  return 0; // indicates success
+  return 0;  // indicates success
 }
-
 
 int handle_P_command(Puzzle *p) {
   if (!(p->created)) {
@@ -129,7 +113,7 @@ int handle_P_command(Puzzle *p) {
 
       fprintf(stdout, "%c", tile_val);
 
-      if ((row != (p->size) - 1) && (col != (p->size) -1)){
+      if ((row != (p->size) - 1) && (col != (p->size) - 1)) {
         fprintf(stdout, " ");
       } else {
         fprintf(stdout, "\n");
@@ -140,40 +124,38 @@ int handle_P_command(Puzzle *p) {
   return 1;
 }
 
-int handle_W_command(FILE* in, Image *im, Puzzle *p) {
+int handle_W_command(FILE *in, Image *im, Puzzle *p) {
   if (!(p->created)) {
     fprintf(stderr, "No puzzle");
     return 1;
   }
-  
+
   if (!in) {
     fprintf(stderr, "No file pointer ");
     return 2;
   }
-
-  Image * newImage = exportImage(p);
+  // WRites result of
+  Image *newImage = exportImage(p);
 
   int result = WritePPM(in, newImage);
 
   return 0;
-
 }
 
-int handle_S_command(FILE* in, Puzzle *p) {
+int handle_S_command(FILE *in, Puzzle *p) {
   // double check with hand book for errors
   char command;
   if (fscanf(in, " %c", &command) != 1) {
     fprintf(stderr, "Invalid input");
     return 1;
   }
-  
+
   // might need to use a pointer array for this
   char temp[p->size];
 
   int tile_found = 0;
   int found_col;
   int found_row;
-
 
   switch (command) {
     case 'u':
@@ -184,8 +166,8 @@ int handle_S_command(FILE* in, Puzzle *p) {
             found_col = col;
             found_row = col;
             tile_found = 1;
-          } 
-        } 
+          }
+        }
       }
 
       if (!tile_found) {
@@ -200,11 +182,11 @@ int handle_S_command(FILE* in, Puzzle *p) {
           temp[row] = puzzle_get_tile(p, found_col, row);
         }
       }
-      
+
       for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, ((p->size)-1)-row, temp[row]);
+        puzzle_set_tile(p, found_col, ((p->size) - 1) - row, temp[row]);
       }
-      
+
     case 'd':
 
       for (int row = 1; row < (p->size); row++) {
@@ -213,8 +195,8 @@ int handle_S_command(FILE* in, Puzzle *p) {
             found_col = col;
             found_row = col;
             tile_found = 1;
-          } 
-        } 
+          }
+        }
       }
 
       if (!tile_found) {
@@ -229,7 +211,7 @@ int handle_S_command(FILE* in, Puzzle *p) {
           temp[row] = puzzle_get_tile(p, found_col, row);
         }
       }
-      
+
       for (int row = 0; row < (p->size); row++) {
         puzzle_set_tile(p, found_col, row, temp[row]);
       }
@@ -241,13 +223,13 @@ int handle_S_command(FILE* in, Puzzle *p) {
       // NEed to UPDATE YAY
 
       for (int row = 0; row < (p->size); row++) {
-        for (int col = 0; col < ((p->size) -1); col++) {
+        for (int col = 0; col < ((p->size) - 1); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
             found_col = col;
             found_row = col;
             tile_found = 1;
-          } 
-        } 
+          }
+        }
       }
 
       if (!tile_found) {
@@ -262,11 +244,11 @@ int handle_S_command(FILE* in, Puzzle *p) {
           temp[col] = puzzle_get_tile(p, col, found_row);
         }
       }
-      
+
       for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, ((p->size)-1)-row, temp[row]);
+        puzzle_set_tile(p, found_col, ((p->size) - 1) - row, temp[row]);
       }
-      
+
       break;
 
     case 'r':
@@ -278,8 +260,8 @@ int handle_S_command(FILE* in, Puzzle *p) {
             found_col = col;
             found_row = col;
             tile_found = 1;
-          } 
-        } 
+          }
+        }
       }
 
       if (!tile_found) {
@@ -294,7 +276,7 @@ int handle_S_command(FILE* in, Puzzle *p) {
           temp[row] = puzzle_get_tile(p, found_col, row);
         }
       }
-      
+
       for (int col = 0; col < (p->size); col++) {
         puzzle_set_tile(p, col, found_row, temp[col]);
       }
@@ -305,8 +287,7 @@ int handle_S_command(FILE* in, Puzzle *p) {
       fprintf(stderr, "Invalid command '%c", command);
       return 2;
       break;
+  }
 
-    }
-
-    return 0;
+  return 0;
 }
