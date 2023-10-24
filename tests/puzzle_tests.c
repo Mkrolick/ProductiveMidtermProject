@@ -138,7 +138,7 @@ int main(void) {
   test_puzzle_set_tile();
 
   test_T_command();
-  test_I_command()
+  test_I_command();
   
   
   
