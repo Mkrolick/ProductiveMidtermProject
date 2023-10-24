@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+
 #include "puzzle.h"
+#include "puzzle_funcs.c"
 
 // also tests puzzle_destroy
 void test_puzzle_create(void) {
