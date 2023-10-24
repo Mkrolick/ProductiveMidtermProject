@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
         val = handle_P_command(*p);
         break;
       case 'W':
-        handle_W_command(fp, *img, *p);
+        val = handle_W_command(fp, *img, *p);
         break;
       case 'S':
         val = handle_W_command(fp, *img, *p);
