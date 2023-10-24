@@ -28,9 +28,9 @@ Puzzle* puzzle_create(int size) {
     positions[i] = malloc(sizeof(int) * size);
   }
 
-  // Assigning each value in positions to 0
+  //Assigning each value in positions to 0
   for (int i = 0; i < size; i++){
-    for (int j = 0; j < size; i++) {
+    for (int j = 0; j < size; j++) {
         positions[i][j] = 0;
     }
   }
@@ -38,6 +38,8 @@ Puzzle* puzzle_create(int size) {
   new_puzzle->positions = positions;
 
   new_puzzle->created = 0;
+
+  new_puzzle->size = size;
 
   return new_puzzle;
 
