@@ -54,8 +54,7 @@ int main(int argc, char** argv) {
         val = handle_W_command(fp, *img, *p);
         break;
       case 'K':
-        printf("lmao");
-        // val = handle_K_command(*p);
+        val = handle_K_command(*p);
         break;
       case 'V':
         printf("lmao");
