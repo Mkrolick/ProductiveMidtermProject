@@ -94,7 +94,7 @@ int handle_I_command(FILE *in, Image **im) {
 
   if (*im == NULL) {
     fprintf(stderr, "Could not open image file '%s'", arr);
-    return 1;
+    return 2;
   }
 
   free(img_file_ptr);
