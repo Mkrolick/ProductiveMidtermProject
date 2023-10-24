@@ -41,12 +41,7 @@ int handle_S_command(FILE *in, Puzzle *p);
 int handle_K_command(Puzzle *p);
 int handle_V_command(Puzzle *p);
 
-<<<<<<< HEAD
-
-
-=======
 int pain(void);
 int cry(void);
->>>>>>> 78f440db870f96956ee193030bf5df4c78d983c8
 
 #endif // PUZZLE_H
