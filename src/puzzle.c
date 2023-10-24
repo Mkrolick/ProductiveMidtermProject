@@ -7,8 +7,7 @@
 #include "ppm_io.h"
 #include "puzzle.h"
 
-
-//Note: look over all error codes in context to requirements
+//TODO: look over all error codes in context to requirements
 
 
 int main(int argc, char **argv) {
@@ -58,12 +57,16 @@ int main(int argc, char **argv) {
       val = handle_W_command(fp, *img, *p);
       break;
     case 'K':
+      printf("lmao");
       //val = handle_K_command(*p);
       break;
     case 'V':
+      printf("lmao");
+
       //val = handle_V_command(*p);
       break;
     case 'Q':
+      printf("lmao");
       return 0;
       break;
     default:

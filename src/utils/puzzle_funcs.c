@@ -56,7 +56,7 @@ void puzzle_destroy(Puzzle *p) {
         // Note: how to check if valid tile?
 
         Tile* temp_tile = p->tiles[i];
-        // free temp_tile image ptr
+        // Free temp_tile image ptr
         free(temp_tile->imageBlock);
 
         
@@ -64,7 +64,7 @@ void puzzle_destroy(Puzzle *p) {
     }
     free(p->tiles);
 
-    // set the freed pointers to NULL
+    // Aet the freed pointers to NULL
     p->positions = NULL;
     p->tiles = NULL;
 
@@ -73,7 +73,7 @@ void puzzle_destroy(Puzzle *p) {
 void puzzle_set_tile(Puzzle *p, int col, int row, int value) {
     p->positions[row][col] = value;
     
-    // add code to move tile into a Tile opbject assigned in tiles
+    // Add code to move tile into a Tile opbject assigned in tiles
 }
 
 int puzzle_get_tile(const Puzzle *p, int col, int row) {
@@ -81,12 +81,40 @@ int puzzle_get_tile(const Puzzle *p, int col, int row) {
     return p->positions[row][col];
 }
 
+Image *exportImage(Puzzle *p) {
+    Image *newImage = malloc(sizeof(Image));
 
-// allows for -> syntax looks nicer
-//Image* exportImage(Puzzle *p) {
-//    p-> 
-//}
+    assert(p->size);
+    // Copying format data from original image
+    newImage->rows = p->size * p->tiles->blockSize;
+    newImage->cols = p->size * p->tiles->blockSize;
+    newImage->data = (Pixel*) malloc(sizeof(Pixel) * newImage->rows * newImage->cols);
+    
+    // Verifies malloc succeeded
+    assert(newImage->data);
 
-int cry(void) {
-  return 1;
+    // TODO Actually store blocksize in puzzle object
+    // as it stands this just gets the first tile
+    int blocksize = p->tiles->blockSize;
+    int numBlocks = blocksize / (newImage->rows * newImage->cols);
+
+    // Now stuff gets fun
+    for (int i = 0; i < numBlocks; i++) {
+        for (int j = 0; j < numBlocks; j++) {
+            // Gets index from positions and accesses that element
+            Tile currentTile = p->tiles[p->positions[i][j]];
+            
+            // offset for later use to describe location within wider image
+            // initialized to the top left of that block within the image
+            int offset = i * blocksize + j * blocksize * newImage -> rows;
+
+            for (int row=0; row < blocksize; row++){
+                for (int k = 0; k < (blocksize); k++) {
+                    newImage->data[offset + k] = currentTile.imageBlock[k];
+                }
+                offset += newImage->rows;
+            }
+        }
+    }
+    return newImage;
 }
