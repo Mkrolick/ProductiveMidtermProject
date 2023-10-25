@@ -209,6 +209,12 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     return 4;
   }
   
+  char filename_pos[256];
+  if (!(standin) && fscanf(in, " %s", filename_pos) != 1 || standin && scanf(" %s", filename_pos) != 1) {
+    fprintf(stderr, "Invalid input\n");
+    return 5;
+  }
+
   // populates tiles within puzzle object properly
   initialzeTiles(p, im);
   
@@ -216,7 +222,7 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   FILE *img_file_ptr = fopen(filename, "w");
   if (!img_file_ptr) {
     fprintf(stderr, "Could not open output image file %s\n", filename);
-    return 5;
+    return 6;
   }
   
   // writes result
@@ -231,6 +237,16 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   free(newImage);
 
   fclose(img_file_ptr);
+
+  FILE *img_file_ptr_pos = fopen(filename_pos, "w");
+  if (!img_file_ptr_pos) {
+    fprintf(stderr, "Could not open output image file %s\n", filename_pos);
+    return 7;
+  }
+
+  write_game(p->positions, p->size, img_file_ptr_pos);
+  fclose(img_file_ptr_pos);
+
   return 0; // indicates success
 }
 
@@ -265,23 +281,10 @@ int handle_V_command(Puzzle* p) {
   // sanity check to assure that the null terminator is correct
   assert(strlen(final_steps) == required_steps);
 
-  // while (1) {
-  //   char *steps = malloc(sizeof(char) * max_steps);
-  //   assert(steps);
-
-  //   int required_steps = solve_puzzle(p, steps, max_steps, 0);
-  //   if (required_steps != max_steps) {
-  //     final_required_steps = required_steps;
-  //     final_steps = steps;
-  //     break;
-  //   }
-  //   free(steps);
-  //   max_steps++;
-  // }
-
   for (int i=0; i < required_steps; i++) {
     printf("S %c\n", final_steps[i]);
   }
+  free(final_steps);
   return 0;
 }
 

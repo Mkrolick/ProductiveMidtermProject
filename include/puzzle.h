@@ -27,12 +27,14 @@ Image *exportImage(Puzzle *p);
 
 Puzzle *puzzle_create(int size);
 
-void puzzle_destroy(Puzzle *p);
 void puzzle_set_tile(Puzzle *p, int col, int row, int value);
 int puzzle_get_tile(const Puzzle *p, int col, int row);
 int initialize_tiles(Puzzle *p, Image *img);
+
+void puzzle_destroy(Puzzle *p);
 int move_puzzle(Puzzle *p, char command);
 int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps);
+void write_game(int** array, int size, FILE* file);
 
 // functions for handling input
 int handle_C_command(FILE *in, Puzzle **p, int standin);

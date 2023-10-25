@@ -309,3 +309,13 @@ int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps) {
 
   return max_steps; // attempts to solve recursively did not succeed
 }
+
+void write_game(int** array, int size, FILE* file) {
+  for (int i = 0; i < size; i++) {
+    for (int j = 0; j < size; j++) {
+      fprintf(file, "%d ", array[i][j]);
+    }
+  }
+  fprintf(file, "\n");
+}
+
