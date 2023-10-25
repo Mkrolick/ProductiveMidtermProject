@@ -133,34 +133,40 @@ void test_T_command(void) {
 
 void test_I_command(void) {
 
-  Image** im = NULL;
+  Image** im = malloc(sizeof(Image*));
   FILE* fp = fopen("../tests/function_tests/i_cmd_1","r");
 
   int res = handle_I_command(fp, im, 0);
 
   assert(res == 1);
 
-  im = NULL;
+
   fp = fopen("../tests/function_tests/i_cmd_2","r");
 
   res = handle_I_command(fp, im, 0);
 
   assert(res == 2);
 
-  im = NULL;
+
   fp = fopen("../tests/function_tests/i_cmd_3","r");
 
   res = handle_I_command(fp, im, 0);
 
-  assert(res == 0);
+  assert(res == 2);
   
-  im = NULL;
+
   fp = fopen("../tests/function_tests/i_cmd_4","r");
 
   res = handle_I_command(fp, im, 0);
 
-  assert(res == 2);
+  assert(res == 3);
 
+
+  fp = fopen("../tests/function_tests/i_cmd_5","r");
+
+  res = handle_I_command(fp, im, 0);
+
+  assert(res == 0);
 }
 
 
@@ -276,8 +282,8 @@ int main(void) {
   //test_puzzle_set_tile();
 
   //test_C_command();
-  test_T_command();
-  //test_I_command();
+  //test_T_command();
+  test_I_command();
   //test_P_command();
   //test_W_command()
   //test_S_command();
