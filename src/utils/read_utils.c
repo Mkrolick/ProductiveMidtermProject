@@ -43,7 +43,6 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
 }
 
 int handle_T_command(FILE *in, Puzzle *p, int standin) {
-
   if (!p) {
     fprintf(stderr, "No puzzle\n");
     return 1;
@@ -59,11 +58,10 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
   }
 
   int temp;
-
   for (int row = 0; row < size; row++) {
     for (int col = 0; col < size; col++) {
       // checks if it's coming from standard in, this relies on short circuit to prevent unintended behavior
-      if (!(standin) && fscanf(in, " %d", &temp) == 1 || standin && scanf(" %d", &temp)) {
+      if (!(standin) && (fscanf(in, " %d", &temp) == 1) || standin && (scanf(" %d", &temp) == 1)) {
         // calculates the address in memory for the temp_arr where val is
         // present pointer is not acessed unless temp is valid
         int *current_pointer = temp_arr + (size * (temp / size)) + temp % size;  

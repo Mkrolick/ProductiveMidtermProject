@@ -51,8 +51,6 @@ int main(int argc, char** argv) {
         val = handle_C_command(fp, p, standin);
         break;
       case 'T':
-        
-
         val = handle_T_command(fp, *p, standin);
         break;
       case 'I':
@@ -90,7 +88,7 @@ int main(int argc, char** argv) {
     }
 
     // load up res again
-    int res = standin? scanf(" %c", &command): fscanf(fp, " %c", &command);
+    res = standin? scanf(" %c", &command): fscanf(fp, " %c", &command);
   }
 
   return 0;
