@@ -31,6 +31,8 @@ void puzzle_destroy(Puzzle *p);
 void puzzle_set_tile(Puzzle *p, int col, int row, int value);
 int puzzle_get_tile(const Puzzle *p, int col, int row);
 int initialize_tiles(Puzzle *p, Image *img);
+int move_puzzle(Puzzle *p, char command);
+int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps);
 
 // functions for handling input
 int handle_C_command(FILE *in, Puzzle **p, int standin);

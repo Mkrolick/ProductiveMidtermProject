@@ -131,3 +131,181 @@ int puzzle_solved(Puzzle* p) {
 
   return correct;
 }
+
+// Parameters:
+//   p - a Puzzle
+//   steps - array of directions (u/d/l/r)
+//   max_steps - maximum number of steps to try
+//   cur_steps - how many steps have been considered so far
+
+
+int move_puzzle(Puzzle *p, char command) {
+
+  // might need to use a pointer array for this
+  char temp[p->size];
+
+  int tile_found = 0;
+  int found_col;
+  int found_row;
+
+  switch (command) {
+    case 'u':
+
+      for (int row = 0; row < ((p->size) - 1); row++) {
+        for (int col = 0; col < (p->size); col++) {
+          if (puzzle_get_tile(p, col, row) == 0) {
+            found_col = col;
+            found_row = col;
+            tile_found = 1;
+          }
+        }
+      }
+
+      if (!tile_found) {
+        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
+        return 2;
+      }
+
+      temp[0] = 0;
+
+      for (int row = 1; row < (p->size); row++) {
+        if (puzzle_get_tile(p, found_col, row) != 0) {
+          temp[row] = puzzle_get_tile(p, found_col, row);
+        }
+      }
+
+      for (int row = 0; row < (p->size); row++) {
+        puzzle_set_tile(p, found_col, ((p->size) - 1) - row, temp[row]);
+      }
+
+    case 'd':
+
+      for (int row = 1; row < (p->size); row++) {
+        for (int col = 0; col < (p->size); col++) {
+          if (puzzle_get_tile(p, col, row) == 0) {
+            found_col = col;
+            found_row = col;
+            tile_found = 1;
+          }
+        }
+      }
+
+      if (!tile_found) {
+        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
+        return 2;
+      }
+
+      temp[0] = 0;
+
+      for (int row = 1; row < (p->size); row++) {
+        if (puzzle_get_tile(p, found_col, row) != 0) {
+          temp[row] = puzzle_get_tile(p, found_col, row);
+        }
+      }
+
+      for (int row = 0; row < (p->size); row++) {
+        puzzle_set_tile(p, found_col, row, temp[row]);
+      }
+
+      break;
+
+    case 'l':
+
+      // NEed to UPDATE YAY
+
+      for (int row = 0; row < (p->size); row++) {
+        for (int col = 0; col < ((p->size) - 1); col++) {
+          if (puzzle_get_tile(p, col, row) == 0) {
+            found_col = col;
+            found_row = col;
+            tile_found = 1;
+          }
+        }
+      }
+
+      if (!tile_found) {
+        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
+        return 2;
+      }
+
+      temp[0] = 0;
+
+      for (int col = 1; col < (p->size); col++) {
+        if (puzzle_get_tile(p, col, found_row) != 0) {
+          temp[col] = puzzle_get_tile(p, col, found_row);
+        }
+      }
+
+      for (int row = 0; row < (p->size); row++) {
+        puzzle_set_tile(p, found_col, ((p->size) - 1) - row, temp[row]);
+      }
+
+      break;
+
+    case 'r':
+
+      // UPdate YAY
+      for (int row = 1; row < (p->size); row++) {
+        for (int col = 0; col < (p->size); col++) {
+          if (puzzle_get_tile(p, col, row) == 0) {
+            found_col = col;
+            found_row = col;
+            tile_found = 1;
+          }
+        }
+      }
+
+      if (!tile_found) {
+        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
+        return 2;
+      }
+
+      temp[0] = 0;
+
+      for (int row = 1; row < (p->size); row++) {
+        if (puzzle_get_tile(p, found_col, row) != 0) {
+          temp[row] = puzzle_get_tile(p, found_col, row);
+        }
+      }
+
+      for (int col = 0; col < (p->size); col++) {
+        puzzle_set_tile(p, col, found_row, temp[col]);
+      }
+
+      break;
+    default:
+
+      fprintf(stderr, "Invalid command '%c'\n", command);
+      return 3;
+      break;
+  }
+
+  return 0;
+}
+
+
+int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps) {
+  if (puzzle_solved(p)) {
+    steps[cur_steps] = '\0';
+    return cur_steps;   // steps array has a complete sequence of steps
+  }
+
+  if (cur_steps >= max_steps) {
+    return max_steps;    // we reached the max number of steps
+  }
+
+  char direction[] = {'u', 'd', 'l', 'r' };
+  for (int i = 0; i < 4; i++) {
+    Puzzle p_copy = *p;
+    if (move_puzzle(&p_copy, direction[i])) {
+      int totalsteps;
+      if (totalsteps = solve_puzzle(&p_copy, steps, max_steps, cur_steps + 1)) {
+        // found a solution recursively!
+        steps[cur_steps] = direction[i];
+        return totalsteps;
+      }
+    }
+  }
+
+  return max_steps;    // attempts to solve recursively did not succeed
+}
