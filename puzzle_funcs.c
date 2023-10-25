@@ -7,6 +7,8 @@
 #include <string.h>
 
 #include "puzzle.h"
+#include "puzzle_funcs.h"
+#include "read_utils.h"
 
 // TODO: implement functions
 

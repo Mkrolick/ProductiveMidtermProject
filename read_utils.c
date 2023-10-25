@@ -5,6 +5,7 @@
 
 #include "ppm_io.h"
 #include "puzzle.h"
+#include "read_utils.h"
 
 int handle_C_command(FILE *in, Puzzle **p, int standin) {
   // differences in return are to help in debugging
@@ -62,7 +63,7 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
   for (int row = 0; row < size; row++) {
     for (int col = 0; col < size; col++) {
       // checks if it's coming from standard in, this relies on short circuit to prevent unintended behavior
-      if (!(standin) && (fscanf(in, " %d", &temp) == 1) || standin && (scanf(" %d", &temp) == 1)) {
+      if ((!(standin) && (fscanf(in, " %d", &temp) == 1)) || (standin && (scanf(" %d", &temp) == 1))) {
         // calculates the address in memory for the temp_arr where val is
         // present pointer is not acessed unless temp is valid
         int *current_pointer = temp_arr + (size * (temp / size)) + temp % size;  
@@ -141,7 +142,7 @@ int handle_I_command(FILE *in, Image **im, int standin) {
   char arr[256];
   
   // checks if it's coming from standard in, this relies on short circuit to prevent unintended behavior
-  if (!(standin) && fscanf(in, " %s", arr) != 1 || standin && scanf(" %s", arr) != 1) {
+  if ((!(standin) && fscanf(in, " %s", arr) != 1) || (standin && scanf(" %s", arr) != 1)) {
     fprintf(stderr, "Invalid input\n");
     return 1;
   }
@@ -215,13 +216,13 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   assert(((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)) == im->rows * im->cols);
   
   char filename[256];
-  if (!(standin) && fscanf(in, " %s", filename) != 1 || standin && scanf(" %s", filename) != 1) {
+  if ((!(standin) && fscanf(in, " %s", filename) != 1) || (standin && (scanf(" %s", filename) != 1))) {
     fprintf(stderr, "Invalid input\n");
     return 4;
   }
   
   char filename_pos[256];
-  if (!(standin) && fscanf(in, " %s", filename_pos) != 1 || standin && scanf(" %s", filename_pos) != 1) {
+  if ((!(standin) && (fscanf(in, " %s", filename_pos) != 1)) || (standin && (scanf(" %s", filename_pos) != 1))) {
     fprintf(stderr, "Invalid input\n");
     return 5;
   }
@@ -302,7 +303,7 @@ int handle_V_command(Puzzle* p) {
   }
 
   // sanity check to assure that the null terminator is correct
-  assert(strlen(final_steps) == required_steps);
+  assert((int) strlen(final_steps) == required_steps);
 
   for (int i=0; i < required_steps; i++) {
     printf("S %c\n", final_steps[i]);

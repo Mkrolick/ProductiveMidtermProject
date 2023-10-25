@@ -1,12 +1,12 @@
 // Zachary Sayyah zsayyah1
 // Malcolm Krolick mkrolick1
-#include "puzzle.h"
-
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "ppm_io.h"
+#include "puzzle.h"
+#include "read_utils.h"
+
 
 // TODO: look over all error codes in context to requirements
 
@@ -31,9 +31,6 @@ int main(int argc, char** argv) {
       return 1;
     }
 
-    // int puzzle_created = 0;
-
-    // int size;
     res = fscanf(fp, " %c", &command);
   } else {
     standin = 1;
