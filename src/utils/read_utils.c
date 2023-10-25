@@ -13,20 +13,20 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
   if (!(standin)) {
     // Checking if size is read in properly
     if ((fscanf(in, " %d", &size) != 1)) {
-      fprintf(stderr, "Invalid input");
+      fprintf(stderr, "Invalid input\n");
       return 1;
     }
   } else {
     // Checking if size is read in properly
     if ((scanf(" %d", &size) != 1)) {
-      fprintf(stderr, "Invalid input");
+      fprintf(stderr, "Invalid input\n");
       return 1;
     }
   }
 
   // Checking if size is out of bounds
   if (size < 2 || size > 20) {
-    fprintf(stderr, "Invalid puzzle size");
+    fprintf(stderr, "Invalid puzzle size\n");
     return 2;
   }
 
@@ -40,7 +40,7 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
 
 int handle_T_command(FILE *in, Puzzle *p, int standin) {
   if (!p) {
-    fprintf(stderr, "No puzzle");
+    fprintf(stderr, "No puzzle\n");
     return 1;
   }
 
@@ -65,18 +65,18 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
 
         if (temp > 15 || temp < 0) {
           // is that invalid input or invalid tile value
-          fprintf(stderr, "Invalid tile value");
+          fprintf(stderr, "Invalid tile value\n");
           return 2;
         } else if (*current_pointer == 0) {
           puzzle_set_tile(p, col, row, temp);
           *current_pointer += 1;
         } else {
-          fprintf(stderr, "Invalid tile value");
+          fprintf(stderr, "Invalid tile value\n");
           return 3;
         }
 
       } else {
-        fprintf(stderr, "Invalid input");
+        fprintf(stderr, "Invalid input\n");
         return 4;
       }
     }
@@ -132,7 +132,7 @@ int handle_I_command(FILE *in, Image **im, int standin) {
   
   // checks if it's coming from standard in, this relies on short circuit to prevent unintended behavior
   if (!(standin) && fscanf(in, " %s", arr) != 1 || standin && scanf(" %s", arr) != 1) {
-    fprintf(stderr, "Invalid input");
+    fprintf(stderr, "Invalid input\n");
     return 1;
   }
 
@@ -142,7 +142,7 @@ int handle_I_command(FILE *in, Image **im, int standin) {
   
   // checks if image file is valid
   if (*im == NULL) {
-    fprintf(stderr, "Could not open image file '%s'", arr);
+    fprintf(stderr, "Could not open image file '%s'\n", arr);
     return 2;
   }
 
@@ -152,7 +152,7 @@ int handle_I_command(FILE *in, Image **im, int standin) {
 
 int handle_P_command(Puzzle *p) {
   if (!p) {
-    fprintf(stderr, "No puzzle");
+    fprintf(stderr, "No puzzle\n");
     return 1;
   }
 
@@ -215,12 +215,12 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
   char command;
   if (!(standin)) {
     if (fscanf(in, " %c", &command) != 1) {
-      fprintf(stderr, "Invalid input");
+      fprintf(stderr, "Invalid input\n");
       return 1;
     }
   } else {
     if (scanf(" %c", &command) != 1) {
-      fprintf(stderr, "Invalid input");
+      fprintf(stderr, "Invalid input\n");
       return 1;
     }
   }
@@ -246,7 +246,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
       }
 
       if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction");
+        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
         return 1;
       }
 
@@ -275,7 +275,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
       }
 
       if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction");
+        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
         return 1;
       }
 
@@ -308,7 +308,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
       }
 
       if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction");
+        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
         return 1;
       }
 
@@ -340,7 +340,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
       }
 
       if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction");
+        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
         return 1;
       }
 
@@ -359,7 +359,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
       break;
     default:
 
-      fprintf(stderr, "Invalid command '%c", command);
+      fprintf(stderr, "Invalid command '%c'\n", command);
       return 2;
       break;
   }
