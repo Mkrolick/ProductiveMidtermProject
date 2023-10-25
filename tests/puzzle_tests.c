@@ -53,6 +53,45 @@ void test_puzzle_set_tile(void) {
 }
 
 // ...other test functions...
+void test_C_command(void) {
+  // test if puzzle create has valid output
+  FILE* fp;
+  Puzzle** p;
+  int res;
+
+
+  fp = fopen("../tests/function_tests/c_cmd_1", "r");
+  p = NULL;
+
+  res = handle_C_command(fp, p, 0);
+  assert(res == 1);
+
+  fp = fopen("../tests/function_tests/c_cmd_2", "r");
+  p = NULL;
+
+  res = handle_C_command(fp, p, 0);
+  assert(res == 2);
+
+  fp = fopen("../tests/function_tests/c_cmd_3", "r");
+  p = NULL;
+
+  res = handle_C_command(fp, p, 0);
+  assert(res == 2);
+
+  fp = fopen("../tests/function_tests/c_cmd_4", "r");
+  p = NULL;
+
+  res = handle_C_command(fp, p, 0);
+  assert(res == 0);
+
+  handle_P_command(*p);
+
+}
+
+
+
+
+
 
 void test_T_command(void) {
   FILE* fp = fopen("../tests/function_tests/t_cmd_1", "r");
@@ -67,7 +106,6 @@ void test_T_command(void) {
 
   
   res = handle_T_command(fp, p, 0);
-  printf("\n%d\n", res);
   assert(res == 2);
 
   fp = fopen("../tests/function_tests/t_cmd_3", "r");
@@ -110,15 +148,117 @@ void test_I_command(void) {
 
   res = handle_I_command(fp, im, 0);
 
-  assert(res == 2);
+  assert(res == 0);
   
   im = NULL;
   fp = fopen("../tests/function_tests/i_cmd_4","r");
 
   res = handle_I_command(fp, im, 0);
 
+  assert(res == 2);
+
+}
+
+
+void test_P_command(void) {
+  FILE* fp = fopen("../tests/function_tests/t_cmd_5", "r");
+  Puzzle* p = NULL;
+
+  int res = handle_T_command(fp, p, 0);
+  assert(res == 0);
+
+  int res = handle_P_command(p);
   assert(res == 0);
 }
+
+
+void test_S_command(void) {
+
+  // testing down function
+  FILE* fp = fopen("../tests/function_tests/t_cmd_5", "r");
+  Puzzle* p = NULL;
+
+  int res = handle_T_command(fp, p, 0);
+  assert(res == 0);
+
+
+
+  // First batch where 0 is bottom right
+  fp = fopen("../tests/function_tests/s_cmd_1_d", "r");
+
+  int res = handle_S_command(fp, p, 0);
+  assert(res == 0);
+
+  fp = fopen("../tests/function_tests/s_cmd_4_l", "r");
+
+  int res = handle_S_command(fp, p, 0);
+  assert(res == 2);
+
+
+  // First batch where 0 is top right
+  fp = fopen("../tests/function_tests/s_cmd_2_r", "r");
+
+  int res = handle_S_command(fp, p, 0);
+  assert(res == 0);
+
+  fp = fopen("../tests/function_tests/s_cmd_1_d", "r");
+
+  int res = handle_S_command(fp, p, 0);
+  assert(res == 2);
+
+
+  // First batch where 0 is top left
+  fp = fopen("../tests/function_tests/s_cmd_3_u", "r");
+
+  int res = handle_S_command(fp, p, 0);
+  assert(res == 0);
+
+  fp = fopen("../tests/function_tests/s_cmd_2_r", "r");
+
+  int res = handle_S_command(fp, p, 0);
+  assert(res == 2);
+
+  
+  // First batch where 0 is bottom left
+  fp = fopen("../tests/function_tests/s_cmd_4_l", "r");
+
+  int res = handle_S_command(fp, p, 0);
+  assert(res == 0);
+
+  fp = fopen("../tests/function_tests/s_cmd_3_u", "r");
+
+  int res = handle_S_command(fp, p, 0);
+  assert(res == 2);
+
+  //Invalid input
+  fp = fopen("../tests/function_tests/s_cmd_5", "r");
+
+  int res = handle_S_command(fp, p, 0);
+  assert(res == 3);
+}
+
+
+void test_K_command(void) {
+
+  // testing down function
+  FILE* fp = fopen("../tests/function_tests/t_cmd_5", "r");
+  Puzzle* p = NULL;
+
+  int res = handle_K_command(p);
+  assert(res == 0);
+
+  fp = fopen("../tests/function_tests/t_cmd_3", "r");
+  p = NULL;
+
+  int res = handle_K_command(p);
+  assert(res == 0);
+
+  p = NULL;
+
+  int res = handle_K_command(p);
+  assert(res = 1);
+}
+
 
 
 
@@ -128,15 +268,17 @@ void test_I_command(void) {
 
 int main(void) {
   
-  
-  //test_puzzle_create();
-  printf("Segfault Passed\n");
-  //test_puzzle_set_tile();
+  test_puzzle_create();
+  test_puzzle_set_tile();
 
+  test_C_command();
   test_T_command();
-  //test_I_command();
-  
-  
+  test_I_command();
+  test_P_command();
+  //test_W_command()
+  test_S_command();
+  test_K_command();
+  //test_V_command();  
   
 
   printf("All tests passed!\n");

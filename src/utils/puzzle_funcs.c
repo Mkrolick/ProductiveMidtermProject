@@ -50,6 +50,7 @@ void puzzle_destroy(Puzzle *p) {
   for (int i = 0; i < p->size; i++) {
     free(p->positions[i]);
   }
+  
   free(p->positions);
 
   // frees tiles
@@ -78,7 +79,7 @@ Image *exportImage(Puzzle *p) {
   newImage->rows = p->size * p->tiles->blockSize;
   newImage->cols = p->size * p->tiles->blockSize;
   newImage->data =
-      (Pixel *)malloc(sizeof(Pixel) * newImage->rows * newImage->cols);
+      (Pixel *) malloc(sizeof(Pixel) * newImage->rows * newImage->cols);
 
   // Verifies malloc succeeded
   assert(newImage->data);
