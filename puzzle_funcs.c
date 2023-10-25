@@ -18,14 +18,6 @@ Puzzle *puzzle_create(int size) {
 
   Tile* tiles = malloc(sizeof(Tile) * size * size);
 
-  // creating 2D array of tile pointers
-  // Tile** tiles = malloc(sizeof(Tile*) * size);
-  // for (int i = 0; i < size; i++) {
-  //   tiles[i] = malloc(sizeof(Tile) * size);
-  // }
-  //
-  // new_puzzle->tiles = tiles;
-
   // creating 2D array of tile positions
   int **positions = malloc(sizeof(int *) * size);
   for (int i = 0; i < size; i++) {
@@ -40,7 +32,7 @@ Puzzle *puzzle_create(int size) {
   }
 
   // assigns each to the new puzzle
-  new_puzzle -> tiles = tiles;
+  new_puzzle->tiles = tiles;
   new_puzzle->positions = positions;
   new_puzzle->size = size;
 
@@ -103,7 +95,6 @@ Image *exportImage(Puzzle *p) {
 
       for (int row = 0; row < blocksize; row++) {
         for (int k = 0; k < (blocksize); k++) {
-          // printf("r %d, g %d, b %d\n", currentTile.imageBlock[k].r, currentTile.imageBlock[k].g, currentTile.imageBlock[k].b);
           newImage->data[offset + k] = currentTile.imageBlock[k + row * blocksize];
         }
         offset += newImage->rows;
