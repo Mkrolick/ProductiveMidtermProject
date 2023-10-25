@@ -78,7 +78,7 @@ int main(int argc, char** argv) {
         return 0;
         break;
       default:
-        fprintf(stderr, "Invalid command '%c", command);
+        fprintf(stderr, "Invalid command '%c'\n", command);
         return 1;
         break;
     }
