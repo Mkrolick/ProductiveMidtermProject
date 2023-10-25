@@ -200,7 +200,8 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     fprintf(stderr, "Invalid input\n");
     return 4;
   }
-
+  
+  // populates tiles within puzzle object properly
   initialzeTiles(p, im);
   
   // opens file for writing
