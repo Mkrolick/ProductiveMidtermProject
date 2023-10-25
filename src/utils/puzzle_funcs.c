@@ -14,6 +14,8 @@ Puzzle *puzzle_create(int size) {
   // need to check if pointers worked or failed
   Puzzle *new_puzzle = malloc(sizeof(Puzzle));
 
+  Tile* tiles = malloc(sizeof(Tile) * size * size);
+
   // creating 2D array of tile pointers
   // Tile** tiles = malloc(sizeof(Tile*) * size);
   // for (int i = 0; i < size; i++) {
@@ -35,38 +37,26 @@ Puzzle *puzzle_create(int size) {
     }
   }
 
+  // assigns each to the new puzzle
+  new_puzzle -> tiles = tiles;
   new_puzzle->positions = positions;
-
   new_puzzle->size = size;
 
   return new_puzzle;
 }
 
 void puzzle_destroy(Puzzle *p) {
-
   // freeing positions
   for (int i = 0; i < p->size; i++) {
     free(p->positions[i]);
   }
   free(p->positions);
 
+  // frees tiles
+  free(p->tiles);
   
-
-  // freeing tiles
-  // for (int i = 0; i < (p->size); i++) {
-  // Note: how to check if valid tile?
-
-  //    Tile* temp_tile = p->tiles[i];
-  // Free temp_tile image ptr
-  //    free(temp_tile->imageBlock);
-
-  //    free(p->tiles[i]);
-  //}
-  // free(p->tiles);
-
-  // Aet the freed pointers to NULL
-  p->positions = NULL;
-  p->tiles = NULL;
+  // finally frees puzzle
+  free(p);
 }
 
 void puzzle_set_tile(Puzzle *p, int col, int row, int value) {

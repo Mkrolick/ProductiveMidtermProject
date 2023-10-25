@@ -109,7 +109,7 @@ int handle_I_command(FILE *in, Image **im, int standin) {
     return 2;
   }
 
-  free(img_file_ptr);
+  fclose(img_file_ptr);
   return 0;  // indicates success
 }
 
@@ -137,6 +137,7 @@ int handle_P_command(Puzzle *p) {
 }
 
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
+
   if (!p) {
     fprintf(stderr, "No puzzle\n");
     return 1;
@@ -146,12 +147,29 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     fprintf(stderr, "No file pointer\n");
     return 2;
   }
-  // writes result of
+  
+  char filename[256];
+  if (!(standin) && fscanf(in, " %s", filename) != 1 || standin && scanf(" %s", filename) != 1) {
+    fprintf(stderr, "Invalid input\n");
+    return 1;
+  }
+  
+  // opens file for writing
+  FILE *img_file_ptr = fopen(filename, "w");
+  
+  // writes result
   Image *newImage = exportImage(p);
+  int result = WritePPM(img_file_ptr, newImage);
 
-  int result = WritePPM(in, newImage);
+  // validates number of pixels written is expected
+  assert(result == (p->size * p->tiles->blockSize));
 
-  return 0;
+  // frees created image
+  free(newImage->data);
+  free(newImage);
+
+  fclose(img_file_ptr);
+  return 0; // indicates success
 }
 
 int handle_S_command(FILE *in, Puzzle *p, int standin) {
