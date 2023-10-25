@@ -5,14 +5,23 @@
 #include "ppm_io.h"
 #include "puzzle.h"
 
-int handle_C_command(FILE *in, Puzzle **p) {
+int handle_C_command(FILE *in, Puzzle **p, int standin) {
   // differences in return are to help in debugging
   int size = 0;
 
-  // Checking if size is read in properly
-  if ((fscanf(in, " %d", &size) != 1)) {
-    fprintf(stderr, "Invalid input");
-    return 1;
+  // checking if from file or stdin
+  if (!(standin)) {
+    // Checking if size is read in properly
+    if ((fscanf(in, " %d", &size) != 1)) {
+      fprintf(stderr, "Invalid input");
+      return 1;
+    }
+  } else {
+    // Checking if size is read in properly
+    if ((scanf(" %d", &size) != 1)) {
+      fprintf(stderr, "Invalid input");
+      return 1;
+    }
   }
 
   // Checking if size is out of bounds
@@ -29,7 +38,7 @@ int handle_C_command(FILE *in, Puzzle **p) {
   return 0;
 }
 
-int handle_T_command(FILE *in, Puzzle *p) {
+int handle_T_command(FILE *in, Puzzle *p, int standin) {
   if (!(p->created)) {
     fprintf(stderr, "No puzzle");
     return 1;
@@ -48,7 +57,8 @@ int handle_T_command(FILE *in, Puzzle *p) {
 
   for (int row = 0; row < size; row++) {
     for (int col = 0; col < size; col++) {
-      if (fscanf(in, " %d", &temp) == 1) {
+      // checks if it's coming from standard in, this relies on short circuit to prevent unintended behavior
+      if (!(standin) && fscanf(in, " %d", &temp) == 1 || standin && scanf(" %d", &temp)) {
         // calculates the address in memory for the temp_arr where val is
         // present pointer is not acessed unless temp is valid
         int *current_pointer = temp_arr + (size * (temp / size)) + temp / size;
@@ -78,11 +88,12 @@ int handle_T_command(FILE *in, Puzzle *p) {
 }
 
 // Do I make this return back the image_ptr
-int handle_I_command(FILE *in, Image **im) {
+int handle_I_command(FILE *in, Image **im, int standin) {
   // check if this is correct array size
   char arr[256];
-
-  if (fscanf(in, " %s", arr) != 1) {
+  
+  // checks if it's coming from standard in, this relies on short circuit to prevent unintended behavior
+  if (!(standin) && fscanf(in, " %s", arr) != 1 || standin && scanf(" %s", arr) != 1) {
     fprintf(stderr, "Invalid input");
     return 1;
   }
@@ -90,7 +101,8 @@ int handle_I_command(FILE *in, Image **im) {
   FILE *img_file_ptr = fopen(arr, "r");
 
   *im = ReadPPM(img_file_ptr);
-
+  
+  // checks if image file is valid
   if (*im == NULL) {
     fprintf(stderr, "Could not open image file '%s'", arr);
     return 2;
@@ -123,7 +135,7 @@ int handle_P_command(Puzzle *p) {
   return 1;
 }
 
-int handle_W_command(FILE *in, Image *im, Puzzle *p) {
+int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   if (!(p->created)) {
     fprintf(stderr, "No puzzle");
     return 1;
@@ -133,7 +145,7 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p) {
     fprintf(stderr, "No file pointer ");
     return 2;
   }
-  // WRites result of
+  // writes result of
   Image *newImage = exportImage(p);
 
   int result = WritePPM(in, newImage);
@@ -141,12 +153,19 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p) {
   return 0;
 }
 
-int handle_S_command(FILE *in, Puzzle *p) {
+int handle_S_command(FILE *in, Puzzle *p, int standin) {
   // double check with hand book for errors
   char command;
-  if (fscanf(in, " %c", &command) != 1) {
-    fprintf(stderr, "Invalid input");
-    return 1;
+  if (!(standin)) {
+    if (fscanf(in, " %c", &command) != 1) {
+      fprintf(stderr, "Invalid input");
+      return 1;
+    }
+  } else {
+    if (scanf(" %c", &command) != 1) {
+      fprintf(stderr, "Invalid input");
+      return 1;
+    }
   }
 
   // might need to use a pointer array for this
@@ -305,8 +324,3 @@ int handle_K_command(Puzzle* p) {
     return 2; 
   }
 }
-
-//Solver command
-//int handle_V_command(*p) {
-//
-//}

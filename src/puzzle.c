@@ -11,23 +11,35 @@
 // TODO: look over all error codes in context to requirements
 
 int main(int argc, char** argv) {
-  if (argc < 1 || argc > 2) {
+  if (argc == 0 || argc > 2) {
     fprintf(stderr, "Usage: ./puzzle [<command file>]\n");
     return 1;
   }
 
-  FILE* fp = fopen(argv[1], "r");
-
-  if (!fp) {
-    fprintf(stderr, "Txt file couldn't be opened\n");
-    return 1;
-  }
-
-  // int puzzle_created = 0;
   char command;
   int val = 1;
-  // int size;
-  int res = fscanf(fp, " %c", &command);
+  int standin;
+  int res;
+  FILE* fp = NULL;
+
+  if (argc == 2) {
+    fp = fopen(argv[1], "r");
+    standin = 0;
+
+    if (!fp) {
+      fprintf(stderr, "Txt file couldn't be opened\n");
+      return 1;
+    }
+
+    // int puzzle_created = 0;
+
+    // int size;
+    res = fscanf(fp, " %c", &command);
+  } else {
+    standin = 1;
+
+    res = scanf(" %c", &command);
+  }
 
   Puzzle** p = NULL;
   Image** img = NULL;  // TODO seems like a problem
@@ -36,22 +48,22 @@ int main(int argc, char** argv) {
   while (res == 1) {
     switch (command) {
       case 'C':
-        val = handle_C_command(fp, p);
+        val = handle_C_command(fp, p, standin);
         break;
       case 'T':
-        val = handle_T_command(fp, *p);
+        val = handle_T_command(fp, *p, standin);
         break;
       case 'I':
-        val = handle_I_command(fp, img);
+        val = handle_I_command(fp, img, standin);
         break;
       case 'P':
         val = handle_P_command(*p);
         break;
       case 'W':
-        val = handle_W_command(fp, *img, *p);
+        val = handle_W_command(fp, *img, *p, standin);
         break;
       case 'S':
-        val = handle_W_command(fp, *img, *p);
+        val = handle_S_command(fp, *p, standin);
         break;
       case 'K':
         val = handle_K_command(*p);
@@ -76,7 +88,7 @@ int main(int argc, char** argv) {
     }
 
     // load up res again
-    int res = fscanf(fp, " %c", &command);
+    int res = standin? scanf(" %c", &command): fscanf(fp, " %c", &command);
   }
 
   return 0;

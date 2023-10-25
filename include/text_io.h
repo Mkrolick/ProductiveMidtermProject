@@ -5,4 +5,4 @@
 void write_game(int* array, int size, FILE* file);
 int* read_moves(FILE* file);
 
-#endif // TEXT_IO_H
+#endif  // TEXT_IO_H

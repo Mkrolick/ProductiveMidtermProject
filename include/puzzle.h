@@ -33,12 +33,12 @@ void puzzle_set_tile(Puzzle *p, int col, int row, int value);
 int puzzle_get_tile(const Puzzle *p, int col, int row);
 
 // functions for handling input
-int handle_C_command(FILE *in, Puzzle **p);
-int handle_T_command(FILE *in, Puzzle *p);
-int handle_I_command(FILE *in, Image **im);
+int handle_C_command(FILE *in, Puzzle **p, int standin);
+int handle_T_command(FILE *in, Puzzle *p, int standin);
+int handle_I_command(FILE *in, Image **im, int standin);
 int handle_P_command(Puzzle *p);
-int handle_W_command(FILE *in, Image *im, Puzzle *p);
-int handle_S_command(FILE *in, Puzzle *p);
+int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin);
+int handle_S_command(FILE *in, Puzzle *p, int standin);
 int handle_K_command(Puzzle *p);
 int handle_V_command(Puzzle *p);
 
