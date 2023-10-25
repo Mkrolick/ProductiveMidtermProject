@@ -72,6 +72,7 @@ int puzzle_get_tile(const Puzzle *p, int col, int row) {
 }
 
 Image *exportImage(Puzzle *p) {
+  printf("hello?\n");
   Image *newImage = malloc(sizeof(Image));
 
   assert(p->size);
@@ -87,13 +88,37 @@ Image *exportImage(Puzzle *p) {
   // TODO Actually store blocksize in puzzle object
   // as it stands this just gets the first tile
   int blocksize = p->tiles->blockSize;
-  int numBlocks = blocksize / (newImage->rows * newImage->cols);
+  int numBlocks = p->size;
+  printf("%d\n", numBlocks);
+
+  //tile
+  FILE *tile_ptr = fopen("tile.ppm", "w");
+  if (!tile_ptr) {
+    fprintf(stderr, "Could not open output image file %s\n", "fuckyou");
+    return 6;
+  }
+  
+  // writes result
+  Image *tileImage = malloc(sizeof(Image));
+  tileImage->rows = p->tiles->blockSize;
+  tileImage->cols = p->tiles->blockSize;
+  tileImage->data = p->tiles[6].imageBlock;
+
+  int result = WritePPM(tile_ptr, tileImage);
+
+
+  // for(int k= 0; k < blocksize * blocksize; k++) {
+  //   printf("r %d, g %d, b %d::", p->tiles[2].imageBlock[k].r, p->tiles[2].imageBlock[k].g, p->tiles[2].imageBlock[k].b);
+  //   if (k !=0 && blocksize % k ==0 ) {
+  //     printf("\n");
+  //   }
+  // }
 
   // Now stuff gets fun
   for (int i = 0; i < numBlocks; i++) {
     for (int j = 0; j < numBlocks; j++) {
       // Gets index from positions and accesses that element
-      Tile currentTile = p->tiles[p->positions[i][j]];
+      Tile currentTile = p->tiles[p->positions[j][i]];
 
       // offset for later use to describe location within wider image
       // initialized to the top left of that block within the image
@@ -101,12 +126,15 @@ Image *exportImage(Puzzle *p) {
 
       for (int row = 0; row < blocksize; row++) {
         for (int k = 0; k < (blocksize); k++) {
-          newImage->data[offset + k] = currentTile.imageBlock[k];
+          // printf("r %d, g %d, b %d\n", currentTile.imageBlock[k].r, currentTile.imageBlock[k].g, currentTile.imageBlock[k].b);
+          newImage->data[offset + k] = currentTile.imageBlock[k + row * blocksize];
         }
         offset += newImage->rows;
       }
+      
     }
   }
+
   return newImage;
 }
 

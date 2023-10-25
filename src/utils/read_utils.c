@@ -99,26 +99,35 @@ int initialzeTiles(Puzzle *p, Image *img) {
   const int blockSize = dims/size;
 
   // Being sure to reserve one for the black image
-  Tile * tiles = malloc(sizeof(Tile) * size * size + 1);
+  Tile * tiles = malloc(sizeof(Tile) * size * size + sizeof(Tile));
   int offset = 0;
-  for (int i=1; i < (size * size); i++) {
-    tiles[i].blockSize = dims/size;
+  for (int i=1; i <= (size * size); i++) {
+    printf("%d ", blockSize);
+    tiles[i].blockSize = blockSize;
     tiles[i].imageBlock = malloc(sizeof(Pixel) * blockSize * blockSize);
 
     int pixel_offset = 0;
-    Pixel *topleft = &(img->data[(i-1) * (dims/size) + offset]);
-    for (int j=0; j < (blockSize * blockSize); j++) {
-      tiles[i].imageBlock[j] = topleft[j + pixel_offset];
 
-      if (!(size % j) && j != 0) {
-        pixel_offset += dims;
+    int top_left_int = (i-1) * (blockSize) + offset;
+    printf("topleft: %d for %d at offset %d\n", top_left_int, i, offset);
+    Pixel *topleft = &(img->data[top_left_int]);
+    for (int k=0; k < blockSize; k++) {
+      for (int j=0; j < (blockSize); j++) {
+        int pixel_index_greater_image = j+pixel_offset;// + pixel_offset; //+ pixel_offset;
+
+        tiles[i].imageBlock[j + k*blockSize].r = topleft[pixel_index_greater_image].r;
+        tiles[i].imageBlock[j + k*blockSize].g = topleft[pixel_index_greater_image].g;
+        tiles[i].imageBlock[j + k*blockSize].b = topleft[pixel_index_greater_image].b;
       }
+      pixel_offset += dims;
     }
-    if (!(size % i) && i != 0) {
-      offset += dims * size;
+    printf("------i:%d size:%d test:%d-------\n", i, size, i % size);
+    if (i != 0 && !(i % size)) {
+      printf("troggers\n");
+      offset += dims * blockSize;
     }
   }
-
+  tiles[0].blockSize = blockSize;
   tiles[0].imageBlock = malloc(sizeof(Pixel) * blockSize * blockSize);
   for (int i = 0; i < (blockSize * blockSize); i++) {
     tiles[0].imageBlock[i].r = 0;
@@ -202,9 +211,8 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   }
   // populates tiles within puzzle object properly
   initialzeTiles(p, im);
-  assert(0);
 
-  printf("Image is x: %d, y: %d, and our %d\n", im->rows, im->cols, (p->size * p->tiles->blockSize));
+  printf("Image is x: %d, y: %d, size: %d\n", im->rows, im->cols, p->tiles->blockSize);
 
   // assures dimensions within puzzle are correct
   assert(((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)) == im->rows * im->cols);
