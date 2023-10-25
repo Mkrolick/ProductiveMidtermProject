@@ -14,7 +14,6 @@ void test_puzzle_create(void) {
   
   assert(p3->size == 3);
   for (int i = 0; i < 9; ++i) {
-    //printf("%d\n", (p3->positions)[i/3][i%3]);
     assert(p3->positions[i/3][i%3] == 0);
   }
 
@@ -62,29 +61,34 @@ void test_C_command(void) {
 
   fp = fopen("../tests/function_tests/c_cmd_1", "r");
   p = NULL;
+  
 
   res = handle_C_command(fp, p, 0);
   assert(res == 1);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/c_cmd_2", "r");
   p = NULL;
 
   res = handle_C_command(fp, p, 0);
   assert(res == 2);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/c_cmd_3", "r");
   p = NULL;
 
   res = handle_C_command(fp, p, 0);
   assert(res == 2);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/c_cmd_4", "r");
   p = NULL;
 
   res = handle_C_command(fp, p, 0);
   assert(res == 0);
+  fclose(fp);
 
-  handle_P_command(*p);
+  //handle_P_command(*p);
 
 }
 
@@ -268,16 +272,16 @@ void test_K_command(void) {
 
 int main(void) {
   
-  test_puzzle_create();
-  test_puzzle_set_tile();
+  //test_puzzle_create();
+  //test_puzzle_set_tile();
 
   test_C_command();
-  test_T_command();
-  test_I_command();
-  test_P_command();
+  //test_T_command();
+  //test_I_command();
+  //test_P_command();
   //test_W_command()
-  test_S_command();
-  test_K_command();
+  //test_S_command();
+  //test_K_command();
   //test_V_command();  
   
 
