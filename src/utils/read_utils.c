@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "ppm_io.h"
 #include "puzzle.h"
@@ -123,6 +124,7 @@ int initialzeTiles(Puzzle *p, Image *img) {
     tiles[0].imageBlock[i].b = 0;
   }
   p->tiles = tiles;
+  return 0;
 }
 
 // Do I make this return back the image_ptr
@@ -274,6 +276,7 @@ int handle_V_command(Puzzle* p) {
   for (int i=0; i < required_steps; i++) {
     printf("S %c\n", final_steps[i]);
   }
+  return 0;
 }
 
 int handle_K_command(Puzzle* p) {
