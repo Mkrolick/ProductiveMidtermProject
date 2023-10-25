@@ -241,146 +241,39 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
     }
   }
 
-  // might need to use a pointer array for this
-  char temp[p->size];
+  return move_puzzle(p, command);
+}
 
-  int tile_found = 0;
-  int found_col;
-  int found_row;
+int handle_V_command(Puzzle* p) {
+  const int max_steps = 32;
+  char * final_steps = malloc(sizeof(char) * max_steps);
+  int required_steps = solve_puzzle(p, final_steps, max_steps, 0);
 
-  switch (command) {
-    case 'u':
-
-      for (int row = 0; row < ((p->size) - 1); row++) {
-        for (int col = 0; col < (p->size); col++) {
-          if (puzzle_get_tile(p, col, row) == 0) {
-            found_col = col;
-            found_row = col;
-            tile_found = 1;
-          }
-        }
-      }
-
-      if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
-        return 2;
-      }
-
-      temp[0] = 0;
-
-      for (int row = 1; row < (p->size); row++) {
-        if (puzzle_get_tile(p, found_col, row) != 0) {
-          temp[row] = puzzle_get_tile(p, found_col, row);
-        }
-      }
-
-      for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, ((p->size) - 1) - row, temp[row]);
-      }
-
-    case 'd':
-
-      for (int row = 1; row < (p->size); row++) {
-        for (int col = 0; col < (p->size); col++) {
-          if (puzzle_get_tile(p, col, row) == 0) {
-            found_col = col;
-            found_row = col;
-            tile_found = 1;
-          }
-        }
-      }
-
-      if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
-        return 2;
-      }
-
-      temp[0] = 0;
-
-      for (int row = 1; row < (p->size); row++) {
-        if (puzzle_get_tile(p, found_col, row) != 0) {
-          temp[row] = puzzle_get_tile(p, found_col, row);
-        }
-      }
-
-      for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, row, temp[row]);
-      }
-
-      break;
-
-    case 'l':
-
-      // NEed to UPDATE YAY
-
-      for (int row = 0; row < (p->size); row++) {
-        for (int col = 0; col < ((p->size) - 1); col++) {
-          if (puzzle_get_tile(p, col, row) == 0) {
-            found_col = col;
-            found_row = col;
-            tile_found = 1;
-          }
-        }
-      }
-
-      if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
-        return 2;
-      }
-
-      temp[0] = 0;
-
-      for (int col = 1; col < (p->size); col++) {
-        if (puzzle_get_tile(p, col, found_row) != 0) {
-          temp[col] = puzzle_get_tile(p, col, found_row);
-        }
-      }
-
-      for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, ((p->size) - 1) - row, temp[row]);
-      }
-
-      break;
-
-    case 'r':
-
-      // UPdate YAY
-      for (int row = 1; row < (p->size); row++) {
-        for (int col = 0; col < (p->size); col++) {
-          if (puzzle_get_tile(p, col, row) == 0) {
-            found_col = col;
-            found_row = col;
-            tile_found = 1;
-          }
-        }
-      }
-
-      if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
-        return 2;
-      }
-
-      temp[0] = 0;
-
-      for (int row = 1; row < (p->size); row++) {
-        if (puzzle_get_tile(p, found_col, row) != 0) {
-          temp[row] = puzzle_get_tile(p, found_col, row);
-        }
-      }
-
-      for (int col = 0; col < (p->size); col++) {
-        puzzle_set_tile(p, col, found_row, temp[col]);
-      }
-
-      break;
-    default:
-
-      fprintf(stderr, "Invalid command '%c'\n", command);
-      return 3;
-      break;
+  if (required_steps == max_steps) {
+    printf("No solution found\n");
+    return 1;
   }
 
-  return 0;
+  // sanity check to assure that the null terminator is correct
+  assert(strlen(final_steps) == required_steps);
+
+  // while (1) {
+  //   char *steps = malloc(sizeof(char) * max_steps);
+  //   assert(steps);
+
+  //   int required_steps = solve_puzzle(p, steps, max_steps, 0);
+  //   if (required_steps != max_steps) {
+  //     final_required_steps = required_steps;
+  //     final_steps = steps;
+  //     break;
+  //   }
+  //   free(steps);
+  //   max_steps++;
+  // }
+
+  for (int i=0; i < required_steps; i++) {
+    printf("S %c\n", final_steps[i]);
+  }
 }
 
 int handle_K_command(Puzzle* p) {
