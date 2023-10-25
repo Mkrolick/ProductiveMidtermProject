@@ -287,11 +287,11 @@ int move_puzzle(Puzzle *p, char command) {
 int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps) {
   if (puzzle_solved(p)) {
     steps[cur_steps] = '\0';
-    return cur_steps;   // steps array has a complete sequence of steps
+    return cur_steps; // steps array has a complete sequence of steps
   }
 
   if (cur_steps >= max_steps) {
-    return max_steps;    // we reached the max number of steps
+    return max_steps; // we reached the max number of steps
   }
 
   char direction[] = {'u', 'd', 'l', 'r' };
@@ -299,7 +299,7 @@ int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps) {
     Puzzle p_copy = *p;
     if (move_puzzle(&p_copy, direction[i])) {
       int totalsteps;
-      if (totalsteps = solve_puzzle(&p_copy, steps, max_steps, cur_steps + 1)) {
+      if ((totalsteps = solve_puzzle(&p_copy, steps, max_steps, cur_steps + 1))) {
         // found a solution recursively!
         steps[cur_steps] = direction[i];
         return totalsteps;
@@ -307,5 +307,5 @@ int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps) {
     }
   }
 
-  return max_steps;    // attempts to solve recursively did not succeed
+  return max_steps; // attempts to solve recursively did not succeed
 }
