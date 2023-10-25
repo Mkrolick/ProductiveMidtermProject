@@ -1,0 +1,1 @@
+/usr/bin/gcc  -std=c99 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.6 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/test.dir/tests/puzzle_tests.c.o -o bin/test  libmidterm-project_LIB.a 

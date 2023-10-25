@@ -1,0 +1,9 @@
+/Users/malcolmkrolick/Documents/GitHub/ProductiveMidtermProject/CMakeFiles/midterm-project_LIB.dir
+/Users/malcolmkrolick/Documents/GitHub/ProductiveMidtermProject/CMakeFiles/midterm-project.dir
+/Users/malcolmkrolick/Documents/GitHub/ProductiveMidtermProject/CMakeFiles/test.dir
+/Users/malcolmkrolick/Documents/GitHub/ProductiveMidtermProject/CMakeFiles/edit_cache.dir
+/Users/malcolmkrolick/Documents/GitHub/ProductiveMidtermProject/CMakeFiles/rebuild_cache.dir
+/Users/malcolmkrolick/Documents/GitHub/ProductiveMidtermProject/CMakeFiles/list_install_components.dir
+/Users/malcolmkrolick/Documents/GitHub/ProductiveMidtermProject/CMakeFiles/install.dir
+/Users/malcolmkrolick/Documents/GitHub/ProductiveMidtermProject/CMakeFiles/install/local.dir
+/Users/malcolmkrolick/Documents/GitHub/ProductiveMidtermProject/CMakeFiles/install/strip.dir

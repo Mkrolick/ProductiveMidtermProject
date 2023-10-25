@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmidterm-project_LIB.a "CMakeFiles/midterm-project_LIB.dir/include/ppmio/ppm_io.c.o" "CMakeFiles/midterm-project_LIB.dir/src/utils/puzzle_funcs.c.o" "CMakeFiles/midterm-project_LIB.dir/src/utils/read_utils.c.o"
+/usr/bin/ranlib libmidterm-project_LIB.a
