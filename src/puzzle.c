@@ -54,27 +54,24 @@ int main(int argc, char** argv) {
         val = handle_T_command(fp, *p, standin);
         break;
       case 'I':
-        //val = handle_I_command(fp, img, standin);
+        val = handle_I_command(fp, img, standin);
         break;
       case 'P':
-        //val = handle_P_command(*p);
+        val = handle_P_command(*p);
         break;
       case 'W':
-        //val = handle_W_command(fp, *img, *p, standin);
+        val = handle_W_command(fp, *img, *p, standin);
         break;
       case 'S':
-        //val = handle_S_command(fp, *p, standin);
+        val = handle_S_command(fp, *p, standin);
         break;
       case 'K':
-        //val = handle_K_command(*p);
+        val = handle_K_command(*p);
         break;
       case 'V':
-        printf("lmao");
-
-        // val = handle_V_command(*p);
+        val = handle_V_command(*p);
         break;
       case 'Q':
-        printf("lmao");
         return 0;
         break;
       default:
