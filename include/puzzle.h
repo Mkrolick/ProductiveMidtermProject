@@ -30,6 +30,7 @@ Puzzle *puzzle_create(int size);
 void puzzle_destroy(Puzzle *p);
 void puzzle_set_tile(Puzzle *p, int col, int row, int value);
 int puzzle_get_tile(const Puzzle *p, int col, int row);
+int initialize_tiles(Puzzle *p, Image *img);
 
 // functions for handling input
 int handle_C_command(FILE *in, Puzzle **p, int standin);
@@ -40,9 +41,6 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin);
 int handle_S_command(FILE *in, Puzzle *p, int standin);
 int handle_K_command(Puzzle *p);
 int handle_V_command(Puzzle *p);
-
-int pain(void);
-int cry(void);
 
 int puzzle_solved(Puzzle* p);
 

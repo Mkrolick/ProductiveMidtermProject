@@ -62,7 +62,6 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
         // calculates the address in memory for the temp_arr where val is
         // present pointer is not acessed unless temp is valid
         int *current_pointer = temp_arr + (size * (temp / size)) + temp % size;  
-        
 
         if (temp > 15 || temp < 0) {
           // is that invalid input or invalid tile value
@@ -86,6 +85,44 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
   free(temp_arr);
 
   return 0;
+}
+
+int initialzeTiles(Puzzle *p, Image *img) {
+  // TODO check if dims are equal
+  // check if dims match puzzle and size
+  // check if they are divisible
+  const int size = p->size;
+  const int dims = img->cols;
+  const int blockSize = dims/size;
+
+  // Being sure to reserve one for the black image
+  Tile * tiles = malloc(sizeof(Tile) * size * size + 1);
+  int offset = 0;
+  for (int i=1; i < (size * size); i++) {
+    tiles[i].blockSize = dims/size;
+    tiles[i].imageBlock = malloc(sizeof(Pixel) * blockSize * blockSize);
+    
+    int pixel_offset = 0;
+    Pixel *topleft = &(img->data[(i-1) * (dims/size) + offset]);
+    for (int j=0; j < (blockSize * blockSize); j++) {
+      tiles[i].imageBlock[j] = topleft[j + pixel_offset];
+
+      if (!(size % j) && j != 0) {
+        pixel_offset += dims;
+      }
+    }
+    if (!(size % i) && i != 0) {
+      offset += dims * size;
+    }
+  }
+
+  tiles[0].imageBlock = malloc(sizeof(Pixel) * blockSize * blockSize);
+  for (int i = 0; i < (blockSize * blockSize); i++) {
+    tiles[0].imageBlock[i].r = 0;
+    tiles[0].imageBlock[i].g = 0;
+    tiles[0].imageBlock[i].b = 0;
+  }
+  p->tiles = tiles;
 }
 
 // Do I make this return back the image_ptr
@@ -137,7 +174,6 @@ int handle_P_command(Puzzle *p) {
 }
 
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
-
   if (!p) {
     fprintf(stderr, "No puzzle\n");
     return 1;
@@ -153,6 +189,8 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     fprintf(stderr, "Invalid input\n");
     return 1;
   }
+
+  initialzeTiles(p, im);
   
   // opens file for writing
   FILE *img_file_ptr = fopen(filename, "w");
