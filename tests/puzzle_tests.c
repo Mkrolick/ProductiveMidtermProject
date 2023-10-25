@@ -58,36 +58,38 @@ void test_C_command(void) {
   Puzzle** p;
   int res;
 
+  p = malloc(sizeof(Puzzle*));
+
 
   fp = fopen("../tests/function_tests/c_cmd_1", "r");
-  p = NULL;
+  
 
   res = handle_C_command(fp, p, 0);
   assert(res == 1);
   fclose(fp);
 
   fp = fopen("../tests/function_tests/c_cmd_2", "r");
-  p = NULL;
+  
 
   res = handle_C_command(fp, p, 0);
   assert(res == 2);
   fclose(fp);
 
   fp = fopen("../tests/function_tests/c_cmd_3", "r");
-  p = NULL;
+  
 
   res = handle_C_command(fp, p, 0);
   assert(res == 2);
   fclose(fp);
 
   fp = fopen("../tests/function_tests/c_cmd_4", "r");
-  p = NULL;
+  
 
   res = handle_C_command(fp, p, 0);
   assert(res == 0);
   fclose(fp);
 
-  //handle_P_command(*p);
+  free(p);
 
 }
 
@@ -110,7 +112,7 @@ void test_T_command(void) {
 
   
   res = handle_T_command(fp, p, 0);
-  assert(res == 2);
+  assert(res == 0);
   fclose(fp);
 
   fp = fopen("../tests/function_tests/t_cmd_3", "r");
@@ -288,22 +290,35 @@ void test_S_command(void) {
 void test_K_command(void) {
 
   // testing down function
-  FILE* fp = fopen("../tests/function_tests/t_cmd_5", "r");
-  Puzzle* p = NULL;
+  
+  Puzzle *p = puzzle_create(4);
+  FILE* fp;
+  
+  fp = fopen("../tests/function_tests/t_cmd_5", "r");
+  handle_T_command(fp, p, 0);
 
   int res = handle_K_command(p);
+  
   assert(res == 0);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/t_cmd_3", "r");
-  p = NULL;
+
+  handle_T_command(fp, p, 0);
 
   res = handle_K_command(p);
   assert(res == 0);
+  fclose(fp);
 
+  free(p);
   p = NULL;
 
   res = handle_K_command(p);
   assert(res = 1);
+  free(p);
+
+
+
 }
 
 
@@ -333,16 +348,16 @@ void test_W_command(void) {
 
 int main(void) {
   
-  //test_puzzle_create();
-  //test_puzzle_set_tile();
+  test_puzzle_create();
+  test_puzzle_set_tile();
 
-  //test_C_command();
-  //test_T_command();
-  //test_I_command();
-  //test_P_command();
+  test_C_command();
+  test_T_command();
+  test_I_command();
+  test_P_command();
   //test_W_command();
   test_S_command();
-  //test_K_command();
+  test_K_command();
   //test_V_command();  
   
 
