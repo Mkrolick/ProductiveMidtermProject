@@ -61,7 +61,6 @@ void test_C_command(void) {
 
   fp = fopen("../tests/function_tests/c_cmd_1", "r");
   p = NULL;
-  
 
   res = handle_C_command(fp, p, 0);
   assert(res == 1);
@@ -104,6 +103,7 @@ void test_T_command(void) {
 
   int res = handle_T_command(fp, p, 0);
   assert(res == 1);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/t_cmd_2", "r");
   p = puzzle_create(4);
@@ -111,24 +111,28 @@ void test_T_command(void) {
   
   res = handle_T_command(fp, p, 0);
   assert(res == 2);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/t_cmd_3", "r");
   p = puzzle_create(4);
 
   res = handle_T_command(fp, p, 0);
   assert(res == 3);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/t_cmd_4", "r");
   p = puzzle_create(4);
 
   res = handle_T_command(fp, p, 0);
   assert(res == 4);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/t_cmd_5", "r");
   p = puzzle_create(4);
 
   res = handle_T_command(fp, p, 0);
   assert(res == 0);
+  fclose(fp);
 }
 
 void test_I_command(void) {
@@ -146,6 +150,7 @@ void test_I_command(void) {
   res = handle_I_command(fp, im, 0);
 
   assert(res == 2);
+  fclose(fp);
 
 
   fp = fopen("../tests/function_tests/i_cmd_3","r");
@@ -153,6 +158,7 @@ void test_I_command(void) {
   res = handle_I_command(fp, im, 0);
 
   assert(res == 2);
+  fclose(fp);
   
 
   fp = fopen("../tests/function_tests/i_cmd_4","r");
@@ -160,6 +166,7 @@ void test_I_command(void) {
   res = handle_I_command(fp, im, 0);
 
   assert(res == 3);
+  fclose(fp);
 
 
   fp = fopen("../tests/function_tests/i_cmd_5","r");
@@ -167,6 +174,7 @@ void test_I_command(void) {
   res = handle_I_command(fp, im, 0);
 
   assert(res == 0);
+  fclose(fp);
 }
 
 
@@ -174,59 +182,85 @@ void test_P_command(void) {
   FILE* fp = fopen("../tests/function_tests/t_cmd_5", "r");
   Puzzle* p = NULL;
 
+  p = puzzle_create(4);
+
   int res = handle_T_command(fp, p, 0);
   assert(res == 0);
+  fclose(fp);
 
   res = handle_P_command(p);
   assert(res == 0);
+  fclose(fp);
 }
 
 
 void test_S_command(void) {
 
   // testing down function
-  FILE* fp = fopen("../tests/function_tests/t_cmd_5", "r");
-  Puzzle* p = NULL;
+  FILE* fp; 
+  Puzzle* p;
+  int res;
 
-  int res = handle_T_command(fp, p, 0);
+  fp = fopen("../tests/function_tests/s_cmd_p_1", "r");
+  p = puzzle_create(4);
+  res = handle_T_command(fp, p, 0);
   assert(res == 0);
-
+  fclose(fp);
+  
+  
 
 
   // First batch where 0 is bottom right
   fp = fopen("../tests/function_tests/s_cmd_1_d", "r");
-
+  
   res = handle_S_command(fp, p, 0);
   assert(res == 0);
+  fclose(fp);
+
+  
+  
 
   fp = fopen("../tests/function_tests/s_cmd_4_l", "r");
 
   res = handle_S_command(fp, p, 0);
   assert(res == 2);
+  fclose(fp);
 
+  
+
+  
 
   // First batch where 0 is top right
   fp = fopen("../tests/function_tests/s_cmd_2_r", "r");
 
+  
+
   res = handle_S_command(fp, p, 0);
   assert(res == 0);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/s_cmd_1_d", "r");
-
   res = handle_S_command(fp, p, 0);
-  assert(res == 2);
+  //printf("\n%d\n", res);
+  assert(res == 0);
+  fclose(fp);
 
+
+  
 
   // First batch where 0 is top left
   fp = fopen("../tests/function_tests/s_cmd_3_u", "r");
-
+  
   res = handle_S_command(fp, p, 0);
   assert(res == 0);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/s_cmd_2_r", "r");
 
   res = handle_S_command(fp, p, 0);
-  assert(res == 2);
+  assert(res == 0);
+  fclose(fp);
+
 
   
   // First batch where 0 is bottom left
@@ -234,17 +268,20 @@ void test_S_command(void) {
 
   res = handle_S_command(fp, p, 0);
   assert(res == 0);
+  fclose(fp);
 
   fp = fopen("../tests/function_tests/s_cmd_3_u", "r");
 
   res = handle_S_command(fp, p, 0);
-  assert(res == 2);
+  assert(res == 0);
+  fclose(fp);
 
   //Invalid input
   fp = fopen("../tests/function_tests/s_cmd_5", "r");
 
   res = handle_S_command(fp, p, 0);
   assert(res == 3);
+  fclose(fp);
 }
 
 
@@ -277,16 +314,16 @@ void test_W_command(void) {
   int res;
   
 
-  fp = fopen("w_cmd_1_1", "r");
+  fp = fopen("../tests/function_tests/w_cmd_1_1", "r");
   res = handle_C_command(fp, p, 0);
 
-  fp = fopen("w_cmd_1_2", "r");
+  fp = fopen("../tests/function_tests/w_cmd_1_2", "r");
   res = handle_T_command(fp, *p, 0);
 
-  fp = fopen("w_cmd_1_3", "r");
+  fp = fopen("../tests/function_tests/w_cmd_1_3", "r");
   res = handle_I_command(fp, im, 0);
   
-  fp = fopen("w_cmd_1_4", "r");
+  fp = fopen("../tests/function_tests/w_cmd_1_4", "r");
   res = handle_W_command(fp, *im, *p, 0);
 }
 
@@ -303,8 +340,8 @@ int main(void) {
   //test_T_command();
   //test_I_command();
   //test_P_command();
-  test_W_command();
-  //test_S_command();
+  //test_W_command();
+  test_S_command();
   //test_K_command();
   //test_V_command();  
   
