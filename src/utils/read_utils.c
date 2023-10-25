@@ -104,7 +104,7 @@ int initialzeTiles(Puzzle *p, Image *img) {
   for (int i=1; i < (size * size); i++) {
     tiles[i].blockSize = dims/size;
     tiles[i].imageBlock = malloc(sizeof(Pixel) * blockSize * blockSize);
-    
+
     int pixel_offset = 0;
     Pixel *topleft = &(img->data[(i-1) * (dims/size) + offset]);
     for (int j=0; j < (blockSize * blockSize); j++) {
@@ -195,6 +195,11 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     fprintf(stderr, "No puzzle\n");
     return 3;
   }
+  // populates tiles within puzzle object properly
+  initialzeTiles(p, im);
+  assert(0);
+
+  printf("Image is x: %d, y: %d, and our %d\n", im->rows, im->cols, (p->size * p->tiles->blockSize));
 
   // assures dimensions within puzzle are correct
   assert(((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)) == im->rows * im->cols);
@@ -210,9 +215,6 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     fprintf(stderr, "Invalid input\n");
     return 5;
   }
-
-  // populates tiles within puzzle object properly
-  initialzeTiles(p, im);
   
   // opens file for writing
   FILE *img_file_ptr = fopen(filename, "w");
