@@ -37,8 +37,6 @@ Puzzle *puzzle_create(int size) {
 
   new_puzzle->positions = positions;
 
-  new_puzzle->created = 0;
-
   new_puzzle->size = size;
 
   return new_puzzle;
@@ -48,12 +46,11 @@ void puzzle_destroy(Puzzle *p) {
 
   // freeing positions
   for (int i = 0; i < p->size; i++) {
-    for (int j = 0; j < p->size; j++) {
-      free(p->positions[i]);
-    }
+    free(p->positions[i]);
   }
-
   free(p->positions);
+
+  
 
   // freeing tiles
   // for (int i = 0; i < (p->size); i++) {
@@ -66,10 +63,6 @@ void puzzle_destroy(Puzzle *p) {
   //    free(p->tiles[i]);
   //}
   // free(p->tiles);
-
-  // Aet the freed pointers to NULL
-  p->positions = NULL;
-  p->tiles = NULL;
 
   // Aet the freed pointers to NULL
   p->positions = NULL;
