@@ -39,7 +39,7 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
 }
 
 int handle_T_command(FILE *in, Puzzle *p, int standin) {
-  if (!(p->created)) {
+  if (!p) {
     fprintf(stderr, "No puzzle");
     return 1;
   }
@@ -61,7 +61,8 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
       if (!(standin) && fscanf(in, " %d", &temp) == 1 || standin && scanf(" %d", &temp)) {
         // calculates the address in memory for the temp_arr where val is
         // present pointer is not acessed unless temp is valid
-        int *current_pointer = temp_arr + (size * (temp / size)) + temp / size;
+        int *current_pointer = temp_arr + (size * (temp / size)) + temp % size;  
+        
 
         if (temp > 15 || temp < 0) {
           // is that invalid input or invalid tile value
@@ -113,7 +114,7 @@ int handle_I_command(FILE *in, Image **im, int standin) {
 }
 
 int handle_P_command(Puzzle *p) {
-  if (!(p->created)) {
+  if (!p) {
     fprintf(stderr, "No puzzle");
     return 1;
   }
@@ -136,8 +137,13 @@ int handle_P_command(Puzzle *p) {
 }
 
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
+<<<<<<< HEAD
   if (!(p->created)) {
     fprintf(stderr, "No puzzle\n");
+=======
+  if (!p) {
+    fprintf(stderr, "No puzzle");
+>>>>>>> 79f601b58669063ede76e316c7aed38dc1ce8c3a
     return 1;
   }
 
@@ -328,7 +334,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
 }
 
 int handle_K_command(Puzzle* p) {
-  if (!(p->created)) {
+  if (!p) {
     fprintf(stderr, "No puzzle");
     return 1;
   }
