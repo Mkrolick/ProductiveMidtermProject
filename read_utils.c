@@ -249,7 +249,7 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
 
   FILE *img_file_ptr_pos = fopen(filename_pos, "w");
   if (!img_file_ptr_pos) {
-    fprintf(stderr, "Could not open output image file %s\n", filename_pos);
+    fprintf(stderr, "Could not open output image file '%s'\n", filename_pos);
     return 7;
   }
 
