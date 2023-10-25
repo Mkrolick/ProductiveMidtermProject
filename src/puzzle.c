@@ -51,10 +51,7 @@ int main(int argc, char** argv) {
         val = handle_C_command(fp, p, standin);
         break;
       case 'T':
-        if (!p) {
-          fprintf(stderr, "No puzzle\n");
-          return 1;
-        }
+        
 
         val = handle_T_command(fp, *p, standin);
         break;

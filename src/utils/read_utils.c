@@ -44,6 +44,11 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
 
 int handle_T_command(FILE *in, Puzzle *p, int standin) {
 
+  if (!p) {
+    fprintf(stderr, "No puzzle\n");
+    return 1;
+  }
+
   int size = p->size;
 
   int *temp_arr = malloc(sizeof(int) * size * size);
