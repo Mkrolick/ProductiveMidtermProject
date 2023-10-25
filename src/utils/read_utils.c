@@ -174,33 +174,48 @@ int handle_P_command(Puzzle *p) {
 }
 
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
-  if (!p) {
-    fprintf(stderr, "No puzzle\n");
+  // background image rows or columns not evenly divisible by puzzle rows/columns	
+  if (im->rows != im->cols || im->rows % p->size != 0) {
+    fprintf(stderr, "Invalid image dimensions\n");
     return 1;
   }
-
-  if (!in) {
-    fprintf(stderr, "No file pointer\n");
+  
+  // background image hasn’t been read
+  if(!im) {
+    fprintf(stderr, "No image\n");
     return 2;
   }
+
+  // puzzle has not been created
+  if (!p) {
+    fprintf(stderr, "No puzzle\n");
+    return 3;
+  }
+
+  // assures dimensions within puzzle are correct
+  assert(((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)) == im->rows * im->cols);
   
   char filename[256];
   if (!(standin) && fscanf(in, " %s", filename) != 1 || standin && scanf(" %s", filename) != 1) {
     fprintf(stderr, "Invalid input\n");
-    return 1;
+    return 4;
   }
 
   initialzeTiles(p, im);
   
   // opens file for writing
   FILE *img_file_ptr = fopen(filename, "w");
+  if (!img_file_ptr) {
+    fprintf(stderr, "Could not open output image file %s\n", filename);
+    return 5;
+  }
   
   // writes result
   Image *newImage = exportImage(p);
   int result = WritePPM(img_file_ptr, newImage);
 
   // validates number of pixels written is expected
-  assert(result == (p->size * p->tiles->blockSize));
+  assert(result == ((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)));
 
   // frees created image
   free(newImage->data);
