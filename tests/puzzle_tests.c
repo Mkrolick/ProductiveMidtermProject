@@ -167,7 +167,7 @@ void test_P_command(void) {
   int res = handle_T_command(fp, p, 0);
   assert(res == 0);
 
-  int res = handle_P_command(p);
+  res = handle_P_command(p);
   assert(res == 0);
 }
 
@@ -186,54 +186,54 @@ void test_S_command(void) {
   // First batch where 0 is bottom right
   fp = fopen("../tests/function_tests/s_cmd_1_d", "r");
 
-  int res = handle_S_command(fp, p, 0);
+  res = handle_S_command(fp, p, 0);
   assert(res == 0);
 
   fp = fopen("../tests/function_tests/s_cmd_4_l", "r");
 
-  int res = handle_S_command(fp, p, 0);
+  res = handle_S_command(fp, p, 0);
   assert(res == 2);
 
 
   // First batch where 0 is top right
   fp = fopen("../tests/function_tests/s_cmd_2_r", "r");
 
-  int res = handle_S_command(fp, p, 0);
+  res = handle_S_command(fp, p, 0);
   assert(res == 0);
 
   fp = fopen("../tests/function_tests/s_cmd_1_d", "r");
 
-  int res = handle_S_command(fp, p, 0);
+  res = handle_S_command(fp, p, 0);
   assert(res == 2);
 
 
   // First batch where 0 is top left
   fp = fopen("../tests/function_tests/s_cmd_3_u", "r");
 
-  int res = handle_S_command(fp, p, 0);
+  res = handle_S_command(fp, p, 0);
   assert(res == 0);
 
   fp = fopen("../tests/function_tests/s_cmd_2_r", "r");
 
-  int res = handle_S_command(fp, p, 0);
+  res = handle_S_command(fp, p, 0);
   assert(res == 2);
 
   
   // First batch where 0 is bottom left
   fp = fopen("../tests/function_tests/s_cmd_4_l", "r");
 
-  int res = handle_S_command(fp, p, 0);
+  res = handle_S_command(fp, p, 0);
   assert(res == 0);
 
   fp = fopen("../tests/function_tests/s_cmd_3_u", "r");
 
-  int res = handle_S_command(fp, p, 0);
+  res = handle_S_command(fp, p, 0);
   assert(res == 2);
 
   //Invalid input
   fp = fopen("../tests/function_tests/s_cmd_5", "r");
 
-  int res = handle_S_command(fp, p, 0);
+  res = handle_S_command(fp, p, 0);
   assert(res == 3);
 }
 
@@ -250,12 +250,12 @@ void test_K_command(void) {
   fp = fopen("../tests/function_tests/t_cmd_3", "r");
   p = NULL;
 
-  int res = handle_K_command(p);
+  res = handle_K_command(p);
   assert(res == 0);
 
   p = NULL;
 
-  int res = handle_K_command(p);
+  res = handle_K_command(p);
   assert(res = 1);
 }
 
