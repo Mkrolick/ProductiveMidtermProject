@@ -59,33 +59,33 @@ void test_T_command(void) {
   Puzzle* p = NULL;
 
 
-  int res = handle_T_command(fp, p);
+  int res = handle_T_command(fp, p, 0);
   assert(res == 1);
 
   fp = fopen("../tests/function_tests/t_cmd_2", "r");
   p = puzzle_create(4);
 
   
-  res = handle_T_command(fp, p);
+  res = handle_T_command(fp, p, 0);
   printf("\n%d\n", res);
   assert(res == 2);
 
   fp = fopen("../tests/function_tests/t_cmd_3", "r");
   p = puzzle_create(4);
 
-  res = handle_T_command(fp, p);
+  res = handle_T_command(fp, p, 0);
   assert(res == 3);
 
   fp = fopen("../tests/function_tests/t_cmd_4", "r");
   p = puzzle_create(4);
 
-  res = handle_T_command(fp, p);
+  res = handle_T_command(fp, p, 0);
   assert(res == 4);
 
   fp = fopen("../tests/function_tests/t_cmd_5", "r");
   p = puzzle_create(4);
 
-  res = handle_T_command(fp, p);
+  res = handle_T_command(fp, p, 0);
   assert(res == 0);
 }
 
@@ -94,28 +94,28 @@ void test_I_command(void) {
   Image** im = NULL;
   FILE* fp = fopen("../tests/function_tests/i_cmd_1","r");
 
-  int res = handle_I_command(fp, im);
+  int res = handle_I_command(fp, im, 0);
 
   assert(res == 1);
 
   im = NULL;
   fp = fopen("../tests/function_tests/i_cmd_2","r");
 
-  res = handle_I_command(fp, im);
+  res = handle_I_command(fp, im, 0);
 
   assert(res == 2);
 
   im = NULL;
   fp = fopen("../tests/function_tests/i_cmd_3","r");
 
-  res = handle_I_command(fp, im);
+  res = handle_I_command(fp, im, 0);
 
   assert(res == 2);
   
   im = NULL;
   fp = fopen("../tests/function_tests/i_cmd_4","r");
 
-  res = handle_I_command(fp, im);
+  res = handle_I_command(fp, im, 0);
 
   assert(res == 0);
 }
