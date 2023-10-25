@@ -33,7 +33,7 @@ int initialize_tiles(Puzzle *p, Image *img);
 
 void puzzle_destroy(Puzzle *p);
 int move_puzzle(Puzzle *p, char command);
-int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps);
+int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps, char prev_move);
 void write_game(int** array, int size, FILE* file);
 
 // functions for handling input
@@ -47,5 +47,8 @@ int handle_K_command(Puzzle *p);
 int handle_V_command(Puzzle *p);
 
 int puzzle_solved(Puzzle* p);
+
+Puzzle* half_deep_copy_puzzle(Puzzle *p);
+void destroy_copy(Puzzle *p);
 
 #endif  // PUZZLE_H
