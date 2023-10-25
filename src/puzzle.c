@@ -85,7 +85,7 @@ int main(int argc, char** argv) {
     }
 
     // load up res again
-    res = standin? scanf(" %c", &command): fscanf(fp, " %c", &command);
+    res = standin ? scanf(" %c", &command) : fscanf(fp, " %c", &command);
   }
 
   return 0;

@@ -88,30 +88,6 @@ Image *exportImage(Puzzle *p) {
   // as it stands this just gets the first tile
   int blocksize = p->tiles->blockSize;
   int numBlocks = p->size;
-  printf("%d\n", numBlocks);
-
-  //tile
-  FILE *tile_ptr = fopen("tile.ppm", "w");
-  if (!tile_ptr) {
-    fprintf(stderr, "Could not open output image file %s\n", "fuckyou");
-    return 6;
-  }
-  
-  // writes result
-  Image *tileImage = malloc(sizeof(Image));
-  tileImage->rows = p->tiles->blockSize;
-  tileImage->cols = p->tiles->blockSize;
-  tileImage->data = p->tiles[6].imageBlock;
-
-  int result = WritePPM(tile_ptr, tileImage);
-
-
-  // for(int k= 0; k < blocksize * blocksize; k++) {
-  //   printf("r %d, g %d, b %d::", p->tiles[2].imageBlock[k].r, p->tiles[2].imageBlock[k].g, p->tiles[2].imageBlock[k].b);
-  //   if (k !=0 && blocksize % k ==0 ) {
-  //     printf("\n");
-  //   }
-  // }
 
   // Now stuff gets fun
   for (int i = 0; i < numBlocks; i++) {
