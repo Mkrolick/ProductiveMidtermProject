@@ -230,7 +230,7 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   // opens file for writing
   FILE *img_file_ptr = fopen(filename, "w");
   if (!img_file_ptr) {
-    fprintf(stderr, "Could not open output image file %s\n", filename);
+    fprintf(stderr, "Could not open output image file '%s'\n", filename);
     return 6;
   }
   
