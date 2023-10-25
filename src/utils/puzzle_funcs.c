@@ -72,7 +72,6 @@ int puzzle_get_tile(const Puzzle *p, int col, int row) {
 }
 
 Image *exportImage(Puzzle *p) {
-  printf("hello?\n");
   Image *newImage = malloc(sizeof(Image));
 
   assert(p->size);
@@ -140,7 +139,7 @@ Image *exportImage(Puzzle *p) {
 
 int puzzle_solved(Puzzle* p) {
 
-  int correct;
+  int correct = 1;
 
   for (int row = 0; row < (p->size); row++) {
     for (int col = 0; col < (p->size); col++) {
@@ -148,11 +147,9 @@ int puzzle_solved(Puzzle* p) {
       int correct_val = 1 + col + row * (p->size);
 
       if (tile_val != 0) {
-        if (correct_val == tile_val) {
-          correct = 1;
-        } else {
+        if (correct_val != tile_val) {
           correct = 0;
-        }
+        } 
       }      
     }
   }
@@ -188,11 +185,8 @@ int move_puzzle(Puzzle *p, char command) {
       }
 
       if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
         return 2;
       }
-      
-      
 
       temp_int = puzzle_get_tile(p, found_col, found_row + 1);
 
@@ -215,7 +209,7 @@ int move_puzzle(Puzzle *p, char command) {
       }
 
       if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
+        
         return 2;
       }
       
@@ -243,7 +237,7 @@ int move_puzzle(Puzzle *p, char command) {
       }
 
       if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
+        
         return 2;
       }
       
@@ -271,7 +265,7 @@ int move_puzzle(Puzzle *p, char command) {
       }
 
       if (!tile_found) {
-        fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
+        
         return 2;
       }
 
@@ -284,7 +278,7 @@ int move_puzzle(Puzzle *p, char command) {
       break;
     default:
 
-      fprintf(stderr, "Invalid command '%c'\n", command);
+      
       return 3;
       break;
   }
@@ -293,9 +287,12 @@ int move_puzzle(Puzzle *p, char command) {
 }
 
 
-int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps) {
+int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps, char prev_move) {
+
+  //printf("%d\n", cur_steps);
   if (puzzle_solved(p)) {
     steps[cur_steps] = '\0';
+    //printf("reached\n");
     return cur_steps; // steps array has a complete sequence of steps
   }
 
@@ -304,20 +301,93 @@ int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps) {
   }
 
   char direction[] = {'u', 'd', 'l', 'r' };
+
+  char no_go;
+
+
+  switch (prev_move)
+  {
+  case 'u':
+    no_go = 'd';
+    break;
+  case 'd':
+    no_go = 'u';
+    break;
+  case 'l':
+    no_go = 'r';
+    break;
+  case 'r':
+    no_go = 'l';
+    break;
+  default:
+    no_go = '\0';
+  }
+  
+
+
   for (int i = 0; i < 4; i++) {
-    Puzzle p_copy = *p;
-    if (move_puzzle(&p_copy, direction[i])) {
-      int totalsteps;
-      if ((totalsteps = solve_puzzle(&p_copy, steps, max_steps, cur_steps + 1))) {
+    if (direction[i] == no_go) {
+      continue;
+    }
+    
+
+
+
+    Puzzle* p_copy = malloc(sizeof(Puzzle));
+    p_copy = half_deep_copy_puzzle(p);
+
+    if (move_puzzle(p_copy, direction[i]) == 0) {
+      int totalsteps = solve_puzzle(p_copy, steps, max_steps, cur_steps + 1, direction[i]);
+      if (totalsteps != max_steps) {
         // found a solution recursively!
         steps[cur_steps] = direction[i];
+        destroy_copy(p_copy);
+        //printf("%d, %d, %d", totalsteps, cur_steps, max_steps);
+        
         return totalsteps;
-      }
-    }
+      } 
+    } 
   }
 
   return max_steps; // attempts to solve recursively did not succeed
 }
+
+void destroy_copy(Puzzle *p) {
+
+  
+  // freeing positions
+  for (int i = 0; i < p->size; i++) {
+    free(p->positions[i]);
+  }
+
+  free(p->positions);
+}
+
+
+
+Puzzle* half_deep_copy_puzzle(Puzzle *p) {
+  Puzzle* new_puzzle = puzzle_create(p->size);
+
+  const int size = p->size;
+  // copies positions
+  for (int i = 0; i < size; i++) {
+    for (int j = 0; j < size; j++) {
+      new_puzzle->positions[i][j] = p->positions[i][j];
+    }
+  }
+
+  // shallow copy of tiles copies tiles - save memory and time
+  new_puzzle->tiles = NULL;
+
+  new_puzzle->size = size;
+  
+
+  return new_puzzle;
+
+}
+
+
+
 
 void write_game(int** array, int size, FILE* file) {
   for (int i = 0; i < size; i++) {
