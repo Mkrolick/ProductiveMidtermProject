@@ -8,6 +8,7 @@
 
 int handle_C_command(FILE *in, Puzzle **p, int standin) {
   // differences in return are to help in debugging
+
   int size = 0;
   
   // checking if from file or stdin
@@ -193,12 +194,6 @@ int handle_P_command(Puzzle *p) {
 }
 
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
-  // background image rows or columns not evenly divisible by puzzle rows/columns	
-  if (im->rows != im->cols || im->rows % p->size != 0) {
-    fprintf(stderr, "Invalid image dimensions\n");
-    return 1;
-  }
-  
   // background image hasn’t been read
   if(!im) {
     fprintf(stderr, "No image\n");
@@ -210,6 +205,13 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     fprintf(stderr, "No puzzle\n");
     return 3;
   }
+  
+  // background image rows or columns not evenly divisible by puzzle rows/columns	
+  if (im->rows != im->cols || im->rows % p->size != 0) {
+    fprintf(stderr, "Invalid image dimensions\n");
+    return 1;
+  }
+  
   // populates tiles within puzzle object properly
   initialzeTiles(p, im);
 
@@ -279,13 +281,26 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
     }
   }
   
-  return move_puzzle(p, command);
+  int res = move_puzzle(p, command);
+  if (res == 2) {
+    fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
+  } else if (res == 3) {
+    fprintf(stderr, "Invalid command '%c'\n", command);
+  }
+
+  return res;
 }
 
 int handle_V_command(Puzzle* p) {
-  const int max_steps = 32;
+  // puzzle has not been created
+  if (!p) {
+    fprintf(stderr, "No puzzle\n");
+    return 3;
+  }
+
+  const int max_steps = 30;
   char * final_steps = malloc(sizeof(char) * max_steps);
-  int required_steps = solve_puzzle(p, final_steps, max_steps, 0);
+  int required_steps = solve_puzzle(p, final_steps, max_steps, 0, '\0');
 
   if (required_steps == max_steps) {
     printf("No solution found\n");
@@ -299,6 +314,7 @@ int handle_V_command(Puzzle* p) {
     printf("S %c\n", final_steps[i]);
   }
   free(final_steps);
+  //printf("complete\n");
   return 0;
 }
 
