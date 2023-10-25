@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
         val = handle_T_command(fp, *p, standin);
         break;
       case 'I':
-        //val = handle_I_command(fp, img, standin);
+        val = handle_I_command(fp, img, standin);
         break;
       case 'P':
         //val = handle_P_command(*p);

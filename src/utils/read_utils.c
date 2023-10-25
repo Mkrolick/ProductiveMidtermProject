@@ -144,12 +144,17 @@ int handle_I_command(FILE *in, Image **im, int standin) {
 
   FILE *img_file_ptr = fopen(arr, "r");
 
+  if (!img_file_ptr) {
+    fprintf(stderr, "Could not open image file '%s'\n", arr);
+    return 2;
+  }
+
   *im = ReadPPM(img_file_ptr);
   
   // checks if image file is valid
   if (*im == NULL) {
     fprintf(stderr, "Could not open image file '%s'\n", arr);
-    return 2;
+    return 3;
   }
 
   fclose(img_file_ptr);
