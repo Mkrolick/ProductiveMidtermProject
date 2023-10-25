@@ -102,14 +102,12 @@ int initialzeTiles(Puzzle *p, Image *img) {
   Tile * tiles = malloc(sizeof(Tile) * size * size + sizeof(Tile));
   int offset = 0;
   for (int i=1; i <= (size * size); i++) {
-    printf("%d ", blockSize);
     tiles[i].blockSize = blockSize;
     tiles[i].imageBlock = malloc(sizeof(Pixel) * blockSize * blockSize);
 
     int pixel_offset = 0;
 
     int top_left_int = (i-1) * (blockSize) + offset;
-    printf("topleft: %d for %d at offset %d\n", top_left_int, i, offset);
     Pixel *topleft = &(img->data[top_left_int]);
     for (int k=0; k < blockSize; k++) {
       for (int j=0; j < (blockSize); j++) {
@@ -121,9 +119,7 @@ int initialzeTiles(Puzzle *p, Image *img) {
       }
       pixel_offset += dims;
     }
-    printf("------i:%d size:%d test:%d-------\n", i, size, i % size);
     if (i != 0 && !(i % size)) {
-      printf("troggers\n");
       offset += dims * blockSize;
     }
   }
@@ -212,8 +208,6 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   }
   // populates tiles within puzzle object properly
   initialzeTiles(p, im);
-
-  printf("Image is x: %d, y: %d, size: %d\n", im->rows, im->cols, p->tiles->blockSize);
 
   // assures dimensions within puzzle are correct
   assert(((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)) == im->rows * im->cols);
