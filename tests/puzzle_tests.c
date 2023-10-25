@@ -270,7 +270,25 @@ void test_K_command(void) {
 }
 
 
+void test_W_command(void) {
+  FILE* fp;
+  Puzzle** p;
+  Image** im;
+  int res;
+  
 
+  fp = fopen("w_cmd_1_1", "r");
+  res = handle_C_command(fp, p, 0);
+
+  fp = fopen("w_cmd_1_2", "r");
+  res = handle_T_command(fp, *p, 0);
+
+  fp = fopen("w_cmd_1_3", "r");
+  res = handle_I_command(fp, im, 0);
+  
+  fp = fopen("w_cmd_1_4", "r");
+  res = handle_W_command(fp, *im, *p, 0);
+}
 
 
 
@@ -283,9 +301,9 @@ int main(void) {
 
   //test_C_command();
   //test_T_command();
-  test_I_command();
+  //test_I_command();
   //test_P_command();
-  //test_W_command()
+  test_W_command();
   //test_S_command();
   //test_K_command();
   //test_V_command();  
