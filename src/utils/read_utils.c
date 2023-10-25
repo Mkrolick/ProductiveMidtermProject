@@ -137,13 +137,9 @@ int handle_P_command(Puzzle *p) {
 }
 
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
-<<<<<<< HEAD
-  if (!(p->created)) {
-    fprintf(stderr, "No puzzle\n");
-=======
+
   if (!p) {
-    fprintf(stderr, "No puzzle");
->>>>>>> 79f601b58669063ede76e316c7aed38dc1ce8c3a
+    fprintf(stderr, "No puzzle\n");
     return 1;
   }
 
