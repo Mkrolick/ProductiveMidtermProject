@@ -141,9 +141,7 @@ int puzzle_solved(Puzzle* p) {
 
 int move_puzzle(Puzzle *p, char command) {
 
-  // might need to use a pointer array for this
-  char temp[p->size];
-
+  int temp_int;
   int tile_found = 0;
   int found_col;
   int found_row;
@@ -155,7 +153,7 @@ int move_puzzle(Puzzle *p, char command) {
         for (int col = 0; col < (p->size); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
             found_col = col;
-            found_row = col;
+            found_row = row;
             tile_found = 1;
           }
         }
@@ -165,22 +163,24 @@ int move_puzzle(Puzzle *p, char command) {
         fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
         return 2;
       }
+      
+      
 
-      int temp = puzzle_get_tile(p, found_col, found_row - 1);
+      temp_int = puzzle_get_tile(p, found_col, found_row + 1);
 
-      puzzle_set_tile(p, found_col, found_row - 1, 0);
+      puzzle_set_tile(p, found_col, found_row + 1, 0);
 
-      puzzle_set_tile(p, found_col, found_row, temp);
+      puzzle_set_tile(p, found_col, found_row, temp_int);
 
       break;
 
     case 'd':
-
+      
       for (int row = 1; row < (p->size); row++) {
         for (int col = 0; col < (p->size); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
             found_col = col;
-            found_row = col;
+            found_row = row;
             tile_found = 1;
           }
         }
@@ -190,13 +190,14 @@ int move_puzzle(Puzzle *p, char command) {
         fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
         return 2;
       }
-
-      int temp = puzzle_get_tile(p, found_col, found_row + 1);
-
-      puzzle_set_tile(p, found_col, found_row + 1, 0);
       
-      puzzle_set_tile(p, found_col, found_row, temp);
 
+      temp_int = puzzle_get_tile(p, found_col, found_row - 1);
+      
+      puzzle_set_tile(p, found_col, found_row - 1, 0);
+      
+      puzzle_set_tile(p, found_col, found_row, temp_int);
+      
       break;
 
     case 'l':
@@ -207,7 +208,7 @@ int move_puzzle(Puzzle *p, char command) {
         for (int col = 0; col < ((p->size) - 1); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
             found_col = col;
-            found_row = col;
+            found_row = row;
             tile_found = 1;
           }
         }
@@ -217,23 +218,25 @@ int move_puzzle(Puzzle *p, char command) {
         fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
         return 2;
       }
-
-      int temp = puzzle_get_tile(p, found_col + 1, found_row);
+      
+      
+      
+      temp_int = puzzle_get_tile(p, found_col + 1, found_row);
 
       puzzle_set_tile(p, found_col + 1, found_row, 0);
       
-      puzzle_set_tile(p, found_col, found_row, temp);
+      puzzle_set_tile(p, found_col, found_row, temp_int);
 
       break;
 
     case 'r':
 
       // UPdate YAY
-      for (int row = 1; row < (p->size); row++) {
-        for (int col = 0; col < (p->size); col++) {
+      for (int row = 0; row < (p->size); row++) {
+        for (int col = 1; col < (p->size); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
             found_col = col;
-            found_row = col;
+            found_row = row;
             tile_found = 1;
           }
         }
@@ -244,11 +247,11 @@ int move_puzzle(Puzzle *p, char command) {
         return 2;
       }
 
-      int temp = puzzle_get_tile(p, found_col - 1, found_row);
+      temp_int = puzzle_get_tile(p, found_col - 1, found_row);
 
       puzzle_set_tile(p, found_col - 1, found_row, 0);
       
-      puzzle_set_tile(p, found_col, found_row, temp);
+      puzzle_set_tile(p, found_col, found_row, temp_int);
 
       break;
     default:

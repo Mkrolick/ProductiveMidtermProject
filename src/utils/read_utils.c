@@ -47,11 +47,11 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
     fprintf(stderr, "No puzzle\n");
     return 1;
   }
-
+  
   int size = p->size;
 
   int *temp_arr = malloc(sizeof(int) * size * size);
-
+  
   // seting up empty array to compare values from
   for (int i = 0; i < size * size; i++) {
     temp_arr[i] = 0;
@@ -169,17 +169,18 @@ int handle_P_command(Puzzle *p) {
     for (int col = 0; col < p->size; col++) {
       int tile_val = puzzle_get_tile(p, col, row);
 
-      fprintf(stdout, "%c", tile_val);
+      fprintf(stdout, "%d", tile_val);
+      
 
-      if ((row != (p->size) - 1) && (col != (p->size) - 1)) {
-        fprintf(stdout, " ");
-      } else {
+      if ((row == (p->size) - 1) && (col == (p->size) - 1)) {
         fprintf(stdout, "\n");
+      } else {
+        fprintf(stdout, " ");
       }
     }
   }
 
-  return 1;
+  return 0;
 }
 
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
@@ -255,6 +256,8 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
 
 int handle_S_command(FILE *in, Puzzle *p, int standin) {
   // double check with hand book for errors
+
+  
   char command;
   if (!(standin)) {
     if (fscanf(in, " %c", &command) != 1) {
@@ -267,7 +270,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
       return 1;
     }
   }
-
+  
   return move_puzzle(p, command);
 }
 
