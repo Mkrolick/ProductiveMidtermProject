@@ -10,7 +10,6 @@ typedef struct _tile {
 } Tile;
 
 typedef struct _puzzle {
-  int created;
   int size;
 
   Tile *tiles;  // 2D array of tiles - replacing tiles[][] with Tile ** tiles as
@@ -44,5 +43,7 @@ int handle_V_command(Puzzle *p);
 
 int pain(void);
 int cry(void);
+
+int puzzle_solved(Puzzle* p);
 
 #endif  // PUZZLE_H
