@@ -275,8 +275,8 @@ int main(void) {
   //test_puzzle_create();
   //test_puzzle_set_tile();
 
-  test_C_command();
-  //test_T_command();
+  //test_C_command();
+  test_T_command();
   //test_I_command();
   //test_P_command();
   //test_W_command()

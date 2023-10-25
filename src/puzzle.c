@@ -41,8 +41,8 @@ int main(int argc, char** argv) {
     res = scanf(" %c", &command);
   }
 
-  Puzzle** p = NULL;
-  Image** img = NULL;  // TODO seems like a problem
+  Puzzle** p = malloc(sizeof(Puzzle*));
+  Image** img = malloc(sizeof(Image*));  // TODO seems like a problem
 
   // exits if res = EOF as EOF != 1
   while (res == 1) {
@@ -51,22 +51,27 @@ int main(int argc, char** argv) {
         val = handle_C_command(fp, p, standin);
         break;
       case 'T':
+        if (!p) {
+          fprintf(stderr, "No puzzle\n");
+          return 1;
+        }
+
         val = handle_T_command(fp, *p, standin);
         break;
       case 'I':
-        val = handle_I_command(fp, img, standin);
+        //val = handle_I_command(fp, img, standin);
         break;
       case 'P':
-        val = handle_P_command(*p);
+        //val = handle_P_command(*p);
         break;
       case 'W':
-        val = handle_W_command(fp, *img, *p, standin);
+        //val = handle_W_command(fp, *img, *p, standin);
         break;
       case 'S':
-        val = handle_S_command(fp, *p, standin);
+        //val = handle_S_command(fp, *p, standin);
         break;
       case 'K':
-        val = handle_K_command(*p);
+        //val = handle_K_command(*p);
         break;
       case 'V':
         printf("lmao");

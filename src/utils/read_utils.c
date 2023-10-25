@@ -36,20 +36,13 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
   // check if another error with invalid dimension sizes exist - IE 4 by 4 image
   // 3 section splices.
 
-  Puzzle* c = malloc(sizeof(Puzzle*));
-
-  c = puzzle_create(size);
-
-  p = &c;
+  
+  *p = puzzle_create(size);
 
   return 0;
 }
 
 int handle_T_command(FILE *in, Puzzle *p, int standin) {
-  if (!p) {
-    fprintf(stderr, "No puzzle\n");
-    return 1;
-  }
 
   int size = p->size;
 
@@ -57,7 +50,7 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
 
   // seting up empty array to compare values from
   for (int i = 0; i < size * size; i++) {
-    *(temp_arr + i) = 0;
+    temp_arr[i] = 0;
   }
 
   int temp;
