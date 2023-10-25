@@ -51,7 +51,6 @@ int main(int argc, char** argv) {
         val = handle_C_command(fp, p, standin);
         break;
       case 'T':
-        printf("test99");
         val = handle_T_command(fp, *p, standin);
         break;
       case 'I':
