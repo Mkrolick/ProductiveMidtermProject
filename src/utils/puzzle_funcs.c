@@ -166,17 +166,13 @@ int move_puzzle(Puzzle *p, char command) {
         return 2;
       }
 
-      temp[0] = 0;
+      int temp = puzzle_get_tile(p, found_col, found_row - 1);
 
-      for (int row = 1; row < (p->size); row++) {
-        if (puzzle_get_tile(p, found_col, row) != 0) {
-          temp[row] = puzzle_get_tile(p, found_col, row);
-        }
-      }
+      puzzle_set_tile(p, found_col, found_row - 1, 0);
 
-      for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, ((p->size) - 1) - row, temp[row]);
-      }
+      puzzle_set_tile(p, found_col, found_row, temp);
+
+      break;
 
     case 'd':
 
@@ -195,17 +191,11 @@ int move_puzzle(Puzzle *p, char command) {
         return 2;
       }
 
-      temp[0] = 0;
+      int temp = puzzle_get_tile(p, found_col, found_row + 1);
 
-      for (int row = 1; row < (p->size); row++) {
-        if (puzzle_get_tile(p, found_col, row) != 0) {
-          temp[row] = puzzle_get_tile(p, found_col, row);
-        }
-      }
-
-      for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, row, temp[row]);
-      }
+      puzzle_set_tile(p, found_col, found_row + 1, 0);
+      
+      puzzle_set_tile(p, found_col, found_row, temp);
 
       break;
 
@@ -228,17 +218,11 @@ int move_puzzle(Puzzle *p, char command) {
         return 2;
       }
 
-      temp[0] = 0;
+      int temp = puzzle_get_tile(p, found_col + 1, found_row);
 
-      for (int col = 1; col < (p->size); col++) {
-        if (puzzle_get_tile(p, col, found_row) != 0) {
-          temp[col] = puzzle_get_tile(p, col, found_row);
-        }
-      }
-
-      for (int row = 0; row < (p->size); row++) {
-        puzzle_set_tile(p, found_col, ((p->size) - 1) - row, temp[row]);
-      }
+      puzzle_set_tile(p, found_col + 1, found_row, 0);
+      
+      puzzle_set_tile(p, found_col, found_row, temp);
 
       break;
 
@@ -260,17 +244,11 @@ int move_puzzle(Puzzle *p, char command) {
         return 2;
       }
 
-      temp[0] = 0;
+      int temp = puzzle_get_tile(p, found_col - 1, found_row);
 
-      for (int row = 1; row < (p->size); row++) {
-        if (puzzle_get_tile(p, found_col, row) != 0) {
-          temp[row] = puzzle_get_tile(p, found_col, row);
-        }
-      }
-
-      for (int col = 0; col < (p->size); col++) {
-        puzzle_set_tile(p, col, found_row, temp[col]);
-      }
+      puzzle_set_tile(p, found_col - 1, found_row, 0);
+      
+      puzzle_set_tile(p, found_col, found_row, temp);
 
       break;
     default:
