@@ -9,7 +9,7 @@
 int handle_C_command(FILE *in, Puzzle **p, int standin) {
   // differences in return are to help in debugging
   int size = 0;
-
+  
   // checking if from file or stdin
   if (!(standin)) {
     // Checking if size is read in properly
@@ -25,6 +25,7 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
     }
   }
 
+  
   // Checking if size is out of bounds
   if (size < 2 || size > 20) {
     fprintf(stderr, "Invalid puzzle size\n");
@@ -34,7 +35,12 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
   // Assume pointer is valid - as no error code
   // check if another error with invalid dimension sizes exist - IE 4 by 4 image
   // 3 section splices.
-  *p = puzzle_create(size);
+
+  Puzzle* c = malloc(sizeof(Puzzle*));
+
+  c = puzzle_create(size);
+
+  p = &c;
 
   return 0;
 }
