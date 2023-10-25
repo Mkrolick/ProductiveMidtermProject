@@ -247,7 +247,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
 
       if (!tile_found) {
         fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
-        return 1;
+        return 2;
       }
 
       temp[0] = 0;
@@ -276,7 +276,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
 
       if (!tile_found) {
         fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
-        return 1;
+        return 2;
       }
 
       temp[0] = 0;
@@ -309,7 +309,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
 
       if (!tile_found) {
         fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
-        return 1;
+        return 2;
       }
 
       temp[0] = 0;
@@ -341,7 +341,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
 
       if (!tile_found) {
         fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
-        return 1;
+        return 2;
       }
 
       temp[0] = 0;
@@ -360,7 +360,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
     default:
 
       fprintf(stderr, "Invalid command '%c'\n", command);
-      return 2;
+      return 3;
       break;
   }
 
@@ -369,7 +369,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
 
 int handle_K_command(Puzzle* p) {
   if (!p) {
-    fprintf(stderr, "No puzzle");
+    fprintf(stderr, "No puzzle\n");
     return 1;
   }
 
@@ -378,6 +378,6 @@ int handle_K_command(Puzzle* p) {
     return 0;  
   } else {
     printf("Not solved\n");
-    return 2; 
+    return 0; 
   }
 }
