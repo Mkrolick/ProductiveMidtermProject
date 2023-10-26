@@ -11,6 +11,11 @@
 #include "puzzle.h"
 #include "read_utils.h"
 
+
+/* puzzle_create
+ * creates and initialized a heap allocated 
+ * pointer to a puzzle and assigns basic values
+ */
 Puzzle *puzzle_create(int size) {
   // need to check if pointers worked or failed
   Puzzle *new_puzzle = malloc(sizeof(Puzzle));
@@ -36,6 +41,12 @@ Puzzle *puzzle_create(int size) {
   return new_puzzle;
 }
 
+
+
+/* puzzle_destroy
+ * given a pointer to a puzzle the function
+ * frees the associated memory blocks
+ */
 void puzzle_destroy(Puzzle *p) {
   // freeing positions
   if (p) {
@@ -61,16 +72,31 @@ void puzzle_destroy(Puzzle *p) {
   free(p);
 }
 
+
+
+/* puzzle_set_tile
+ * sets the value at a position in a created puzzle
+ * given a column, row, and value
+ */
 void puzzle_set_tile(Puzzle *p, int col, int row, int value) {
   p->positions[row][col] = value;
 }
 
+/* puzzle_get_tile
+ * returns the int value of a position in a created
+ * puzzle given a puzzle pointer, column and row
+ */
 int puzzle_get_tile(const Puzzle *p, int col, int row) {
   // check if p or positions is NULL
   return p->positions[row][col];
 }
 
-Image *exportImage(Puzzle *p) {
+
+/* export_image
+ * creates image object given a puzzle
+ * uses tiles and positions from puzzle
+ */
+Image *export_image(Puzzle *p) {
   Image *newImage = malloc(sizeof(Image));
 
   assert(p->size);
@@ -108,7 +134,12 @@ Image *exportImage(Puzzle *p) {
   return newImage;
 }
 
-int puzzle_solved(Puzzle *p) {
+
+/* puzzle_solved
+ * returns an int value 1 (truthy) or 0 (falsy)
+ * if the puzzle is in a correct arangement or not
+ */
+int puzzle_solved(Puzzle* p) {
   // set correct as true
   int correct = 1;
 
@@ -131,6 +162,12 @@ int puzzle_solved(Puzzle *p) {
   return correct;
 }
 
+
+/* move_puzzle
+ * given a puzzle pointer and a command
+ * the command acts to shift the puzzles by swaping 
+ * with the gap in the opposite direction than specified
+ */
 int move_puzzle(Puzzle *p, char command) {
   int temp_int;
   int tile_found = 0;
@@ -242,8 +279,10 @@ int move_puzzle(Puzzle *p, char command) {
   return 0;
 }
 
-int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps,
-                 char prev_move) {
+
+int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps, char prev_move) {
+
+  
   if (puzzle_solved(p)) {
     steps[cur_steps] = '\0';
     return cur_steps;  // steps array has a complete sequence of steps
@@ -310,8 +349,10 @@ void destroy_copy(Puzzle *p) {
   free(p->positions);
 }
 
-Puzzle *half_deep_copy_puzzle(Puzzle *p) {
-  Puzzle *new_puzzle = puzzle_create(p->size);
+
+
+Puzzle* half_deep_copy_puzzle(Puzzle *p) {
+  Puzzle* new_puzzle = puzzle_create(p->size);
 
   const int size = p->size;
   // copies positions deeply
@@ -326,10 +367,15 @@ Puzzle *half_deep_copy_puzzle(Puzzle *p) {
   new_puzzle->size = size;
 
   return new_puzzle;
+
 }
 
-void write_game(int **array, int size, FILE *file) {
-  // iterating through 2d array and printing each value
+
+
+
+void write_game(int** array, int size, FILE* file) {
+
+  //iterating through 2d array and printing each value
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) {
       fprintf(file, "%d ", array[i][j]);
