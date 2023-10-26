@@ -55,11 +55,9 @@ void puzzle_destroy(Puzzle *p) {
         if (p->tiles[i].imageBlock) {
           free(p->tiles[i].imageBlock);
         }
+        free(p->tiles);
       }   
     }
-    
-
-    free(p->tiles);
   
   // finally frees puzzle
   }
