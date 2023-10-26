@@ -41,26 +41,29 @@ Puzzle *puzzle_create(int size) {
 
 void puzzle_destroy(Puzzle *p) {
   // freeing positions
-  for (int i = 0; i < p->size; i++) {
-    free(p->positions[i]);
-  }
-  
-  free(p->positions);
+  if (p) {
+    for (int i = 0; i < p->size; i++) {
+      free(p->positions[i]);
+    }
+    
+    free(p->positions);
 
-  // frees tiles
+    // frees tiles
+    assert(0);
+    if (p->tiles) {
+      for (int i = 0; i < ((p->size) * (p->size)); i++) {
+        if (p->tiles[i].imageBlock) {
+          free(p->tiles[i].imageBlock);
+        }
+      }   
+    }
+    
 
-  if (p->tiles) {
-    for (int i = 0; i < ((p->size) * (p->size)); i++) {
-      if (p->tiles[i].imageBlock) {
-        free(p->tiles[i].imageBlock);
-      }
-    }   
-  }
-  
-
-  free(p->tiles);
+    free(p->tiles);
   
   // finally frees puzzle
+  }
+
   free(p);
 }
 
