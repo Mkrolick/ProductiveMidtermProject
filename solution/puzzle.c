@@ -7,6 +7,12 @@
 #include "puzzle.h"
 #include "read_utils.h"
 
+
+/* main
+ * body of the function acting as the 15 puzzle simulator
+ * can be ran in either file reading mode or from user input
+ * with a variety of different commands
+ */
 int main(int argc, char** argv) {
   if (argc == 0 || argc > 2) {
     fprintf(stderr, "Usage: ./puzzle [<command file>]\n");
@@ -108,9 +114,6 @@ int main(int argc, char** argv) {
   puzzle_destroy(*p);
   
   free(p);
-  if (val != 0) {
-    val = 1;
-  }
-  
+
   return val;
 }
