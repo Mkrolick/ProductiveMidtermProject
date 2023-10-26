@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
   }
 
   Puzzle** p = malloc(sizeof(Puzzle*));
-  Image** img = malloc(sizeof(Image*));  // TODO seems like a problem
+  Image** img = malloc(sizeof(Image*)); 
 
   // exits if res = EOF as EOF != 1
   while (res == 1) {
@@ -85,6 +85,16 @@ int main(int argc, char** argv) {
     res = standin ? scanf(" %c", &command) : fscanf(fp, " %c", &command);
   }
   
+
+  
+  if ((*img != NULL) && (*img)->data) {
+    free((*img) -> data);
+  }
+
+  if (*img) {
+    free(*img);
+  }
+
   free(img);
 
   puzzle_destroy(*p);
