@@ -34,10 +34,6 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
     return 2;
   }
 
-  // Assume pointer is valid - as no error code
-  // check if another error with invalid dimension sizes exist - IE 4 by 4 image
-  // 3 section splices.
-
   *p = puzzle_create(size);
 
   return 0;
@@ -94,6 +90,16 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
 }
 
 int initialzeTiles(Puzzle *p, Image *img) {
+  if (p->tiles) {
+    for (int i = 0; i <= ((p->size) * (p->size)); i++) {
+      if (p->tiles[i].imageBlock) {
+        free(p->tiles[i].imageBlock);
+      }
+    }   
+    free(p->tiles);
+    p->tiles = NULL;
+  }
+  
   const int size = p->size;
   const int dims = img->cols;
   const int blockSize = dims / size;
@@ -167,7 +173,7 @@ int handle_I_command(FILE *in, Image **im, int standin) {
   }
 
   fclose(img_file_ptr);
-  return 0;  // indicates success
+  return 0; 
 }
 
 int handle_P_command(Puzzle *p) {
@@ -194,13 +200,13 @@ int handle_P_command(Puzzle *p) {
 }
 
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
-  // background image hasn’t been read
+  // check if background image hasn’t been read
   if (!im) {
     fprintf(stderr, "No image\n");
     return 2;
   }
 
-  // puzzle has not been created
+  // check if puzzle has not been created
   if (!p) {
     fprintf(stderr, "No puzzle\n");
     return 3;
@@ -264,7 +270,8 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   write_game(p->positions, p->size, img_file_ptr_pos);
   fclose(img_file_ptr_pos);
 
-  return 0;  // indicates success
+  // indicates success
+  return 0;  
 }
 
 int handle_S_command(FILE *in, Puzzle *p, int standin) {
@@ -309,14 +316,13 @@ int handle_V_command(Puzzle *p) {
     return 1;
   }
 
-  // sanity check to assure that the null terminator is correct
+  // ensure that the null terminator is correct
   assert((int)strlen(final_steps) == required_steps);
 
   for (int i = 0; i < required_steps; i++) {
     printf("S %c\n", final_steps[i]);
   }
   free(final_steps);
-  // printf("complete\n");
   return 0;
 }
 

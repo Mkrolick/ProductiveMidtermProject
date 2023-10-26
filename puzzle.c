@@ -16,10 +16,13 @@ int main(int argc, char** argv) {
     return 1;
   }
 
+  int exit = 0;
+  int val = 0;
+
   char command;
-  int val = 1;
   int standin;
   int res;
+  
   FILE* fp = NULL;
 
   if (argc == 2) {
@@ -39,7 +42,7 @@ int main(int argc, char** argv) {
   }
 
   Puzzle** p = malloc(sizeof(Puzzle*));
-  Image** img = malloc(sizeof(Image*));  // TODO seems like a problem
+  Image** img = malloc(sizeof(Image*)); 
 
   // exits if res = EOF as EOF != 1
   while (res == 1) {
@@ -69,30 +72,45 @@ int main(int argc, char** argv) {
         val = handle_V_command(*p);
         break;
       case 'Q':
-        return 0;
+        exit = 1;
         break;
       default:
         fprintf(stderr, "Invalid command '%c'\n", command);
-        return 1;
+        val = 1;
         break;
     }
 
     if (val != 0) {
-      return 1;
+      exit = 1;
+    }
+    
+    if (exit) {
+      break;
     }
 
     // load up res again
     res = standin ? scanf(" %c", &command) : fscanf(fp, " %c", &command);
   }
+  
 
+  //closing file pointer
+  fclose(fp);
+  
+  //clearing image
+  if ((*img != NULL) && (*img)->data) {
+    free((*img) -> data);
+  }
 
-  free((*img)->data);
+  if (*img) {
+    free(*img);
+  }
 
   free(img);
-  
-  puzzle_destroy(*p);
 
+  //removing puzzle and associated pointers
+  puzzle_destroy(*p);
+  
   free(p);
 
-  return 0;
+  return val;
 }
