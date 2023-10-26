@@ -10,8 +10,6 @@
 #include "puzzle_funcs.h"
 #include "read_utils.h"
 
-// TODO: implement functions
-
 Puzzle *puzzle_create(int size) {
   // need to check if pointers worked or failed
   Puzzle *new_puzzle = malloc(sizeof(Puzzle));

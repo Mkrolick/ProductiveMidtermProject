@@ -1,1 +1,21 @@
-# Productive Midterm Project
+Names: Zachary Sayyah & Malcolm Krolick JHED IDs: zsayyah1, mckrolick1
+
+# Midterm Project
+
+## Structure
+
+This project includes multiple facets including a test and main program. 
+
+Originally, this project was built with cmake with a comprehensive file structure of both src/ and include/ directories. In this scheme there was also a seperate shared object and module for ppmio and another one for both puzzle_funcs and read_utils under a utils directory. Unfortunately due to limitations with the auto grader, this system was removed for the final iteration of our program and a normal make file was adopted along with a flat file structure. The previous system, however, was quite useful for dynamically adjusting the build parameters with respect to new files and aspects of the program.
+
+In the current structure of the program, we have a few different files, each representing a different aspect of the overall implementation. All read and command handling was performed in read_utils while relevant functions were included in the header file for external use. All functions relevant to manipulating the puzzle and its attributes were included in puzzle_funcs, once again placing relevant functions in the header for external use.
+
+## Implementation
+
+One of the more interesting implementation choices on this project was our handling of "Tiles". We created a "Tile" struct in order to contain properties inherent to the tile such as size but also to modularize the reading and writing of images throughout the read-write process.
+
+By having an initializeTiles step where each portion of the image owned by a specific tile was copied into a seperate buffer, we could sanity check this process, even at one point wrinting individual tiles to files in order to validate this process. From here we could then copy this 1D array into the relevant portions of the newly created file in the W command. This allowed us to isolate issues with each process during the development phase of these utilities. It also notably allowed us to better track any memory issues (often reported by valgrind) with these proccesses allowing us to much easier remedy them.
+
+## Contributions
+
+Malcolm and I heavily collaborated on most of this project as this allowed us to think through some of the incatracies of the task with better accuracy, but aside from that Malcolm worked more heavily on the testing and reading commands while I worked more heavily on the image writing commands.
