@@ -1,3 +1,5 @@
+#include "read_utils.h"
+
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,16 +7,12 @@
 
 #include "ppm_io.h"
 #include "puzzle.h"
-#include "read_utils.h"
-
 
 // The differences in return are to help in debugging
 
-
 int handle_C_command(FILE *in, Puzzle **p, int standin) {
-
   int size = 0;
-  
+
   // checking if from file or stdin
   if (!(standin)) {
     // Checking if size is read in properly
@@ -30,7 +28,6 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
     }
   }
 
-  
   // Checking if size is out of bounds
   if (size < 2 || size > 20) {
     fprintf(stderr, "Invalid puzzle size\n");
@@ -41,7 +38,6 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
   // check if another error with invalid dimension sizes exist - IE 4 by 4 image
   // 3 section splices.
 
-  
   *p = puzzle_create(size);
 
   return 0;
@@ -52,11 +48,11 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
     fprintf(stderr, "No puzzle\n");
     return 1;
   }
-  
+
   int size = p->size;
 
   int *temp_arr = malloc(sizeof(int) * size * size);
-  
+
   // seting up empty array to compare values from
   for (int i = 0; i < size * size; i++) {
     temp_arr[i] = 0;
@@ -65,11 +61,13 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
   int temp;
   for (int row = 0; row < size; row++) {
     for (int col = 0; col < size; col++) {
-      // checks if it's coming from standard in, this relies on short circuit to prevent unintended behavior
-      if ((!(standin) && (fscanf(in, " %d", &temp) == 1)) || (standin && (scanf(" %d", &temp) == 1))) {
+      // checks if it's coming from standard in, this relies on short circuit to
+      // prevent unintended behavior
+      if ((!(standin) && (fscanf(in, " %d", &temp) == 1)) ||
+          (standin && (scanf(" %d", &temp) == 1))) {
         // calculates the address in memory for the temp_arr where val is
         // present pointer is not acessed unless temp is valid
-        int *current_pointer = temp_arr + (size * (temp / size)) + temp % size;  
+        int *current_pointer = temp_arr + (size * (temp / size)) + temp % size;
 
         if (temp > (size * size) || temp < 0) {
           // is that invalid input or invalid tile value
@@ -96,36 +94,39 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
 }
 
 int initialzeTiles(Puzzle *p, Image *img) {
-  // TODO check if dims are equal
-  // check if dims match puzzle and size
-  // check if they are divisible
   const int size = p->size;
   const int dims = img->cols;
-  const int blockSize = dims/size;
+  const int blockSize = dims / size;
 
-  // Being sure to reserve one for the black image
-  Tile * tiles = malloc(sizeof(Tile) * size * size + sizeof(Tile));
+  // making sure to reserve one for the black image
+  Tile *tiles = malloc(sizeof(Tile) * size * size + sizeof(Tile));
   int offset = 0;
-  for (int i=1; i <= (size * size); i++) {
+  for (int i = 1; i <= (size * size); i++) {
     tiles[i].blockSize = blockSize;
     tiles[i].imageBlock = malloc(sizeof(Pixel) * blockSize * blockSize);
 
     int pixel_offset = 0;
 
-    int top_left_int = (i-1) * (blockSize) + offset;
+    int top_left_int = (i - 1) * (blockSize) + offset;
+    // creates a pointer to the top left corner of the tile
     Pixel *topleft = &(img->data[top_left_int]);
-    for (int k=0; k < blockSize; k++) {
-      for (int j=0; j < (blockSize); j++) {
-        int pixel_index_greater_image = j+pixel_offset;// + pixel_offset; //+ pixel_offset;
+    for (int k = 0; k < blockSize; k++) {
+      for (int j = 0; j < (blockSize); j++) {
+        // calculates the index of the desired tile pixel in the image
+        int pixel_index_greater_image = j + pixel_offset;
 
-        tiles[i].imageBlock[j + k*blockSize].r = topleft[pixel_index_greater_image].r;
-        tiles[i].imageBlock[j + k*blockSize].g = topleft[pixel_index_greater_image].g;
-        tiles[i].imageBlock[j + k*blockSize].b = topleft[pixel_index_greater_image].b;
+        // copies over individual RGB values for pixels
+        tiles[i].imageBlock[j + k * blockSize].r =
+            topleft[pixel_index_greater_image].r;
+        tiles[i].imageBlock[j + k * blockSize].g =
+            topleft[pixel_index_greater_image].g;
+        tiles[i].imageBlock[j + k * blockSize].b =
+            topleft[pixel_index_greater_image].b;
       }
       pixel_offset += dims;
     }
     if (i != 0 && !(i % size)) {
-      offset += dims * (blockSize-1);
+      offset += dims * (blockSize - 1);
     }
   }
   tiles[0].blockSize = blockSize;
@@ -139,13 +140,13 @@ int initialzeTiles(Puzzle *p, Image *img) {
   return 0;
 }
 
-// Do I make this return back the image_ptr
 int handle_I_command(FILE *in, Image **im, int standin) {
-  // check if this is correct array size
   char arr[256];
-  
-  // checks if it's coming from standard in, this relies on short circuit to prevent unintended behavior
-  if ((!(standin) && fscanf(in, " %s", arr) != 1) || (standin && scanf(" %s", arr) != 1)) {
+
+  // checks if it's coming from standard in, this relies on short circuit to
+  // prevent unintended behavior
+  if ((!(standin) && fscanf(in, " %s", arr) != 1) ||
+      (standin && scanf(" %s", arr) != 1)) {
     fprintf(stderr, "Invalid input\n");
     return 1;
   }
@@ -158,7 +159,7 @@ int handle_I_command(FILE *in, Image **im, int standin) {
   }
 
   *im = ReadPPM(img_file_ptr);
-  
+
   // checks if image file is valid
   if (*im == NULL) {
     fprintf(stderr, "Could not open image file '%s'\n", arr);
@@ -180,7 +181,6 @@ int handle_P_command(Puzzle *p) {
       int tile_val = puzzle_get_tile(p, col, row);
 
       fprintf(stdout, "%d", tile_val);
-      
 
       if ((row == (p->size) - 1) && (col == (p->size) - 1)) {
         fprintf(stdout, "\n");
@@ -195,7 +195,7 @@ int handle_P_command(Puzzle *p) {
 
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   // background image hasn’t been read
-  if(!im) {
+  if (!im) {
     fprintf(stderr, "No image\n");
     return 2;
   }
@@ -205,44 +205,49 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     fprintf(stderr, "No puzzle\n");
     return 3;
   }
-  
-  // background image rows or columns not evenly divisible by puzzle rows/columns	
+
+  // background image rows or columns not evenly divisible by puzzle
+  // rows/columns
   if (im->rows != im->cols || im->rows % p->size != 0) {
     fprintf(stderr, "Invalid image dimensions\n");
     return 1;
   }
-  
+
   // populates tiles within puzzle object properly
   initialzeTiles(p, im);
 
   // assures dimensions within puzzle are correct
-  assert(((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)) == im->rows * im->cols);
-  
+  assert(((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)) ==
+         im->rows * im->cols);
+
   char filename[256];
-  if ((!(standin) && fscanf(in, " %s", filename) != 1) || (standin && (scanf(" %s", filename) != 1))) {
+  if ((!(standin) && fscanf(in, " %s", filename) != 1) ||
+      (standin && (scanf(" %s", filename) != 1))) {
     fprintf(stderr, "Invalid input\n");
     return 4;
   }
-  
+
   char filename_pos[256];
-  if ((!(standin) && (fscanf(in, " %s", filename_pos) != 1)) || (standin && (scanf(" %s", filename_pos) != 1))) {
+  if ((!(standin) && (fscanf(in, " %s", filename_pos) != 1)) ||
+      (standin && (scanf(" %s", filename_pos) != 1))) {
     fprintf(stderr, "Invalid input\n");
     return 5;
   }
-  
+
   // opens file for writing
   FILE *img_file_ptr = fopen(filename, "w");
   if (!img_file_ptr) {
     fprintf(stderr, "Could not open output image file '%s'\n", filename);
     return 6;
   }
-  
+
   // writes result
   Image *newImage = exportImage(p);
   int result = WritePPM(img_file_ptr, newImage);
 
   // validates number of pixels written is expected
-  assert(result == ((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)));
+  assert(result ==
+         ((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)));
 
   // frees created image
   free(newImage->data);
@@ -259,13 +264,12 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   write_game(p->positions, p->size, img_file_ptr_pos);
   fclose(img_file_ptr_pos);
 
-  return 0; // indicates success
+  return 0;  // indicates success
 }
 
 int handle_S_command(FILE *in, Puzzle *p, int standin) {
   // double check with hand book for errors
 
-  
   char command;
   if (!(standin)) {
     if (fscanf(in, " %c", &command) != 1) {
@@ -278,7 +282,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
       return 1;
     }
   }
-  
+
   int res = move_puzzle(p, command);
   if (res == 2) {
     fprintf(stderr, "Puzzle cannot be moved in specified direction\n");
@@ -289,7 +293,7 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
   return res;
 }
 
-int handle_V_command(Puzzle* p) {
+int handle_V_command(Puzzle *p) {
   // puzzle has not been created
   if (!p) {
     fprintf(stderr, "No puzzle\n");
@@ -297,7 +301,7 @@ int handle_V_command(Puzzle* p) {
   }
 
   const int max_steps = 30;
-  char * final_steps = malloc(sizeof(char) * max_steps);
+  char *final_steps = malloc(sizeof(char) * max_steps);
   int required_steps = solve_puzzle(p, final_steps, max_steps, 0, '\0');
 
   if (required_steps == max_steps) {
@@ -306,17 +310,17 @@ int handle_V_command(Puzzle* p) {
   }
 
   // sanity check to assure that the null terminator is correct
-  assert((int) strlen(final_steps) == required_steps);
+  assert((int)strlen(final_steps) == required_steps);
 
-  for (int i=0; i < required_steps; i++) {
+  for (int i = 0; i < required_steps; i++) {
     printf("S %c\n", final_steps[i]);
   }
   free(final_steps);
-  //printf("complete\n");
+  // printf("complete\n");
   return 0;
 }
 
-int handle_K_command(Puzzle* p) {
+int handle_K_command(Puzzle *p) {
   if (!p) {
     fprintf(stderr, "No puzzle\n");
     return 1;
@@ -324,9 +328,9 @@ int handle_K_command(Puzzle* p) {
 
   if (puzzle_solved(p)) {
     printf("Solved\n");
-    return 0;  
+    return 0;
   } else {
     printf("Not solved\n");
-    return 0; 
+    return 0;
   }
 }
