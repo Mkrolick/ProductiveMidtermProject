@@ -85,5 +85,14 @@ int main(int argc, char** argv) {
     res = standin ? scanf(" %c", &command) : fscanf(fp, " %c", &command);
   }
 
+
+  free((*img)->data);
+
+  free(img);
+  
+  puzzle_destroy(*p);
+
+  free(p);
+
   return 0;
 }

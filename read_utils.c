@@ -7,8 +7,11 @@
 #include "puzzle.h"
 #include "read_utils.h"
 
+
+// The differences in return are to help in debugging
+
+
 int handle_C_command(FILE *in, Puzzle **p, int standin) {
-  // differences in return are to help in debugging
 
   int size = 0;
   

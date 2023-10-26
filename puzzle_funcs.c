@@ -48,6 +48,16 @@ void puzzle_destroy(Puzzle *p) {
   free(p->positions);
 
   // frees tiles
+
+  if (p->tiles) {
+    for (int i = 0; i < ((p->size) * (p->size)); i++) {
+      if (p->tiles[i].imageBlock) {
+        free(p->tiles[i].imageBlock);
+      }
+    }   
+  }
+  
+
   free(p->tiles);
   
   // finally frees puzzle
@@ -106,9 +116,11 @@ Image *exportImage(Puzzle *p) {
 }
 
 int puzzle_solved(Puzzle* p) {
-
+  // set correct as true
   int correct = 1;
 
+  //if puzzle_get_tile !=  correct val and puzzle_get_tile != 0
+  //set correct to false
   for (int row = 0; row < (p->size); row++) {
     for (int col = 0; col < (p->size); col++) {
       int tile_val = puzzle_get_tile(p, col, row);
@@ -122,6 +134,7 @@ int puzzle_solved(Puzzle* p) {
     }
   }
 
+  //return truth value
   return correct;
 }
 
