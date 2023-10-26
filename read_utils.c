@@ -168,7 +168,6 @@ int handle_I_command(FILE *in, Image **im, int standin) {
 
   // checks if image file is valid
   if (*im == NULL) {
-    fprintf(stderr, "Could not open image file '%s'\n", arr);
     return 3;
   }
 
