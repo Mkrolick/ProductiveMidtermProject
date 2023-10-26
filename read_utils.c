@@ -94,6 +94,16 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
 }
 
 int initialzeTiles(Puzzle *p, Image *img) {
+  if (p->tiles) {
+    for (int i = 0; i <= ((p->size) * (p->size)); i++) {
+      if (p->tiles[i].imageBlock) {
+        free(p->tiles[i].imageBlock);
+      }
+    }   
+    free(p->tiles);
+    p->tiles = NULL;
+  }
+  
   const int size = p->size;
   const int dims = img->cols;
   const int blockSize = dims / size;
