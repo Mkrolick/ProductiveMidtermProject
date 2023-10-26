@@ -10,8 +10,6 @@
 #include "puzzle_funcs.h"
 #include "read_utils.h"
 
-// TODO: implement functions
-
 Puzzle *puzzle_create(int size) {
   // need to check if pointers worked or failed
   Puzzle *new_puzzle = malloc(sizeof(Puzzle));
@@ -64,8 +62,6 @@ void puzzle_destroy(Puzzle *p) {
 
 void puzzle_set_tile(Puzzle *p, int col, int row, int value) {
   p->positions[row][col] = value;
-
-  // Add code to move tile into a Tile opbject assigned in tiles
 }
 
 int puzzle_get_tile(const Puzzle *p, int col, int row) {
@@ -86,12 +82,9 @@ Image *exportImage(Puzzle *p) {
   // Verifies malloc succeeded
   assert(newImage->data);
 
-  // TODO Actually store blocksize in puzzle object
-  // as it stands this just gets the first tile
   int blocksize = p->tiles->blockSize;
   int numBlocks = p->size;
 
-  // Now stuff gets fun
   for (int i = 0; i < numBlocks; i++) {
     for (int j = 0; j < numBlocks; j++) {
       // Gets index from positions and accesses that element
@@ -135,12 +128,6 @@ int puzzle_solved(Puzzle* p) {
   //return truth value
   return correct;
 }
-
-// Parameters:
-//   p - a Puzzle
-//   steps - array of directions (u/d/l/r)
-//   max_steps - maximum number of steps to try
-//   cur_steps - how many steps have been considered so far
 
 
 int move_puzzle(Puzzle *p, char command) {
@@ -203,8 +190,6 @@ int move_puzzle(Puzzle *p, char command) {
 
     case 'l':
 
-      // NEed to UPDATE YAY
-
       for (int row = 0; row < (p->size); row++) {
         for (int col = 0; col < ((p->size) - 1); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
@@ -232,7 +217,6 @@ int move_puzzle(Puzzle *p, char command) {
 
     case 'r':
 
-      // UPdate YAY
       for (int row = 0; row < (p->size); row++) {
         for (int col = 1; col < (p->size); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
@@ -268,10 +252,9 @@ int move_puzzle(Puzzle *p, char command) {
 
 int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps, char prev_move) {
 
-  //printf("%d\n", cur_steps);
+  
   if (puzzle_solved(p)) {
     steps[cur_steps] = '\0';
-    //printf("reached\n");
     return cur_steps; // steps array has a complete sequence of steps
   }
 
@@ -283,7 +266,7 @@ int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps, char pre
 
   char no_go;
 
-
+  //finding the reverse of previous move
   switch (prev_move)
   {
   case 'u':
@@ -305,13 +288,12 @@ int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps, char pre
 
 
   for (int i = 0; i < 4; i++) {
+
+    //heuristic to reduce expontial complexity from quadratic to cubic
     if (direction[i] == no_go) {
       continue;
     }
     
-
-
-
     Puzzle* p_copy = malloc(sizeof(Puzzle));
     p_copy = half_deep_copy_puzzle(p);
 
@@ -321,14 +303,14 @@ int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps, char pre
         // found a solution recursively!
         steps[cur_steps] = direction[i];
         destroy_copy(p_copy);
-        //printf("%d, %d, %d", totalsteps, cur_steps, max_steps);
         
         return totalsteps;
       } 
     } 
   }
 
-  return max_steps; // attempts to solve recursively did not succeed
+  // attempts to solve recursively did not succeed
+  return max_steps; 
 }
 
 void destroy_copy(Puzzle *p) {
@@ -369,6 +351,8 @@ Puzzle* half_deep_copy_puzzle(Puzzle *p) {
 
 
 void write_game(int** array, int size, FILE* file) {
+
+  //iterating through 2d array and printing each value
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) {
       fprintf(file, "%d ", array[i][j]);
