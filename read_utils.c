@@ -213,6 +213,13 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     return 1;
   }
 
+  // populates tiles within puzzle object properly
+  initialzeTiles(p, im);
+
+  // assures dimensions within puzzle are correct
+  assert(((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)) ==
+         im->rows * im->cols);
+
   char filename[256];
   if ((!(standin) && fscanf(in, " %s", filename) != 1) ||
       (standin && (scanf(" %s", filename) != 1))) {
@@ -233,13 +240,6 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     fprintf(stderr, "Could not open output image file '%s'\n", filename);
     return 6;
   }
-
-  // populates tiles within puzzle object properly
-  initialzeTiles(p, im);
-
-  // assures dimensions within puzzle are correct
-  assert(((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)) ==
-         im->rows * im->cols);
 
   // writes result
   Image *newImage = exportImage(p);
