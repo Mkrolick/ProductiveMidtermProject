@@ -96,14 +96,11 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
 }
 
 int initialzeTiles(Puzzle *p, Image *img) {
-  // TODO check if dims are equal
-  // check if dims match puzzle and size
-  // check if they are divisible
   const int size = p->size;
   const int dims = img->cols;
   const int blockSize = dims/size;
 
-  // Being sure to reserve one for the black image
+  // making sure to reserve one for the black image
   Tile * tiles = malloc(sizeof(Tile) * size * size + sizeof(Tile));
   int offset = 0;
   for (int i=1; i <= (size * size); i++) {
@@ -113,11 +110,14 @@ int initialzeTiles(Puzzle *p, Image *img) {
     int pixel_offset = 0;
 
     int top_left_int = (i-1) * (blockSize) + offset;
+    // creates a pointer to the top left corner of the tile
     Pixel *topleft = &(img->data[top_left_int]);
     for (int k=0; k < blockSize; k++) {
       for (int j=0; j < (blockSize); j++) {
-        int pixel_index_greater_image = j+pixel_offset;// + pixel_offset; //+ pixel_offset;
-
+        // calculates the index of the desired tile pixel in the image
+        int pixel_index_greater_image = j+pixel_offset;
+        
+        // copies over individual RGB values for pixels
         tiles[i].imageBlock[j + k*blockSize].r = topleft[pixel_index_greater_image].r;
         tiles[i].imageBlock[j + k*blockSize].g = topleft[pixel_index_greater_image].g;
         tiles[i].imageBlock[j + k*blockSize].b = topleft[pixel_index_greater_image].b;
@@ -139,9 +139,7 @@ int initialzeTiles(Puzzle *p, Image *img) {
   return 0;
 }
 
-// Do I make this return back the image_ptr
 int handle_I_command(FILE *in, Image **im, int standin) {
-  // check if this is correct array size
   char arr[256];
   
   // checks if it's coming from standard in, this relies on short circuit to prevent unintended behavior
