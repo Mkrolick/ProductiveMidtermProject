@@ -108,6 +108,9 @@ int main(int argc, char** argv) {
   puzzle_destroy(*p);
   
   free(p);
+  if (val != 0) {
+    val = 1;
+  }
 
   return val;
 }
