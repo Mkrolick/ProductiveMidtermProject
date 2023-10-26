@@ -122,7 +122,7 @@ int initialzeTiles(Puzzle *p, Image *img) {
       pixel_offset += dims;
     }
     if (i != 0 && !(i % size)) {
-      offset += dims * blockSize;
+      offset += dims * (blockSize-1);
     }
   }
   tiles[0].blockSize = blockSize;

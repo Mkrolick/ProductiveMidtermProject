@@ -99,7 +99,6 @@ Image *exportImage(Puzzle *p) {
         }
         offset += newImage->rows;
       }
-      
     }
   }
 
