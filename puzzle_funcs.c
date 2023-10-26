@@ -16,8 +16,6 @@ Puzzle *puzzle_create(int size) {
   // need to check if pointers worked or failed
   Puzzle *new_puzzle = malloc(sizeof(Puzzle));
 
-  Tile* tiles = malloc(sizeof(Tile) * size * size);
-
   // creating 2D array of tile positions
   int **positions = malloc(sizeof(int *) * size);
   for (int i = 0; i < size; i++) {
@@ -32,7 +30,7 @@ Puzzle *puzzle_create(int size) {
   }
 
   // assigns each to the new puzzle
-  new_puzzle->tiles = tiles;
+  new_puzzle->tiles = NULL;
   new_puzzle->positions = positions;
   new_puzzle->size = size;
 
