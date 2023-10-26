@@ -16,10 +16,13 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  char command;
+  int exit = 0;
   int val = 1;
+
+  char command;
   int standin;
   int res;
+  
   FILE* fp = NULL;
 
   if (argc == 2) {
@@ -69,16 +72,21 @@ int main(int argc, char** argv) {
         val = handle_V_command(*p);
         break;
       case 'Q':
-        return 0;
+        val = 0;
+        exit = 1;
         break;
       default:
         fprintf(stderr, "Invalid command '%c'\n", command);
-        return 1;
+        val = 1;
         break;
     }
 
     if (val != 0) {
-      return 1;
+      exit = 1;
+    }
+    
+    if (exit) {
+      break;
     }
 
     // load up res again
@@ -101,5 +109,5 @@ int main(int argc, char** argv) {
   
   free(p);
 
-  return 0;
+  return val;
 }

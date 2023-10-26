@@ -49,19 +49,18 @@ void puzzle_destroy(Puzzle *p) {
     free(p->positions);
 
     // frees tiles
-    assert(0);
     if (p->tiles) {
       for (int i = 0; i < ((p->size) * (p->size)); i++) {
         if (p->tiles[i].imageBlock) {
           free(p->tiles[i].imageBlock);
         }
-        free(p->tiles);
       }   
+      free(p->tiles);
     }
   
   // finally frees puzzle
   }
-
+  
   free(p);
 }
 
