@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
   }
 
   int exit = 0;
-  int val = 1;
+  int val = 0;
 
   char command;
   int standin;
@@ -72,7 +72,6 @@ int main(int argc, char** argv) {
         val = handle_V_command(*p);
         break;
       case 'Q':
-        val = 0;
         exit = 1;
         break;
       default:
