@@ -5,3 +5,5 @@
 .vscode/launch.json
 .vscode/settings.json
 cmake
+*.ppm
+*.txt
