@@ -1,0 +1,1165 @@
+commit 2320bd38052f3cc2bedfdc8cab1d114be3b8eeed
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 22:35:27 2023 -0400
+
+    fixed the ppm
+
+commit 12487cc83d1fcdd7ad3288adf5870e276489042c
+Merge: 0bcae80 428157c
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 22:29:52 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 0bcae8077baaea5aafd58154803ae8c3f42a3054
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 22:29:45 2023 -0400
+
+    Update read_utils.c
+    
+    - Fixed Read PPM error
+
+commit 428157c27a6017ddbfe8bd0d333861a2dded4786
+Merge: 57985d7 8cf524f
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 22:28:09 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 57985d73eae467b6a2c18efa2ef9250eff6277b8
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 22:27:55 2023 -0400
+
+    Wrote proper readme
+
+commit 8cf524f5a23816959ab1ee1b8b281b457857e00e
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 22:24:46 2023 -0400
+
+    Changed control flow
+    
+    - And allow for exit status 0
+
+commit 99de2f15f3e155d43381d74877b149fe37fa344d
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 22:16:30 2023 -0400
+
+    Edited Comments
+    
+    - Removed commented code
+    - Added some additional comments
+
+commit a483e4f929496839f0d0e2536e67792dbc83255a
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 22:08:28 2023 -0400
+
+    Revert "Removed Test Files"
+    
+    This reverts commit a7b78b8f2cce578ab9a2f0c33a968f984582a987.
+
+commit a7b78b8f2cce578ab9a2f0c33a968f984582a987
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 22:04:28 2023 -0400
+
+    Removed Test Files
+
+commit d868d42acf3a2a728d3d861fefd4d447039c360e
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:59:43 2023 -0400
+
+    Alright alright alright alright
+
+commit b902edcef517f954c4bb4709e4b65db955b9e9e8
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:56:33 2023 -0400
+
+    Reverted changes
+
+commit 7a762aeb9533799f5a2e8d44a07ceabbe507e8ae
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:55:35 2023 -0400
+
+    Update read_utils.c
+
+commit d581b7185739c8eefa665137b30b6506c7e91f3f
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:49:01 2023 -0400
+
+    Update puzzle_funcs.c
+
+commit dd540042a4249c571b164486dccf5c278b38a368
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:44:13 2023 -0400
+
+    Update puzzle_funcs.c
+    
+    - Removed additional reassignment
+
+commit ae30beb938e4bda616afb67ed20d8cfb8e1f2cb6
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:43:06 2023 -0400
+
+    Update puzzle.c
+    
+    Closing file pointer
+
+commit 4389a42b97b6edf71738091f9c84d9a44a856ce4
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:41:16 2023 -0400
+
+    Reworked Control Flow
+    
+    - Making sure control flow is strict
+
+commit 22e31210ed43065beef6c7bfc4c9dda3cda5af01
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:16:09 2023 -0400
+
+    Update puzzle_funcs.c
+    
+    - Now freeing tiles
+
+commit f6f6216690de1bffcd6a44a825b040bbd5abb1e8
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:11:59 2023 -0400
+
+    Freeing Pointers!
+
+commit a55240161e245542aba7b7b8dcbb7dddbe844ed1
+Merge: 01d9bc3 c5d496f
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:02:45 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 01d9bc30c338e58b863ba6eb7a5cbcdd4f59b1b4
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 21:02:44 2023 -0400
+
+    Adding a check for puzzle_destroy
+
+commit c5d496f716efa11e7cd56ed000bcaea90e07c6f4
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 20:58:02 2023 -0400
+
+    major formatting changes
+
+commit 13d98c8ad9ea01919e008f24c83fc4b13ae93a2f
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 20:55:58 2023 -0400
+
+    made things more readable
+
+commit d75e139b489b99683a364b188b8188b6b7e633f7
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 20:49:32 2023 -0400
+
+    Valgrind Errors and Warm Tea 🍵
+    
+    Co-Authored-By: zbuster05 <41530680+zbuster05@users.noreply.github.com>
+
+commit b58de857954c4cb70cd23ed05c5fc48a557e9e1b
+Merge: 06f7b24 4237559
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 20:07:55 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 06f7b244112077b09725d0f970459001d2866987
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 20:07:43 2023 -0400
+
+    one off error
+
+commit 423755986fbf9ef8594d74d31c04649de42eeed4
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 20:04:47 2023 -0400
+
+    Update .gitignore
+
+commit 868cc75243a44ef9841ef69a7202521a7389dfae
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 20:04:35 2023 -0400
+
+    Changed T command to allow larger sized images
+
+commit 21b1d972f8b245db394aed94a0551d7e5c680e42
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 19:38:24 2023 -0400
+
+    Cleaned up some code
+
+commit c27c0fe07025f45e4330a2f1ce72b7ac975aa13d
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 19:37:10 2023 -0400
+
+    Added '' to error codes
+
+commit 0c4ba7d3dcaf60ad9aaa0655352c9816d7d2bc67
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 19:36:20 2023 -0400
+
+    Pass case
+
+commit 15755f0a30a3a40ee45878869e34ab9195c3f59f
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 19:31:44 2023 -0400
+
+    FORMATED FOR GRADESCOPE
+
+commit d4bb25790f518a59ee9c036678ff5f14b08eb450
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 18:09:59 2023 -0400
+
+    Delete Makefile
+
+commit b90f5952a78d4fbab8154986d79c2900205cfac6
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 18:07:41 2023 -0400
+
+    Removing C make Files
+
+commit 42452833003c24d19a4463cbca4be9ca4e6caa97
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:48:01 2023 -0400
+
+    Pushing Bin and Cmakefiles to gradescope
+
+commit 48f751c5be55b0f90803fe9659ad4daee37c6fb6
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:40:19 2023 -0400
+
+    Pushing Code to Run
+
+commit 75a5d672a22197205dd0d53fe2d11ed59d83928c
+Merge: 3b2143a 017d9db
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:30:20 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 3b2143a7af19c641ce5baf9b21f03420e121b4d6
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:30:17 2023 -0400
+
+    Bugfixed puzzle_tests.c
+    
+    - Edited test cases to remove segfault errors
+
+commit fa27c0422b6b45470e4f109e4d6575816267c463
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:29:41 2023 -0400
+
+    Added some test cases
+
+commit db1dfb9c8dc2afee0309795aa7eaaa566330c71c
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:29:19 2023 -0400
+
+    Update read_utils.c
+    
+    - Fixed order of operations for errors in handle P command
+    - Added additional parameter to solve puzzle in handle V
+
+commit 602ff14c3f9dcf9bef28212c51575f1768b2f66a
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:26:21 2023 -0400
+
+    Update puzzle_funcs.c
+    
+    - Fixed solve_puzzle wit heuristic
+    - Added a destroy copy function for puzzle copies made for the solve function
+
+commit fdae9cc3377f37f3872f90c9541228c3d3f407a6
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:20:22 2023 -0400
+
+    Created Makefile
+
+commit f00b5f2942dade5c13c318db88b7af8707ea5fa7
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:19:44 2023 -0400
+
+    Update puzzle.h
+    
+    - Added additional heuristic to elemental backtracking
+
+commit 3f6b3fddd6bf16d71e6bc4c576cd7463ef8f9df7
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 17:19:12 2023 -0400
+
+    Update .gitignore
+    
+    - Ignored C make files
+
+commit 017d9db9c2f2c1b895574ca7f650fb7929e55876
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 10:39:34 2023 -0400
+
+    Fixed main file formatting
+
+commit 6e34a4f05c5dcc0333a3c6680ce38eeabc747b0b
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 10:37:36 2023 -0400
+
+    cleaned up unncessary prints
+
+commit 5b0c48aa96e24a0d68a0c71b755bae4398e3434d
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 10:18:18 2023 -0400
+
+    Updated read_utils.c
+    
+    - Allowing 16 as a concept into my life :chart_with_upwards_trend:
+
+commit 73e66ba16cf1963b64b2bfe27fb1635ad96c4cba
+Merge: 33ec21f 7005694
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 09:53:49 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 33ec21feb76f7fb72eb40331a74e3508ad886907
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 09:53:19 2023 -0400
+
+    amazing, 6 hours of my life
+
+commit 700569433a8baaad97e08a54039c6c2a6825e2b8
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 08:39:08 2023 -0400
+
+    Updated handle_S
+    
+    - Added test cases
+    - Updated function to work properly
+
+commit f656d161a30e9b4799aab21e14e4af770da995b7
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 08:38:19 2023 -0400
+
+    Added close statements for puzzle_test.c
+    
+    - Added close statements for puzzle_test.c for the test_T command
+
+commit b685cd67062a0b52cedc21c392431385fb6fc560
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 06:52:08 2023 -0400
+
+    Update puzzle_funcs.c
+    
+    - Changed the mechanism for moving puzzles to the intended design
+
+commit 2c253bc50eb02ce421ff66318432515af4b7f473
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 06:43:59 2023 -0400
+
+    Updated puzzle_tests.c
+    
+    - First attempt at test_W command!
+
+commit 3434b2906c03985226be73aa431e8f12395aa814
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 06:08:01 2023 -0400
+
+    Revert "Revert "something""
+    
+    This reverts commit cec2c169b76e975f3525cf7181efb4c792cbd121.
+
+commit cec2c169b76e975f3525cf7181efb4c792cbd121
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 06:03:38 2023 -0400
+
+    Revert "something"
+    
+    This reverts commit 451af1f282d73128b68aaf307bbf1a34b1194667.
+
+commit 0f588b466b4ae794358b18723d961ee46474fbf9
+Merge: 451af1f 56eee99
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 06:02:02 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 451af1f282d73128b68aaf307bbf1a34b1194667
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 06:01:42 2023 -0400
+
+    something
+
+commit 56eee99c0c75aa62c78d44feb11a28b6a8e66730
+Merge: 1c2daaa 947e96a
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 05:57:31 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 1c2daaa84d8d666fbf03a2dfe0d9e41927596560
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 05:57:28 2023 -0400
+
+    Updated puzzle_tests.c
+    
+    - Bugfixed handle_I command
+
+commit 947e96a050c980f3d39ca2a5bd52c475860bd02c
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 05:43:40 2023 -0400
+
+    oops
+
+commit 69914be74a82757c18661964afabb2bec72ef1e2
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 05:41:33 2023 -0400
+
+    eliminated the file reading bug
+
+commit 1686a7106cd3ccf4c088b4751cc10af96b13b048
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 05:27:33 2023 -0400
+
+    Moved around null pointer testing
+
+commit 550c0d08d97b0deb029427255c6d47288e358088
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 05:13:54 2023 -0400
+
+    Additional Bugfix
+    
+    - Facepalm
+    - Needed to malloc not just assign null pointer :non-potable_water:
+
+commit c8c5fd0f5821dc459350b81af9cd2bc89588154a
+Merge: 41642c4 0d1184c
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 04:54:25 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 41642c4361e3c75001d613a729e0ae08fd06bcc7
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 04:54:24 2023 -0400
+
+    Fixed Segmentation Fault in handle C
+
+commit b19f1d2f1400b56c5d173c12c503be2348a38524
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 04:53:47 2023 -0400
+
+    Added Fclose to files
+
+commit 0d1184c54394bb2cf435cade1634e404ac06e23d
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 04:34:19 2023 -0400
+
+    fixed potential memory leak and closed file pointer
+
+commit 24f6d1b96bf6c8e9c346a73660405a09ba2b94eb
+Merge: 2dabbbe 56c5484
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 04:12:13 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 2dabbbecca70b0f370e76f6e696a6c8996965f8f
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 04:12:05 2023 -0400
+
+    Bugfixed puzzle_tests.c
+    
+    - Removed additional declarations of res from puzzle_tests.c
+
+commit 56c54841c11250989e697e0e755223ef87a268dc
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 04:10:35 2023 -0400
+
+    ensured nonvoid functions returned a value on all branches
+
+commit bc1edfb6c06761c96744a4619aaa853b37845fe9
+Merge: 0a904c6 a607672
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 04:05:45 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 0a904c6c0a7e32354cc4e1a94679cf8d90a2487c
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 04:05:37 2023 -0400
+
+    like a single comment
+
+commit a607672fa3faa7fc33e4fea96428167c93dccfa7
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 04:04:48 2023 -0400
+
+    Wrote the V commmand
+    
+    Co-authored-by: zbuster05 <zakary.saya@gmail.com>
+
+commit a0cb6d1c93c5951944b91703c1a107be8894e867
+Merge: fcf908b e1ed1e9
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 02:36:27 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit e1ed1e9c49a63603a2a0decabe477cd105b0d3d6
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 02:36:19 2023 -0400
+
+    Added a lot of tests
+    
+    - Added a test_S_command, test_P_command, and a test_C_command
+    - Added a variety of additional files for testing purposes
+    - Edited error codes in read_utils.c for debugging purposes
+
+commit fcf908b4f1215791ba7ae58fdc0bca1c8613e850
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 02:36:18 2023 -0400
+
+    errors for M are correct
+
+commit a5ddfc2c2c53e0b50424e74d603ad7fe16604f1f
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Wed Oct 25 02:34:26 2023 -0400
+
+    Minor formating changes to puzzle_funcs
+
+commit 4c6859883fc06306a0406c1c70eeb7c358975f38
+Merge: 60c0cec 41b2ab5
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 02:22:46 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 60c0cec82655676b8a925dbc113f0c8efa9e6d28
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Wed Oct 25 02:22:28 2023 -0400
+
+    that was rather difficult, wrote tile initialization
+
+commit 41b2ab5c337b0f179c75d69c71d7aee2cd7a9915
+Merge: 7032a63 8a791a0
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 22:45:06 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 7032a6351db551adb645583e4df7b5262f9ae74b
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 22:45:02 2023 -0400
+
+    Added new lines to errros
+    
+    - In read_utils.c
+    - and in puzzle.c
+
+commit 8a791a0f8abe149d79fb49ddd9a3539504a76500
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 22:40:37 2023 -0400
+
+    perhaps it would have been wise to save
+
+commit 2d785058e141924aa71b8de1cf069df5d830e5fd
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 22:33:13 2023 -0400
+
+    fixed puzzle destroy
+
+commit 8f532218a313b326d036c9db4e43ef9f72be0865
+Merge: 509048b 79f601b
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 22:23:21 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 509048bf7e243dbaee5a4a2bd7f731513d6fc8f5
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 22:22:18 2023 -0400
+
+    One less memory leak
+
+commit 79f601b58669063ede76e316c7aed38dc1ce8c3a
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 22:07:31 2023 -0400
+
+    Update puzzle_tests.c
+    
+    - Edited tests to match with new parameters
+
+commit 87e7299080b742f5bcf87796b28ceba76382068d
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 22:01:12 2023 -0400
+
+    Edited read_utils.c
+    
+    - Got rid of the created field
+    - Fixed an arithemtic bug in handle_T_command
+
+commit bfc61ed4aa403ad0ffb2146dcb07837e1f8ac5c2
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 21:56:16 2023 -0400
+
+    Added puzzle_solved to puzzle.h
+    
+    - Added puzzle_solved to puzzle.h
+
+commit 10d9c4ef59bc2c3ca8ffd12769024a62a29184cc
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 21:55:53 2023 -0400
+
+    Updated tests
+    
+    - Removed redundant declarations
+
+commit 58da775b9511b60051384a87548edaca12b7e8b0
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 21:55:03 2023 -0400
+
+    Updated Puzzle_Funcs.c
+    
+    - Changed freeing method
+
+commit 58cd048ae1df106b5ee26a86a65bb70931218285
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 21:47:58 2023 -0400
+
+    can parse standard in
+
+commit 4dfe05d3c4e71c1aea1750a2760714133650901b
+Merge: f0c222f ca9660f
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 19:22:05 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit f0c222fa61ec183949a77b8a1ff306245c64cb14
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 19:21:52 2023 -0400
+
+    understood
+
+commit ca9660f59a883cb290d87ac3a46bf014849f3d1f
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 18:42:47 2023 -0400
+
+    Updated puzzle.c
+    
+    - added in a handle_K_command function
+
+commit 7692fd66a63ae01a6097c947fb2a8dd5ca7fa9f4
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 04:05:16 2023 -0400
+
+    Added New Puzzle Solved Command
+    
+    - Added puzzle solved command
+    - Replaced code in handle_K_command
+
+commit 8d3d69b4bb130c585a6d731ffdb1a24c22f8a54f
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 03:50:07 2023 -0400
+
+    Updated read_utils.c
+    
+    - handle_K_command implemented
+    - bug fix in handle_P_command
+
+commit aa3b8857a9468cdd8b632c79222b8d0cd5f28530
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 02:58:14 2023 -0400
+
+    Quickfix: Forgot a semicolon
+
+commit 6f3b38e944f33be45738800149501353f4864367
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 02:57:23 2023 -0400
+
+    Added tests to puzzle_tests
+    
+    - Added a handle test I command
+    - Added test case txt files
+
+commit a71e5d226b2700d9f478015a9fb3baced950135b
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 02:32:44 2023 -0400
+
+    Added Puzzle tests
+    
+    - Added a test_T_command
+    - Added additional files for reading during tests
+
+commit f7f8a9c3cf7129bfb8acf3a6a2971cbd6517b593
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 01:35:51 2023 -0400
+
+    Bugfixing: Removing redundant code
+    
+    - Removed duplicated code that was the result of a merge conflict
+
+commit 1679603689d0e9c9f15e342c4e4c58a68f9b3760
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 01:30:41 2023 -0400
+
+    more formatting changes
+
+commit 317e0dc7d62c873cb95e71611b1429cc0ecf325a
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 01:29:47 2023 -0400
+
+    actually logs errors
+
+commit 3facb3e4cf2b6dbd2063700da983b06d247121c6
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 01:26:19 2023 -0400
+
+    Updated all formatting
+
+commit f10a960bf79e83faab12cb4ae1a1320ff4f0713f
+Merge: 1d44a32 e45ff7b
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 01:25:21 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 1d44a3237438ae72cfd65c722a7539b143fd6d65
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 01:24:00 2023 -0400
+
+    implemented autoformatter
+
+commit e45ff7b99d8dfa2541ff6a7532ef1e4ec6104a61
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 01:23:52 2023 -0400
+
+    Debugged puzzle_funcs.c
+    
+    - Fixed freeing positions
+    - Commented out tiles code for later implimentation
+
+commit a23798181775683b3292fd27ce7c1f6a5012b288
+Merge: 482a5ca 9e53a99
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 01:19:20 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 482a5cad92dd30ca8bf51db0f1de1c3d075f6e3a
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 01:19:19 2023 -0400
+
+    Update puzzle.h
+
+commit 9e53a99dbbc631a364770312831428d81a9e805a
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 01:00:39 2023 -0400
+
+    Removed test function
+
+commit 562e486891c33e0b1355c1e2c6eb374cdb5257f9
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 00:33:34 2023 -0400
+
+    Fixed bug in puzzle_funcs.c 🧩
+
+commit 4a713aa59556c414403809b203d65ff9ca23144f
+Merge: c5f1350 07b176c
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 00:33:06 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit c5f135004f49f66e64281fe9cbeef60dce69de93
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 00:31:31 2023 -0400
+
+    Deleted redundant functions in puzzle.c
+
+commit 07b176cb9f8bd793df41928e61e7663393bf8946
+Merge: c9c1f4c 78f440d
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 00:12:58 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit c9c1f4c8badc4bcdd4554f9f9e840c9009e0252c
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Tue Oct 24 00:09:33 2023 -0400
+
+    Wrote many items
+
+commit 78f440db870f96956ee193030bf5df4c78d983c8
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Tue Oct 24 00:06:49 2023 -0400
+
+    Debugged Makefile
+    
+    Co-authored-by: zbuster05 <zakary.saya@gmail.com>
+    - Moved main file functions in read_utils.
+    - Added test functions to see if files were linked properly
+
+commit 359403fea57b36f0b565ac68f07cf8d07977e328
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 21:53:06 2023 -0400
+
+    The Cmake file works
+    
+    - I am god.
+
+commit 862a818d9171ef527843175d2f41114df6f9e34a
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 21:22:59 2023 -0400
+
+    Update CMakeLists.txt
+    
+    Co-authored-by: zbuster05 <zakary.saya@gmail.com>
+
+commit 8856b0c41c7b611d15f09c771b58929f90bb8d86
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 19:05:41 2023 -0400
+
+    Update puzzle.c file
+    
+    - Removed an unnecessary include
+
+commit 6f2a106954ddbee05249f12bce6db57d7bd562b2
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 19:04:55 2023 -0400
+
+    Debugged puzzle.c
+
+commit f28bb648cfee84b4347e83bc73ddf63a8fc8ee3b
+Merge: ed3456a ff0bf57
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 18:19:31 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit ed3456aeecff4466acc06f8b5489a4771b0ed916
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 18:19:11 2023 -0400
+
+    Updated puzzle.c
+    
+    - Commented out unimplemented functions
+
+commit ff0bf57c0c08e00e5d95ea3e2761243226d5431c
+Merge: 8b5acaf 0aabda6
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Mon Oct 23 15:26:21 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit 8b5acaffab7153654e5938a7a661b848c4117471
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Mon Oct 23 15:26:11 2023 -0400
+
+    minor changes
+
+commit 0aabda6d93d679b894d4e0fb8bfa479f040a8d77
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 15:21:13 2023 -0400
+
+    Updated Puzzle.c
+    
+    - Added S command first draft
+
+commit b51eb39138004daea70cd324b56e8ed949f941ee
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 15:06:30 2023 -0400
+
+    Edited puzzle.c
+    
+    - Implementing more cases for S command
+    - Added components for 'u' case and added a framework for 'l' and 'r'
+
+commit d13fdd8a83d5a7c88bdba9658328def47e5d15eb
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 01:26:14 2023 -0400
+
+    Added created to header
+
+commit fc1202adc27e6608793a719c0e8817c2790d1da5
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 01:25:58 2023 -0400
+
+    Update puzzle_funcs.c
+    
+    - Added a created field to puzzle
+    - Allows for error debugging
+
+commit c05755f6452809a9a4cd109a498240f1df80e515
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 23 01:25:19 2023 -0400
+
+    Update puzzle.c
+    
+    - Made some light edits
+    - Started tackling the w command
+
+commit 6714a3b98e1d65976362350ac6552dd9bde7f3fb
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sun Oct 22 22:27:19 2023 -0400
+
+    Updated puzzle.c
+    
+    - Added Function Params
+
+commit fdd708bc9079862032adb9e6110a1b8cd243d848
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sun Oct 22 22:21:41 2023 -0400
+
+    Rearchitecting Puzzle.c
+    
+    - Goal is to make the switch statement lightweight while allow for additional testability of individual functions
+
+commit a7bd19b9319d9f7bc75091be7b500af7349542c4
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sun Oct 22 22:14:17 2023 -0400
+
+    Starting to rearchitect puzzle.c
+    
+    - Moved leftover code into handle_P_command
+    - made img_ptr into a ptr to ptr
+
+commit ca3966d091465fb29046a75d64ee82dd8cf54caa
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sun Oct 22 22:13:20 2023 -0400
+
+    Updated puzzle.h
+    
+    - Added more function declarations
+    - Preparing for a rearchitect of the puzzle.c file
+
+commit e81f907da5f49d576a1afb8a957a29b9abf657f7
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sun Oct 22 21:33:17 2023 -0400
+
+    Refactored puzzle.c
+    
+    Moved around code segments into functions corresponding to their position in the switch statement as declared in the previous header update.
+
+commit 84845b562887c60cce32fde8eae46c6549413af2
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sun Oct 22 21:32:25 2023 -0400
+
+    Updated puzzle.h
+    
+    Added function declarations for handle_C_command, handle_T_command, and handle_I_command
+
+commit b5aad0fad6f4d9e173bd24d54f1dc6a352c8f54c
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sun Oct 22 19:57:56 2023 -0400
+
+    Updated puzzle.c
+    
+    - Implemented the first draft of 'T' switch statement case
+    - Added an invalid command for default of switch statement
+
+commit b4cfe9c8724474ad3041ac7b3bfb5928ed9ebe14
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sun Oct 22 19:25:21 2023 -0400
+
+    Updated puzzle.c
+    
+    - Adds checking of file header
+    - Adding a freeing of the img file pointer in switch statement
+
+commit a479ab66fed33b546c5f59e86876430684e5cec0
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sun Oct 22 19:15:58 2023 -0400
+
+    Added I command
+    
+    - Added exceptions for errors with input and reading files.
+    
+    - Check over notes with zach
+
+commit 430149c7e5d608704c278d44eedcbeec33de2e6e
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 22:33:14 2023 -0400
+
+    Commented out partially finished function
+
+commit 27e49e7dfbe986a9a9bedbdbe1dc37f911d1cbfc
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 22:33:00 2023 -0400
+
+    Finished up code for T command
+
+commit 1b27f3ca42e63ca54f3c4e2718bb7934a3ed419f
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 20:37:38 2023 -0400
+
+    Updated puzzle.c
+    
+    Implemented switch statement.
+    
+    Finished 'c' command.
+    
+    Added "Puzzle has not been created error"
+
+commit 0459e5263a2e857552bc0baee6bb938618ccefcf
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 20:35:14 2023 -0400
+
+    Update puzzle_funcs.c
+    
+    Assigned positions array all 'gap' values.
+    
+    Implemented puzzle_get_tile function.
+
+commit 1d39d64601211cf242200412ef989e52e6fd08e3
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 20:26:26 2023 -0400
+
+    Updated Puzzle.h
+    
+    Changed type to pointer for consistency with other functions.
+
+commit fe09e85954d54945f60d453a4dfe4d18c7a3271c
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 19:03:33 2023 -0400
+
+    Updated puzzle_funcs.c
+    
+    Added puzzle destroy function and edited the puzzle create function.
+
+commit 010ab556ca426be69f83bb7e76154e2d6502b1e3
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 18:03:02 2023 -0400
+
+    Edit puzzle.h
+    
+    Gave Puzzle a size param that would help in functions like puzzle destroy.
+
+commit 861768526cc5a7702bb0d763f1e0bc42babe73f5
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 17:58:20 2023 -0400
+
+    Changed text_io.h
+    
+    Removed int size param. As reading moves, generate size and is not required in reading moves.
+
+commit 1ef83b98760c6df82ee613226cd758813025e2c9
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 17:56:23 2023 -0400
+
+    Changes to Headerfile and Puzzle Funcs
+    
+    Implemented base code for puzzle create. Note: Need to look over to file pointer errors.
+    
+    Changed in puzzle.h, int positions[][] to int** positions.
+
+commit 764893253b28d700625aa8807ad80378407ff103
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Sat Oct 21 17:44:38 2023 -0400
+
+    Debugging Puzzle Header File
+    
+     To remove errors with type declarations.
+
+commit 2e0da428e793a36e75c0533dde01a628a174ecee
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Fri Oct 20 20:57:09 2023 -0400
+
+    added tests to cmake
+
+commit 4a99a50e2568230f862f4478de94fdd569f40e01
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Fri Oct 20 19:45:38 2023 -0400
+
+    properly setup cmake to compile the project
+
+commit 85a45ce22d3d179cc7204e9d0e405f55c5765b93
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Fri Oct 20 19:13:33 2023 -0400
+
+    changed gitignore to ignore cmake build directories
+
+commit 7cb16debe95fc6b4eaa9f1a587df227323daa384
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 9 18:04:31 2023 -0400
+
+    Finished Mocking Up Codebase
+
+commit f23a9223a2b0238856aa9bc17effc24a1eaa85ca
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Mon Oct 9 17:04:50 2023 -0400
+
+    updated file
+
+commit b5993e09e75974c213761c4a62639f86e5deb8c7
+Merge: fdf4e42 a5b651c
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Mon Oct 9 16:39:10 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit fdf4e423b8fb65ada4680de68768673f28c3d7ba
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Mon Oct 9 16:38:28 2023 -0400
+
+    moved tests and used proper main
+
+commit a5b651c0376a12d4e3f23cd2a1e1bdac13a0dcdb
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 9 16:37:43 2023 -0400
+
+    Create .gitignore
+
+commit f70cf05f65f5d3d0b1fcad40e78c03162797da2f
+Merge: 245bc4e c6f0dc5
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 9 16:37:00 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject
+
+commit c6f0dc538eca03538ad8db1ee0544d0c1629780c
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Mon Oct 9 16:36:44 2023 -0400
+
+    Added gitignore
+
+commit 245bc4ea0d758c77483ed233244e5c9ab5244c3a
+Merge: 5058b0f 193a3af
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 9 16:34:51 2023 -0400
+
+    Merge branch 'main' of https://github.com/Mkrolick/ProductiveMidtermProject into main
+
+commit 193a3af89dec3229859c351808ba8db50da53791
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Mon Oct 9 16:34:17 2023 -0400
+
+    reorg
+
+commit 5058b0fc5197ac5b99d0952298052f65803a4d62
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Mon Oct 9 16:34:17 2023 -0400
+
+    Reorg
+
+commit ebfdcd615c66ad204e61b8539b3dcba78b0c62d2
+Author: zbuster05 <zakary.saya@gmail.com>
+Date:   Mon Oct 9 16:32:51 2023 -0400
+
+    created project skeletal structure
+
+commit 5582aa0978bd8f978a20b16798ee757b14d24836
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Mon Oct 9 16:21:40 2023 -0400
+
+    Commiting Midterm Files
+
+commit 3be3eaca8404c99101ed283ccf7de325b0e4c6f7
+Author: zbuster05 <41530680+zbuster05@users.noreply.github.com>
+Date:   Fri Oct 6 15:55:20 2023 -0400
+
+    Create README.md
+
+commit 4319f4a87c8f5d369eeea599b7e645c35643fabd
+Author: Malcolm Krolick <malcolm.krolick@gmail.com>
+Date:   Fri Oct 6 15:45:09 2023 -0400
+
+    Initial commit

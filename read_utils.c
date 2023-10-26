@@ -246,7 +246,7 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
     return 6;
   }
 
-  // writes result
+  // writes result to image
   Image *newImage = exportImage(p);
   int result = WritePPM(img_file_ptr, newImage);
 

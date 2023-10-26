@@ -7,9 +7,6 @@
 #include "puzzle.h"
 #include "read_utils.h"
 
-
-// TODO: look over all error codes in context to requirements
-
 int main(int argc, char** argv) {
   if (argc == 0 || argc > 2) {
     fprintf(stderr, "Usage: ./puzzle [<command file>]\n");
