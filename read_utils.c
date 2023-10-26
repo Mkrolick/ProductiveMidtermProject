@@ -8,8 +8,11 @@
 #include "ppm_io.h"
 #include "puzzle.h"
 
-// The differences in return are to help in debugging
-
+/* handle_C_command
+ * Handles puzzle creation command
+ * Returns int indicating success
+ * Note the differences in return are to help in debugging
+ */
 int handle_C_command(FILE *in, Puzzle **p, int standin) {
   int size = 0;
 
@@ -39,6 +42,10 @@ int handle_C_command(FILE *in, Puzzle **p, int standin) {
   return 0;
 }
 
+/* handle_T_command
+ * Handles puzzle configuration initialization command
+ * Returns int indicating success
+ */
 int handle_T_command(FILE *in, Puzzle *p, int standin) {
   if (!p) {
     fprintf(stderr, "No puzzle\n");
@@ -89,6 +96,10 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
   return 0;
 }
 
+/* handle_I_command
+ * Handles puzzle background loading command
+ * Returns int indicating success
+ */
 int initialzeTiles(Puzzle *p, Image *img) {
   if (p->tiles) {
     for (int i = 0; i <= ((p->size) * (p->size)); i++) {
@@ -146,6 +157,10 @@ int initialzeTiles(Puzzle *p, Image *img) {
   return 0;
 }
 
+/* handle_P_command
+ * Handles command for printing the current positions
+ * Returns int indicating success
+ */
 int handle_I_command(FILE *in, Image **im, int standin) {
   char arr[256];
 
@@ -198,6 +213,10 @@ int handle_P_command(Puzzle *p) {
   return 0;
 }
 
+/* handle_W_command
+ * Handles command for saving current puzzle configuration as image
+ * Returns int indicating success
+ */
 int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   // check if background image hasn’t been read
   if (!im) {
@@ -278,6 +297,10 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   return 0;  
 }
 
+/* handle_S_command
+ * Handles command for moving current puzzle configuration in accordance with the puzzle
+ * Returns int indicating success
+ */
 int handle_S_command(FILE *in, Puzzle *p, int standin) {
   // double check with hand book for errors
 
@@ -304,6 +327,10 @@ int handle_S_command(FILE *in, Puzzle *p, int standin) {
   return res;
 }
 
+/* handle_V_command
+ * Handles command for returning solution to the current puzzle if possible
+ * Returns int indicating success
+ */
 int handle_V_command(Puzzle *p) {
   // puzzle has not been created
   if (!p) {
@@ -330,6 +357,10 @@ int handle_V_command(Puzzle *p) {
   return 0;
 }
 
+/* handle_K_command
+ * Handles command for checking if the puzzle's current state is solved
+ * Returns int indicating success
+ */
 int handle_K_command(Puzzle *p) {
   if (!p) {
     fprintf(stderr, "No puzzle\n");
