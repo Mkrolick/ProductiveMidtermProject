@@ -94,7 +94,10 @@ int main(int argc, char** argv) {
   }
   
 
+  //closing file pointer
+  fclose(fp);
   
+  //clearing image
   if ((*img != NULL) && (*img)->data) {
     free((*img) -> data);
   }
@@ -105,6 +108,7 @@ int main(int argc, char** argv) {
 
   free(img);
 
+  //removing puzzle and associated pointers
   puzzle_destroy(*p);
   
   free(p);
