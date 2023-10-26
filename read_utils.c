@@ -68,7 +68,7 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
         // present pointer is not acessed unless temp is valid
         int *current_pointer = temp_arr + (size * (temp / size)) + temp % size;  
 
-        if (temp > 16 || temp < 0) {
+        if (temp > (size * size) || temp < 0) {
           // is that invalid input or invalid tile value
           fprintf(stderr, "Invalid tile value\n");
           return 2;
@@ -230,7 +230,7 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   // opens file for writing
   FILE *img_file_ptr = fopen(filename, "w");
   if (!img_file_ptr) {
-    fprintf(stderr, "Could not open output image file %s\n", filename);
+    fprintf(stderr, "Could not open output image file '%s'\n", filename);
     return 6;
   }
   
@@ -249,7 +249,7 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
 
   FILE *img_file_ptr_pos = fopen(filename_pos, "w");
   if (!img_file_ptr_pos) {
-    fprintf(stderr, "Could not open output image file %s\n", filename_pos);
+    fprintf(stderr, "Could not open output image file '%s'\n", filename_pos);
     return 7;
   }
 
