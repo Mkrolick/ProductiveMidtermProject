@@ -1,5 +1,7 @@
 // Zachary Sayyah zsayyah1
 // Malcolm Krolick mkrolick1
+#include "puzzle_funcs.h"
+
 #include <assert.h>
 #include <limits.h>
 #include <stdio.h>
@@ -7,7 +9,6 @@
 #include <string.h>
 
 #include "puzzle.h"
-#include "puzzle_funcs.h"
 #include "read_utils.h"
 
 Puzzle *puzzle_create(int size) {
@@ -41,7 +42,7 @@ void puzzle_destroy(Puzzle *p) {
     for (int i = 0; i < p->size; i++) {
       free(p->positions[i]);
     }
-    
+
     free(p->positions);
 
     // frees tiles
@@ -50,13 +51,13 @@ void puzzle_destroy(Puzzle *p) {
         if (p->tiles[i].imageBlock) {
           free(p->tiles[i].imageBlock);
         }
-      }   
+      }
       free(p->tiles);
     }
-  
-  // finally frees puzzle
+
+    // finally frees puzzle
   }
-  
+
   free(p);
 }
 
@@ -77,7 +78,7 @@ Image *exportImage(Puzzle *p) {
   newImage->rows = p->size * p->tiles->blockSize;
   newImage->cols = p->size * p->tiles->blockSize;
   newImage->data =
-      (Pixel *) malloc(sizeof(Pixel) * newImage->rows * newImage->cols);
+      (Pixel *)malloc(sizeof(Pixel) * newImage->rows * newImage->cols);
 
   // Verifies malloc succeeded
   assert(newImage->data);
@@ -96,7 +97,8 @@ Image *exportImage(Puzzle *p) {
 
       for (int row = 0; row < blocksize; row++) {
         for (int k = 0; k < (blocksize); k++) {
-          newImage->data[offset + k] = currentTile.imageBlock[k + row * blocksize];
+          newImage->data[offset + k] =
+              currentTile.imageBlock[k + row * blocksize];
         }
         offset += newImage->rows;
       }
@@ -106,12 +108,12 @@ Image *exportImage(Puzzle *p) {
   return newImage;
 }
 
-int puzzle_solved(Puzzle* p) {
+int puzzle_solved(Puzzle *p) {
   // set correct as true
   int correct = 1;
 
-  //if puzzle_get_tile !=  correct val and puzzle_get_tile != 0
-  //set correct to false
+  // if puzzle_get_tile !=  correct val and puzzle_get_tile != 0
+  // set correct to false
   for (int row = 0; row < (p->size); row++) {
     for (int col = 0; col < (p->size); col++) {
       int tile_val = puzzle_get_tile(p, col, row);
@@ -120,18 +122,16 @@ int puzzle_solved(Puzzle* p) {
       if (tile_val != 0) {
         if (correct_val != tile_val) {
           correct = 0;
-        } 
-      }      
+        }
+      }
     }
   }
 
-  //return truth value
+  // return truth value
   return correct;
 }
 
-
 int move_puzzle(Puzzle *p, char command) {
-
   int temp_int;
   int tile_found = 0;
   int found_col;
@@ -163,7 +163,7 @@ int move_puzzle(Puzzle *p, char command) {
       break;
 
     case 'd':
-      
+
       for (int row = 1; row < (p->size); row++) {
         for (int col = 0; col < (p->size); col++) {
           if (puzzle_get_tile(p, col, row) == 0) {
@@ -175,17 +175,15 @@ int move_puzzle(Puzzle *p, char command) {
       }
 
       if (!tile_found) {
-        
         return 2;
       }
-      
 
       temp_int = puzzle_get_tile(p, found_col, found_row - 1);
-      
+
       puzzle_set_tile(p, found_col, found_row - 1, 0);
-      
+
       puzzle_set_tile(p, found_col, found_row, temp_int);
-      
+
       break;
 
     case 'l':
@@ -201,16 +199,13 @@ int move_puzzle(Puzzle *p, char command) {
       }
 
       if (!tile_found) {
-        
         return 2;
       }
-      
-      
-      
+
       temp_int = puzzle_get_tile(p, found_col + 1, found_row);
 
       puzzle_set_tile(p, found_col + 1, found_row, 0);
-      
+
       puzzle_set_tile(p, found_col, found_row, temp_int);
 
       break;
@@ -228,20 +223,18 @@ int move_puzzle(Puzzle *p, char command) {
       }
 
       if (!tile_found) {
-        
         return 2;
       }
 
       temp_int = puzzle_get_tile(p, found_col - 1, found_row);
 
       puzzle_set_tile(p, found_col - 1, found_row, 0);
-      
+
       puzzle_set_tile(p, found_col, found_row, temp_int);
 
       break;
     default:
 
-      
       return 3;
       break;
   }
@@ -249,73 +242,66 @@ int move_puzzle(Puzzle *p, char command) {
   return 0;
 }
 
-
-int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps, char prev_move) {
-
-  
+int solve_puzzle(Puzzle *p, char steps[], int max_steps, int cur_steps,
+                 char prev_move) {
   if (puzzle_solved(p)) {
     steps[cur_steps] = '\0';
-    return cur_steps; // steps array has a complete sequence of steps
+    return cur_steps;  // steps array has a complete sequence of steps
   }
 
   if (cur_steps >= max_steps) {
-    return max_steps; // we reached the max number of steps
+    return max_steps;  // we reached the max number of steps
   }
 
-  char direction[] = {'u', 'd', 'l', 'r' };
+  char direction[] = {'u', 'd', 'l', 'r'};
 
   char no_go;
 
-  //finding the reverse of previous move
-  switch (prev_move)
-  {
-  case 'u':
-    no_go = 'd';
-    break;
-  case 'd':
-    no_go = 'u';
-    break;
-  case 'l':
-    no_go = 'r';
-    break;
-  case 'r':
-    no_go = 'l';
-    break;
-  default:
-    no_go = '\0';
+  // finding the reverse of previous move
+  switch (prev_move) {
+    case 'u':
+      no_go = 'd';
+      break;
+    case 'd':
+      no_go = 'u';
+      break;
+    case 'l':
+      no_go = 'r';
+      break;
+    case 'r':
+      no_go = 'l';
+      break;
+    default:
+      no_go = '\0';
   }
-  
-
 
   for (int i = 0; i < 4; i++) {
-
-    //heuristic to reduce expontial complexity from quadratic to cubic
+    // heuristic to reduce expontial complexity from quadratic to cubic
     if (direction[i] == no_go) {
       continue;
     }
-    
-    Puzzle* p_copy = malloc(sizeof(Puzzle));
+
+    Puzzle *p_copy = malloc(sizeof(Puzzle));
     p_copy = half_deep_copy_puzzle(p);
 
     if (move_puzzle(p_copy, direction[i]) == 0) {
-      int totalsteps = solve_puzzle(p_copy, steps, max_steps, cur_steps + 1, direction[i]);
+      int totalsteps =
+          solve_puzzle(p_copy, steps, max_steps, cur_steps + 1, direction[i]);
       if (totalsteps != max_steps) {
         // found a solution recursively!
         steps[cur_steps] = direction[i];
         destroy_copy(p_copy);
-        
+
         return totalsteps;
-      } 
-    } 
+      }
+    }
   }
 
   // attempts to solve recursively did not succeed
-  return max_steps; 
+  return max_steps;
 }
 
 void destroy_copy(Puzzle *p) {
-
-  
   // freeing positions
   for (int i = 0; i < p->size; i++) {
     free(p->positions[i]);
@@ -324,13 +310,11 @@ void destroy_copy(Puzzle *p) {
   free(p->positions);
 }
 
-
-
-Puzzle* half_deep_copy_puzzle(Puzzle *p) {
-  Puzzle* new_puzzle = puzzle_create(p->size);
+Puzzle *half_deep_copy_puzzle(Puzzle *p) {
+  Puzzle *new_puzzle = puzzle_create(p->size);
 
   const int size = p->size;
-  // copies positions
+  // copies positions deeply
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) {
       new_puzzle->positions[i][j] = p->positions[i][j];
@@ -339,20 +323,13 @@ Puzzle* half_deep_copy_puzzle(Puzzle *p) {
 
   // shallow copy of tiles copies tiles - save memory and time
   new_puzzle->tiles = NULL;
-
   new_puzzle->size = size;
-  
 
   return new_puzzle;
-
 }
 
-
-
-
-void write_game(int** array, int size, FILE* file) {
-
-  //iterating through 2d array and printing each value
+void write_game(int **array, int size, FILE *file) {
+  // iterating through 2d array and printing each value
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) {
       fprintf(file, "%d ", array[i][j]);
@@ -360,4 +337,3 @@ void write_game(int** array, int size, FILE* file) {
   }
   fprintf(file, "\n");
 }
-
