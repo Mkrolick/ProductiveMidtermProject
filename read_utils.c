@@ -68,7 +68,7 @@ int handle_T_command(FILE *in, Puzzle *p, int standin) {
         // present pointer is not acessed unless temp is valid
         int *current_pointer = temp_arr + (size * (temp / size)) + temp % size;  
 
-        if (temp > 16 || temp < 0) {
+        if (temp > (size * size) || temp < 0) {
           // is that invalid input or invalid tile value
           fprintf(stderr, "Invalid tile value\n");
           return 2;
