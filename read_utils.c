@@ -250,6 +250,11 @@ int handle_W_command(FILE *in, Image *im, Puzzle *p, int standin) {
   Image *newImage = exportImage(p);
   int result = WritePPM(img_file_ptr, newImage);
 
+  // write PPM failed which means that we must return but not write errors
+  if (result == -1) {
+     return 8;
+  }
+
   // validates number of pixels written is expected
   assert(result ==
          ((p->size * p->tiles->blockSize) * (p->size * p->tiles->blockSize)));
